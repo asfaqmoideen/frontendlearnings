@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function toUpper(x){
+        //     return x.toUpperCase();
+        // }
+        // console.log(toUpper("hello"));
+
+        // function multiply(x,y){
+        //     return x*y;
+        // console.log(multiply(2,9));
+        // }
+        // let a = [2,3,4,5];
+        // console.log(findLength(a));
+
+        // function findLength(x){
+        //     return x.length; 
+        // }
+
+        // function sumOfArray(y){
+        //     let sum =0 ;
+        //     for(i=0; i<findLength(y);i++){
+        //         sum = sum + y[i];
+        //     }
+        //     return sum;
+        // }
+        function f1(){
+            let y = document.getElementById("multi");
+            let  x = document.getElementById("value");
+            y.innerHTML = findMultiples(x.value);
+        }
+
+        function findMultiples(x){
+            const multiples = [];
+            for(i=0;i<5;i++){
+                multiples.push(i*x);
+            }
+            return multiples;
+        }
+
+        // console.log("The Sum is " + sumOfArray(a));
+        // console.log("The multiples of 5 :"+ findMultiples(5));
+
+        // let x = {length:6, breadth:6}
+
+        // function calculateAreaPeri(x){
+
+        //     let result = {};
+        //     result.Area = 2*(x.length + x.breadth);
+        //     result.Perimeter = x.length*x.breadth;
+
+        //     return result;
+        // }
+
+        // console.log(calculateAreaPeri(x));
+        
+    </script>
+    <label for="number"> Enter a number</label>
+     <input type="number" id ="value"  >
+     <button type="submit" id = "b1" onclick="f1()"> Find Multiples</button>
+     <span id ="multi"></span>
+</body>
+</html>
