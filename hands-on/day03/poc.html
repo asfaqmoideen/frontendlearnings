@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POC</title>
+</head>
+<body>
+    <h1>Lets find out geometry ! </h1>
+    <hr/>
+
+    <label for="len">lenght</label>
+    <input type="number" min="0" max="10" step="2" id="len" required><br>
+    <label for="brd">Breadth</label>
+    <input type="range" min="0" max="10" step="2" id="brd" onchange="showValue()" required><span id="onspot">Value</span>
+    <br>
+
+    <span id="out">Output will be shown here</span>
+    <input type="checkbox" id="area" checked>
+    <label for="area">Area</label>
+    <input type="checkbox" id="peri">
+    <label for="peri">Perimeter</label><br>
+    <button type="submit" id="result" onclick="FindRequired()">Result</button>
+    
+    <!-- <button type="radio" onclick="DisplayArea()"> Area</button>
+    <button type="radio" onclick="DisplayPerimeter()"> Perimeter</button>
+    <button type="radio" onclick="DisplayBoth()"> Both</button> -->
+</body>
+
+<script>
+
+    function showValue(){
+        rangevalue = document.getElementById("brd");
+        rangeSpan = document.getElementById("onspot");
+        rangeSpan.innerHTML = rangevalue.value;
+    }
+    function FindArea(x, y){
+        return x*y;
+    }
+
+    function FindPerimeter(x,y){
+        return 2*(parseInt(x)+ parseInt(y));
+    }
+
+    function getSides(){
+        const x = document.getElementById("len");
+        const y = document.getElementById("brd");
+        return {length:x.value, breadth:y.value}
+    }
+    function DisplayArea(){
+        const rect = getSides();
+        const area = FindArea(rect.length, rect.breadth);
+        let result = "Area is " + area;
+        setResult(result);
+        return result;
+    }
+    function DisplayPerimeter(){
+        const rect = getSides();
+        const peri = FindPerimeter(rect.length, rect.breadth);
+        let result = "Perimeter is " + peri ;
+        setResult(result);
+        return result;
+    }
+    function DisplayBoth(){
+        const rect = getSides();
+        const peri = FindPerimeter(rect.length, rect.breadth);
+        const area = FindArea(rect.length, rect.breadth);
+        const result = "Area is :"+area +"& Perimeter is "+peri; 
+        setResult(result);
+    }
+
+    function setResult(result){
+        const o = document.getElementById("out");
+        o.innerHTML = result;
+    }
+
+    function FindRequired(){
+        const areaB = document.getElementById("area");
+        const periB = document.getElementById("peri");
+        const bothB = document.getElementById("both");
+
+        if(areaB.checked ==true && periB.checked == true){
+            DisplayBoth();
+        }
+        else if(areaB.checked == true){
+            DisplayArea();
+        }
+        else if (periB.checked ==true){
+            DisplayPerimeter();
+        }
+        else {
+            setResult("No Option is Selected!");
+        }
+        
+    }
+</script>
+</html>
