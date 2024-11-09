@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <label for="noofmul">Number of Multiples</label>
+    <input type="number"  id="noofmul" onchange="checkZero()" required>
+
+    <label for="num">Number</label>
+    <select id="num">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select><br>
+
+    <button type="submit" id="result" onclick="DisplayResult()">Result</button>
+    <button type="submit" id="addopt" onclick="AddOption()">Add new Number</button><br>
+
+    <span id="out">Output will be shown here</span>
+
+
+    <script>
+
+    function checkZero(){
+        if(document.getElementById("noofmul").value ==0 ){
+            document.getElementById("num").disabled = true;
+            document.getElementById("result").disabled =true;
+            setResult("");
+            return;
+        }
+        else{
+            document.getElementById("num").disabled = false;
+            document.getElementById("result").disabled =false;
+        }
+
+    }
+    function getNumber(){
+        return document.getElementById("num");
+    }
+
+    function getNumberofMultiples(){
+        return document.getElementById("noofmul");
+    }
+
+    function DisplayResult(){
+        const num = getNumber();
+        const numOfMul = getNumberofMultiples(); 
+        const result = findMultiples(num, numOfMul);
+        setResult(result);
+    }
+    function findMultiples(num, numOfMul){
+        let result = [];
+        for(i=1 ;i<numOfMul; i++){
+            let res = num*i;
+            result.push(`${i}*${num}=${res}\n`);
+            
+        }
+        return result.join('<br>');
+    }
+
+
+    function setResult(result){
+        const o = document.getElementById("out");
+        o.innerHTML = result;
+    }
+
+
+    </script>
+</body>
+</html>
