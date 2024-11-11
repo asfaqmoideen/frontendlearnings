@@ -45,7 +45,7 @@ function applyDiscount(Percentage){
 
         let productnew = products.map(p => {
             let updatedP = {...p}; 
-            updatedP.price = (p.price*Percentage)/100;
+            updatedP.price = updatedP.price -(p.price*Percentage)/100;
             return updatedP;
         });
 
