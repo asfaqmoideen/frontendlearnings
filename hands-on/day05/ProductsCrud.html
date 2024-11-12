@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Products Crud</title>
 </head>
 <body>
-    
+    <h4>
+        This is Console App, See Inspect-> Console to view results.
+    </h4>
 </body>
 
 <script>
 
-let products = [
+const products = [
     {id :1, name:"Phone",price:2000 },
     {id :2, name:"Charger", price:200},
     {id: 3, name:"Headphones", price:100}
 ];
+
 
 function addProduct(productToBeAdded){
 
@@ -27,11 +30,11 @@ function addProduct(productToBeAdded){
 }
 
 
-function updateProduct(productToBeUpdated){
-    let productToBeEdited = products.find(p=> p.id==productToBeUpdated.id)
+function updateProduct(product){
+    const productToBeEdited = products.find(p=> p.id==product.id);
     if(productToBeEdited){
-        productToBeEdited.name = productToBeUpdated.name;
-        productToBeEdited.price = productToBeUpdated.price;
+        productToBeEdited.name = product.name;
+        productToBeEdited.price = product.price;
         return true;
     }
     return false;
@@ -43,19 +46,19 @@ function viewProducts(){
 
 function applyDiscount(Percentage){
 
-        let productnew = products.map(p => {
-            let updatedP = {...p}; 
-            updatedP.price = updatedP.price -(p.price*Percentage)/100;
-            return updatedP;
+        const productnew = products.map(product => {
+            let updatedProduct = {...product}; 
+            updatedProduct.price = updatedProduct.price -(product.price*Percentage)/100;
+            return updatedProduct;
         });
 
         return productnew;
 }
 
 console.log(addProduct({id:1, name:"Bottle", price:300}));
-console.log(addProduct({id:4, name:"ottle", price:300}));
+console.log(addProduct({id:4, name:"Shoes", price:900}));
 console.log(updateProduct({id:3, name:"Neckband", price:700}));
-console.log(updateProduct({id:5, name:"Neckband", price:700}));
+console.log(updateProduct({id:5, name:"BassBooster", price:700}));
 console.log(viewProducts());
 console.log(applyDiscount(30));
 

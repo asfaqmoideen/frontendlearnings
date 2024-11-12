@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Crud</title>
+</head>
+<body>
+    <h4>
+        This is Console App, See Inspect-> Console to view results.
+    </h4>
+</body>
+
+<script>
+    const Orders = [
+        {id:200, name:summer, listOfProducts:[], totalAmount: 3000}
+    ];
+    const id = 1;
+
+    function addOrders(order){
+        if(Orders.includes(order)){
+            return false;
+        }
+
+        Orders.push(order);
+        return true;
+    }
+
+    function generateUniqueId(){
+        return ++id;
+    }
+
+    function viewAllOrders(){
+        return Orders;
+    }
+
+    function netOrdersTotal(){
+        const sum = 0;
+        for(order in Orders){
+            sum = sum + order.totalAmount;
+        }
+
+        return sum;
+    }
+
+    function cancelOrder(order){
+        orderToBeRemoved = Orders.find(o=>o.id==order.id);
+
+        if(orderToBeRemoved){
+            Orders.splice(order);
+            return true;
+        }
+
+        return false;
+    }
+
+    function findOrders(customer){
+        orders = [];
+        for(order in Orders){
+            if(order.name == customer){
+                orders.push(order);
+            }
+        }
+        return orders;
+    }
+</script>
+</html>

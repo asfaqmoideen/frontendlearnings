@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Find number of Multiples</title>
 </head>
 <body>
 
@@ -17,8 +17,7 @@
         <option value="4">4</option>
     </select><br>
 
-    <button type="submit" id="result" onclick="DisplayResult()">Result</button>
-    <button type="submit" id="addopt" onclick="AddOption()">Add new Number</button><br>
+    <button type="submit" id="result" onclick="DisplayResult()">Result</button><br>
 
     <span id="out">Output will be shown here</span>
 
@@ -39,11 +38,11 @@
 
     }
     function getNumber(){
-        return document.getElementById("num");
+        return document.getElementById("num").value;
     }
 
     function getNumberofMultiples(){
-        return document.getElementById("noofmul");
+        return document.getElementById("noofmul").value;
     }
 
     function DisplayResult(){
@@ -56,10 +55,10 @@
         let result = [];
         for(i=1 ;i<numOfMul; i++){
             let res = num*i;
-            result.push(`${i}*${num}=${res}\n`);
-            
+            result.push(`${i}*${num}=${res}`);
         }
         return result.join('<br>');
+        
     }
 
 

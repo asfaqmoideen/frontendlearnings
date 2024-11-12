@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POC</title>
+    <title>Area and Perimeter</title>
 </head>
 <body>
     <h1>Lets find out geometry ! </h1>
@@ -21,6 +21,7 @@
     <input type="checkbox" id="peri">
     <label for="peri">Perimeter</label><br>
     <button type="submit" id="result" onclick="FindRequired()">Result</button>
+
     
     <!-- <button type="radio" onclick="DisplayArea()"> Area</button>
     <button type="radio" onclick="DisplayPerimeter()"> Perimeter</button>
@@ -71,7 +72,7 @@
 
     function setResult(result){
         const o = document.getElementById("out");
-        o.innerHTML = result;
+        o.textContent = result;
     }
 
     function FindRequired(){
