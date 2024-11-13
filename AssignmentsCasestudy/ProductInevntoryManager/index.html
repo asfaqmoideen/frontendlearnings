@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Product Inevntory Manager</title>
+</head>
+<body>
+    
+    <h1>Product Inevntory Manager</h1>
+
+    <div>
+        <h3>Add a product</h3>
+
+            <label for="name">Product name:</label>
+            <input type="text" id="name"><br>
+    
+            <label for="price">Price:</label>
+            <input type="number" id="price"><br>
+    
+            <label for="id">Product Id:</label>
+            <input type="number" id="id" > <br>
+            
+            <button id="add"> Submit </button>
+
+        <span id="addProductSpan"></span>
+
+    </div>
+    
+    <div>
+        <h3>Update a Product</h3>
+
+            <label for="uname">Product name:</label>
+            <input type="text" id="uname"><br>
+    
+            <label for="uprice">Price:</label>
+            <input type="number" id="uprice"><br>
+    
+            <label for="uid">Product Id:</label>
+            <input type="number" id="uid" > <br>
+            
+            <button type="submit" id="update"> Submit </button>
+
+        <span id="editProductSpan"></span>
+
+    </div>
+
+    <div>
+        <h3>Apply Discount</h3>
+
+        <label for="percent">Discout Percentage:</label>
+        <input type="number" id="percent"><br>
+        <button type="submit" id="applyDiscount"> Apply Discount </button>
+
+    </div>
+
+    <div>
+        <h3>Products</h3>
+        <ol id="resultList"></ol>
+    </div>
+    <script src="productsController.js"></script>
+
+</body>
+</html>

@@ -33,7 +33,7 @@ const products = [
 
 
   function sortSelect(critera){
-
+    let sortedArray =[];
     if(critera=="Price"){
       return sortProductsByPrice();
     } 
@@ -45,7 +45,7 @@ const products = [
       return sortProductsByDateAdded();
     }
     else {
-      return null;
+      return sortedArray;
     }
   }
   // ---------------------------------- Sort Function End ---------------------------------
@@ -81,7 +81,7 @@ const products = [
     const name = document.getElementById("name");
     const price = document.getElementById("price");
     const quantity = document.getElementById("quantity");
-
+    let searchArray = [];
     if(category.checked == true){
       return findProductsByCategory(searchInput.value);
     }
@@ -95,7 +95,7 @@ const products = [
       return findProductsByQuantity(searchInput.value);
     }
     else{
-      return null;
+      return searchArray;
     }
   }
 
@@ -124,9 +124,14 @@ const products = [
     const list = document.getElementById("out");
     list.innerHTML=" ";
 
+    if(results.length == 0){
+      const listitem = document.createElement('span');
+      listitem.textContent = "No such product found";
+      list.appendChild(listitem);
+    }
     results.forEach(product=>{
       const listItem = document.createElement('li');
-      listItem.textContent = `${product.id} - ${product.name} - ${product.category} - ${product.quantity} - ${product.price} - ${product.dateAdded}` ;
+      listItem.textContent = `${product.id} - ${product.name} - C-${product.category} - Q${product.quantity} - $${product.price} - ${product.dateAdded}` ;
       list.appendChild(listItem);
     })
     
