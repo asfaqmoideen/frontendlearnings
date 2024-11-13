@@ -1,25 +1,22 @@
 <head>
     Product Management System
 </head>
-
+<script src="productsController.js"></script>
 <body>
     <h1>
         Add Product
     </h1>
+
     <hr>
-    <form>
-        <label for="pName">Product name:</label>
-        <input type="text" id="fname" name="fname"><br>
+    <form id="addProductForm">
+        <label for="name">Product name:</label>
+        <input type="text" id="name"><br>
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price"><br>
+        <input type="number" id="price"><br>
         <label for="id">Product Id:</label>
-        <input type="number" id="id" name="id"> <br>
-        <label for="discount">Discount Percentage:</label>
-        <input type="number" id="discount" name="discount"> <br>
-
-        <button type="submit"> Submit </button>
+        <input type="number" id="id" > <br>
+        <button type="submit" id="addProduct"> Submit </button>
     </form>
-
 
 
 

@@ -14,7 +14,6 @@ const products = [
   function sortProductsByPrice(){
   const sortedByPrice = [...products].sort((a, b) => a.price - b.price);
   console.log('Sorted by Price (Ascending):', sortedByPrice);
-  //DisplayProductsList(sortedByPrice);
   return sortedByPrice;
   }
   
@@ -22,7 +21,6 @@ const products = [
   function sortProductsByQuantity(){
   const sortedByQuantity = [...products].sort((a, b) => b.quantity - a.quantity);
   console.log('Sorted by Quantity (Descending):', sortedByQuantity);
-  // DisplayProductsList(sortedByQuantity);
   return sortedByQuantity;
   }
   
@@ -30,7 +28,6 @@ const products = [
   function sortProductsByDateAdded(){
   const sortedByDateAdded = [...products].sort((a, b) => a.dateAdded - b.dateAdded);
   console.log('Sorted by Date Added (Ascending):', sortedByDateAdded);
-  // DisplayProductsList(sortedByDateAdded);
   return sortedByDateAdded;
   }
 
@@ -56,31 +53,25 @@ const products = [
   // ------------------------------------Search Options ---------------------------------
 
   function findProductsByCategory(category){
-    console.log("Inside funtion  " + category);
   const toolsCategory = products.filter(product => product.category === category);
-  console.log('Products in Tools Category:', toolsCategory);
   return toolsCategory;
   }
   
 
   function findProductsByPrice(price){
   const affordableProducts = products.filter(product => product.price <price);
-  console.log('Affordable Products :', affordableProducts);
   return affordableProducts;
   }
 
 
   function findProductByName(name){
-  const foundProduct = products.find(product => product.name === name);
-  console.log('Product with name "Hammer":', foundProduct );
+  const foundProduct = products.filter(product => product.name === name);
   return foundProduct;
   }
   
 
   function findProductsByQuantity(quantity){
   const filteredQuantityProducts = products.filter(product => product.quantity > quantity);
-  console.log('Products with Quantity quantity greater than a given value ', filteredQuantityProducts);
-  return filteredQuantityProducts;
   }
 
   function searchSelect(){
@@ -132,9 +123,14 @@ const products = [
   function DisplayProductsList(results){
     const list = document.getElementById("out");
     list.innerHTML=" ";
+
     results.forEach(product=>{
       const listItem = document.createElement('li');
-      listItem.textContent = product.name;
+      listItem.textContent = `${product.id} - ${product.name} - ${product.category} - ${product.quantity} - ${product.price} - ${product.dateAdded}` ;
       list.appendChild(listItem);
     })
+    
   }
+
+  
+
