@@ -19,9 +19,9 @@ function addProduct(productToBeAdded){
 function updateProduct(product){
     const productToBeEdited = productsArray.find(p=> p.id==product.id);
     if(productToBeEdited){
-        productToBeEdited.name = product.name;
-        productToBeEdited.price = product.price;
-        return true;
+        productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
+        productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price ;
+       // return true;
     }
     return false;
 }
@@ -31,13 +31,10 @@ function viewProducts(){
 }
 
 function applyDiscount(Percentage){
-
-     const productnew = productsArray.map(product => {
+    productsArray.map(product => {
             product.price = product.price - (product.price*Percentage)/100;
             return product;
         });
-
-    return productnew;
 }
 
 // --------------------------UI Funtions-------------------------------------
@@ -47,13 +44,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     let add = document.getElementById("add");
     add.addEventListener("click", ()=>{
-        addProduct(compileProductObjectAdd());
+        if(!addProduct(compileProductObjectAdd())){
+            displayErrorMessage("Product Not Added");
+            return;
+        };
         updateProductsList();
     })
 
     let update = document.getElementById("update");
     update.addEventListener("click", ()=>{
-        console.log(updateProduct(compileProductObjectUpdate()));
+        if(!updateProduct(compileProductObjectUpdate())){
+            displayErrorMessage("Product Not Updated");
+            return;
+        }
         updateProductsList();
     })
     let applyD = document.getElementById("applyDiscount");
@@ -65,6 +68,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 })
 
+function displayErrorMessage(errorMsg){
+    const resultList = document.getElementById("resultList");
+    list.textContent = "";
+    const spanItem = document.createElement('span');
+    spanItem.textContent = errorMsg;
+    resultList.appendChild(spanItem);
+}
 
 function compileProductObjectAdd(){
     const productName = document.getElementById("name").value;

@@ -18,5 +18,29 @@
     y.textContent = "abc";
 
     x.appendChild(y);
+
+    const productsArray = [
+    {id :1, name:"Phone",price:2000 },
+    {id :2, name:"Charger", price:200},
+    {id: 3, name:"Headphones", price:100}
+];
+    function view(){
+        return productsArray;
+    }
+    function updateProduct(product){
+    const productToBeEdited = productsArray.find(p=> p.id==product.id);
+    console.log(product.name.length);
+    console.log(product.price.length);
+    console.log(product.name);
+    console.log(productToBeEdited.name.length =! 0);
+    if(productToBeEdited){
+        productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
+        productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price ;
+       // return true;
+    }
+    console.log(productToBeEdited.name);
+    console.log(productToBeEdited.price);
+    //return false;
+    }
 </script>
 </html>
