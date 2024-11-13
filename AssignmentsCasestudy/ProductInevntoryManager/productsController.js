@@ -83,7 +83,7 @@ function compileProductObjectUpdate(){
 
 function updateProductsList(){
     const list = document.getElementById("resultList");
-    list.innerHTML = "";
+    list.textContent = "";
     productsArray.forEach(element => {
         const listElement = document.createElement('li');
         listElement.textContent = `${element.id} - ${element.name} - ${element.price}`;
