@@ -42,7 +42,7 @@ function applyDiscount(Percentage){
 // --------------------------UI Funtions-------------------------------------
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  displayProductsList();
+    displayProductsList();
 
     let add = document.getElementById("add");
     add.addEventListener("click", ()=>{

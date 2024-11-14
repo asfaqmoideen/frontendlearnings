@@ -1,54 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    Order Processing System
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Manager</title>
 </head>
-
 <body>
-    <h1>
-        Order Processing System
-    </h1>
+    <h1>Order Processing System</h1>
 
-    <form>
-        <label for="pName">Product name:</label>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="id">Unique Id:</label>
-        <input type="number" id="id" name="id"> <br>
-        <button type="submit"> Order now </button>
-    </form>
-    <table>
-        <h1>
-            Orders
-        </h1>
-        <tr>
-            <th>Order Unique Id</th>
-            <th>Price</th>
-            <th>List of Products</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>679</td>
-            <td>$300</td>
-            <td>Laptop, Power Adaptor</td>
-            <td>
-                <a href="Cancel">Cancel Order</a>
-            </td>
-        </tr>
-        <tr>
-            <td>450</td>
-            <td>$100</td>
-            <td>SmartPhone & Headphones</td>
-            <td>
-                <a href="Cancel">Cancel Order</a>
-            </td>
-        </tr>
-        <tr>
-            <td>500</td>
-            <td>$10</td>
-            <td>Airpodes</td>
-            <td>
-                <a href="Cancel">Cancel Order</a>
-            </td>
-        </tr>
-    </table>
-    <button>Calculate Total Cost</button>
+    <div id="container">
+        <div id="addOrder">
 
+            <label for="cname">Customer Name</label>
+            <input type="text" id="cname"><br><br>
+
+            <label for="contact">Address or Phone</label>
+            <input type="text" id="contact"><br><br>    
+
+            <label for="productDropDown">Select Products</label>
+            <select id="productDropDown">
+                <option value="select" selected>--Select Product</option>
+
+            </select><br><br>
+
+            <button type="submit" id="addProduct">Add Product</button>
+            <ul id="productList"></ul>
+            <br>
+
+            <div id="totalAmount">
+                Total Amount Current Order: <span id="tamt">0</span><br><br>
+                Total Amount of All Orders: <span id="tamt2">0</span>
+            </div><br><br>
+            
+            <button type="submit" id="placeOrder">Place Order</button>
+
+            <ul id="orderList">
+
+            </ul>
+        </div>
+
+
+    </div>
+    <script src="js/ordersController.js"></script>
 </body>
+</html>
