@@ -8,11 +8,11 @@ const productsArray = [
 
 function addProduct(productToBeAdded){
 
-    if(!productsArray.find(p=> p.id==productToBeAdded.id)){
-        productsArray.push(productToBeAdded);
-        return true;
+    if(productsArray.find(p=> p.id==productToBeAdded.id)){
+        return false;
     }
-    return false;
+    productsArray.push(productToBeAdded);
+    return true;
 }
 
 
@@ -20,8 +20,10 @@ function updateProduct(product){
     const productToBeEdited = productsArray.find(p=> p.id==product.id);
     if(productToBeEdited){
         productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
-        productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price ;
-       // return true;
+        console.log(productToBeEdited.name);
+        productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price;
+        console.log( productToBeEdited.price);
+        return true;
     }
     return false;
 }
@@ -44,36 +46,30 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     let add = document.getElementById("add");
     add.addEventListener("click", ()=>{
-        if(!addProduct(compileProductObjectAdd())){
-            displayErrorMessage("Product Not Added");
-            return;
-        };
-        updateProductsList();
+        tryAddingproduct();
     })
 
     let update = document.getElementById("update");
     update.addEventListener("click", ()=>{
-        if(!updateProduct(compileProductObjectUpdate())){
-            displayErrorMessage("Product Not Updated");
-            return;
-        }
-        updateProductsList();
+        tryUpdatingProduct();
+
     })
     let applyD = document.getElementById("applyDiscount");
     applyD.addEventListener("click", ()=>{
         const percent = document.getElementById("percent");
-        console.log(applyDiscount(percent.value));
+        applyDiscount(percent.value);
         updateProductsList();
     })
 
 })
 
-function displayErrorMessage(errorMsg){
-    const resultList = document.getElementById("resultList");
-    list.textContent = "";
-    const spanItem = document.createElement('span');
-    spanItem.textContent = errorMsg;
-    resultList.appendChild(spanItem);
+function tryAddingproduct() {
+    if(!addProduct(compileProductObjectAdd())){
+        displayMessage("Id Already Exists");
+        return;
+    }
+    displayMessage("Product Added!");
+    updateProductsList();   
 }
 
 function compileProductObjectAdd(){
@@ -83,6 +79,17 @@ function compileProductObjectAdd(){
     return{id: Id, name: productName, price: Pprice};
 }
 
+
+function tryUpdatingProduct() {
+    if(!updateProduct(compileProductObjectUpdate())){
+        displayMessage("Id Not Found!");
+        return;
+    };
+    displayMessage("Product Updtaed");
+    updateProductsList();
+}
+
+
 function compileProductObjectUpdate(){
     const productName = document.getElementById("uname").value;
     const Pprice = document.getElementById("uprice").value;
@@ -90,6 +97,13 @@ function compileProductObjectUpdate(){
     return{id: Id, name: productName, price: Pprice};
 }
 
+function displayMessage(message){
+    const div = document.getElementById("MessageSection");
+    div.textContent = "";
+    const spanItem = document.createElement('span');
+    spanItem.textContent = message;
+    div.appendChild(spanItem);
+}
 
 function updateProductsList(){
     const list = document.getElementById("resultList");
@@ -100,10 +114,4 @@ function updateProductsList(){
         list.appendChild(listElement);
     });
 }
-// console.log(addProduct({id:1, name:"Bottle", price:300}));
-// console.log(addProduct({id:4, name:"Shoes", price:900}));
-// console.log(updateProduct({id:3, name:"Neckband", price:700}));
-// console.log(updateProduct({id:5, name:"BassBooster", price:700}));
-// console.log(viewProducts());
-// console.log(applyDiscount(30));
 
