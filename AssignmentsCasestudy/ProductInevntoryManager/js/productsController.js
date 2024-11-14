@@ -42,7 +42,7 @@ function applyDiscount(Percentage){
 // --------------------------UI Funtions-------------------------------------
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    updateProductsList();
+    displayProductsList();
 
     let add = document.getElementById("add");
     add.addEventListener("click", ()=>{
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     applyD.addEventListener("click", ()=>{
         const percent = document.getElementById("percent");
         applyDiscount(percent.value);
-        updateProductsList();
+        displayProductsList();
     })
 
 })
@@ -69,7 +69,7 @@ function tryAddingproduct() {
         return;
     }
     displayMessage("Product Added!");
-    updateProductsList();   
+    displayProductsList();   
 }
 
 function compileProductObjectAdd(){
@@ -86,7 +86,7 @@ function tryUpdatingProduct() {
         return;
     };
     displayMessage("Product Updtaed");
-    updateProductsList();
+    displayProductsList();
 }
 
 
@@ -105,7 +105,7 @@ function displayMessage(message){
     div.appendChild(spanItem);
 }
 
-function updateProductsList(){
+function displayProductsList(){
     const list = document.getElementById("resultList");
     list.textContent = "";
     productsArray.forEach(element => {
