@@ -176,8 +176,9 @@ function resetInputs(){
 function displayMessage(message){
     const messageDiv = document.getElementById('messageDiv');
     messageDiv.textContent = message;
-    
 }
+
+
 function updateProductsDropdown(){
     const productDd = document.getElementById('productDropDown');
     productsArray.forEach(product =>{
