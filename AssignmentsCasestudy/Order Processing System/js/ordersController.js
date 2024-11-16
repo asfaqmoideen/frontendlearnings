@@ -1,19 +1,26 @@
 //========================================Declarations=====================================================
 const productsArray = [
-    {id :1, name:"Phone",price:200000 },
+    {id :1, name:"Phone",price:2000 },
     {id :2, name:"Charger", price:2000},
     {id :3, name:"Headphones", price:1000},
     {id :4, name:"Airpods",price:2000 },
     {id :5, name:"Neckband", price:900},
     {id :6, name:"Coolers", price:100},
-    {id :7, name:"Laptop",price:2000000 },
+    {id :7, name:"Laptop",price:2000 },
     {id :8, name:"Watch", price:2000},
     {id: 9, name:"Pen", price:10},
     {id: 10,name:"Notebook", price:100}
 ];
 
 const Orders = [
-    {id:0, name:"Andrew",contact:"Coimbatore", listOfProducts:[{id :1, name:"Phone",price:2000 },{id :2, name:"Charger", price:200},], totalAmount: 3000},  
+    {
+    id:0, 
+    name:"Andrew",
+    contact:"Coimbatore", 
+    listOfProducts:[{id :1, name:"Phone",price:2000 },{id :2, name:"Charger", price:200},], 
+    totalAmount: 2200, 
+    dateOfOrder: new Date()
+    }
 ];
 
 let orderId = 1;
@@ -22,11 +29,11 @@ let addedProducts =[];
 //=====================================LogicFunctions======================================================
 function addOrder(order){
 
-    if(Orders.includes(order)){
-        return false;
+    if(order.name){
+        Orders.push(order);
+        return true;
     }
-    Orders.push(order);
-    return true;
+        return false;
 }
 
 function generateUniqueId(){
@@ -79,6 +86,7 @@ function compileOrder(productslist){
         contact: getCustomerDetails().contact,
         listOfProducts : productslist,
         totalAmount: calculateTotalAmount(productslist),
+        dateOfOrder: new Date()
     }
 
 }
@@ -90,11 +98,15 @@ function calculateTotalAmount(){
     }
     return sum;
 }
+
+
 //==========================================DOM ========================================================
 
 document.addEventListener("DOMContentLoaded", ()=>{
     updateProductsDropdown();
-    
+    updateOrdersAddedList();
+    upadteTotalAmount();
+
     const addProd = document.getElementById("addProduct");
     addProd.addEventListener('click', ()=>{
         tryAddingProducts();
@@ -102,7 +114,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
     
     const placeOrder = document.getElementById("placeOrder");
     placeOrder.addEventListener('click', ()=>{
-        tryPlacingOrder();
+        if(tryPlacingOrder()){
+            displayMessage("Order Added !");
+            return;
+        }
+        displayMessage("Invalid Inputs");
+        resetInputs();
+    })
+
+    const cancelOrder = document.getElementById("cancelOrder");
+    cancelOrder.addEventListener('click', ()=>{
+        tryCancellingOrder();
     })
     
     
@@ -110,23 +132,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 function tryAddingProducts(){
-    addedProducts.push(getProductDetails());  
-    updateProductsAddedList();
-    upadteTotalAmount();
-    document.getElementById('productDropDown').value=""
+    addedProducts.push(getProductDetails());     // Adds products to gloabl variable
+    updateProductsAddedList();                   // updates the products added list in UI
+    upadteTotalAmount();                         //Updates the total amount
+    document.getElementById('productDropDown').value=" "  // setting the product dropdown to unselected.
 }
 
 function tryPlacingOrder(){
-    addOrder(compileOrder(addedProducts));
-    updateOrdersAddedList();
-    addedProducts = [];
-    updateProductsAddedList();
-    upadteTotalAmount();
-    resetInputs();
+
+    if(addOrder(compileOrder(addedProducts))){
+        updateOrdersAddedList();
+        addedProducts = [];
+        updateProductsAddedList();
+        upadteTotalAmount();
+        resetInputs();
+        return true;
+    }
+    return false;
 }
 
+
 function getCustomerDetails(){
-    return {name: document.getElementById('cname').value, contact: document.getElementById('contact').value};
+    return {
+    name: document.getElementById('cname').value.trim(),
+    contact: document.getElementById('contact').value.trim()
+    };
 }
 
 function getProductDetails(){
@@ -136,11 +166,18 @@ function getProductDetails(){
 
 
 //==================================== Updating UI Functions ==================================================
+
+
 function resetInputs(){
     document.getElementById('cname').value="";
     document.getElementById('contact').value="";
 }
 
+function displayMessage(message){
+    const messageDiv = document.getElementById('messageDiv');
+    messageDiv.textContent = message;
+    
+}
 function updateProductsDropdown(){
     const productDd = document.getElementById('productDropDown');
     productsArray.forEach(product =>{
@@ -169,9 +206,17 @@ function updateProductsAddedList(){
 function updateOrdersAddedList(){
     const productslist = document.getElementById('orderList');
     productslist.textContent = "";
+    const productlist = document.createElement('ul');
     Orders.forEach(order =>{
         const listItem = document.createElement('li');
-        listItem.textContent = `${order.name} - ${order.totalAmount}`;
+        order.listOfProducts.forEach(p =>{
+            const productOpt = document.createElement('li');
+            productOpt.textContent = `${p.name} - ${p.price}, `;
+            productlist.appendChild(productOpt);
+        })
+        listItem.textContent = `${order.id} - ${order.name}
+       - ${order.contact} - [ ${productlist.textContent} ] - 
+       ${order.totalAmount} - ${order.dateOfOrder.toLocaleDateString()}`;
         productslist.appendChild(listItem);
     })
 }

@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+header {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: gray;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    height: 50px;
+    padding: 10px;
+    margin: 20px;
+}
+#container {
+    background: rgb(126, 222, 233);
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100;
+}
+
+#addOrder {
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    text-align: center;
+}
+#orderDetails {
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 60%;
+}
+
+#messageDiv {
+    color: red;
+}
+input, button, select {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    width: auto;
+    height: max-content;
+}
+
+li {
+    padding: 5px 0;
+    cursor: pointer;
+    border: 3px solid #ccc;
+    border-radius: 8px;
+}
+
+.selected {
+    background-color: #25a11a;
+}

@@ -5,40 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Manager</title>
 </head>
-<body>
+<link rel="stylesheet" href="css/style.css">
+<header>
     <h1>Order Processing System</h1>
+</header>
 
+<body>
     <div id="container">
-        <div id="addOrder">
 
-            <label for="cname">Customer Name</label>
+        <div id="addOrder">
+            <h2>Add Order</h2>
+            <label for="cname">Customer Name :</label>
             <input type="text" id="cname"><br><br>
 
-            <label for="contact">Address or Phone</label>
+            <label for="contact">Address or Phone :</label>
             <input type="text" id="contact"><br><br>    
 
             <label for="productDropDown">Select Products</label>
             <select id="productDropDown">
-                <option value="select" selected>--Select Product</option>
+                <option value="select" selected>--Select Product--</option>
 
             </select><br><br>
+            Total Amount Current Order: <span id="tamt">0</span><br>
 
             <button type="submit" id="addProduct">Add Product</button>
+            <button type="submit" id="placeOrder">Place Order</button>
             <ul id="productList"></ul>
             <br>
-
-            <div id="totalAmount">
-                Total Amount Current Order: <span id="tamt">0</span><br><br>
-                Total Amount of All Orders: <span id="tamt2">0</span>
-            </div><br><br>
             
-            <button type="submit" id="placeOrder">Place Order</button>
+            <div id="messageDiv"></div>
 
-            <ul id="orderList">
-
-            </ul>
         </div>
-
+        
+        <div id="orderDetails">
+            <h2>Orders List</h2>
+            Total Amount of All Orders: <span id="tamt2">0</span>
+            <ul id="orderList"></ul>
+        </div>
 
     </div>
     <script src="js/ordersController.js"></script>
