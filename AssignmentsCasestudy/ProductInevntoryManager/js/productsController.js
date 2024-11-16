@@ -7,23 +7,25 @@ const productsArray = [
 
 
 function addProduct(productToBeAdded){
-    
-    if(productsArray.find(p=> p.id==productToBeAdded.id)){
+    if(productToBeAdded.name && productToBeAdded.id){
+        const existingproduct = productsArray.find(p=> p.id==productToBeAdded.id);
+        if(!existingproduct){
+            productsArray.push(productToBeAdded);
+            return true;
+        }
         return false;
     }
-    productsArray.push(productToBeAdded);
-    return true;
 }
 
 
 function updateProduct(product){
+    if(product.name || product.price){
     const productToBeEdited = productsArray.find(p=> p.id==product.id);
     if(productToBeEdited){
         productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
-        console.log(productToBeEdited.name);
         productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price;
-        console.log( productToBeEdited.price);
         return true;
+    }
     }
     return false;
 }
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 function tryAddingproduct() {
     if(!addProduct(compileProductObjectAdd())){
-        displayMessage("Id Already Exists");
+        displayMessage("Invalid inputs, Id should be unique, name required");
         return;
     }
     displayMessage("Product Added!");

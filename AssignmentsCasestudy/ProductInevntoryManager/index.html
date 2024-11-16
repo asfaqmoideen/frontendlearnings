@@ -7,10 +7,11 @@
 </head>
 <link rel="stylesheet" href="css/style.css">
 <body>
-    
-    <h1>Product Inevntory Manager</h1>
-
-    <div id="addCon">
+    <header>
+        <h1>Product Inevntory Manager</h1>
+    </header>
+    <div id="container">
+        <div id="addCon">
         <h3>Add a product</h3>
             <label for="name">Product name:</label>
             <input type="text" id="name" required><br>
@@ -23,10 +24,10 @@
             
             <button id="add"> Add </button>
 
+            <div id="MessageSection"></div>
         </div>
     <br>
     <hr>
-     <div id="MessageSection"></div>
     <br>
     <hr>
     <div id="updCon">
@@ -58,6 +59,6 @@
         <ul id="resultList"></ul>
     </div>
     <script src="js/productsController.js"></script>
-
+    </div>
 </body>
 </html>
