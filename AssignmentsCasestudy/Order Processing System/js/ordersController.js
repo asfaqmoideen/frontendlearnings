@@ -100,7 +100,7 @@ function calculateTotalAmount(){
 }
 
 
-//==========================================DOM ========================================================
+//========================================== DOM ========================================================
 
 document.addEventListener("DOMContentLoaded", ()=>{
     updateProductsDropdown();
@@ -205,8 +205,8 @@ function updateProductsAddedList(){
 }
 
 function updateOrdersAddedList(){
-    const productslist = document.getElementById('orderList');
-    productslist.textContent = "";
+    const orderslist = document.getElementById('orderList');
+    orderslist.textContent = "";
     const productlist = document.createElement('ul');
     Orders.forEach(order =>{
         const listItem = document.createElement('li');
@@ -218,7 +218,7 @@ function updateOrdersAddedList(){
         listItem.textContent = `${order.id} - ${order.name}
        - ${order.contact} - [ ${productlist.textContent} ] - 
        ${order.totalAmount} - ${order.dateOfOrder.toLocaleDateString()}`;
-        productslist.appendChild(listItem);
+        orderslist.appendChild(listItem);
     })
 }
 
