@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font for the body */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-color: #f9f9f9; /* Light background color */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Column direction */
+            height: 100vh; /* Full viewport height */
+        }
+
+        header {
+            background-color: #2c3e50; /* Dark background */
+            color: white; /* White text */
+            text-align: center; /* Center text */
+            padding: 20px; /* Padding for header */
+        }
+        .content {
+            flex: 1; /* Allow content to grow and fill available space */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between left and right sections */
+            padding: 20px; /* Padding around the content */
+        }
+
+        .logout-message {
+            background-color: white; /* White background for message box */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 20px; /* Padding inside message box */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center text */
+            font-size: 24px; /* Font size for message */
+            color: #2c3e50; /* Dark text color */
+        }
+
+        footer {
+            text-align: center; /* Center text */
+            padding: 10px; /* Padding for footer */
+            background-color: #2c3e50; /* Dark background */
+            color: white; /* White text */
+            position: relative; /* Position footer */
+        }
+        button { background-color:#2c3e50; color: white; border: none; }
+        button:hover { background-color:#1e2a35; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Manufacturing Company Dashboard</h1>
+    </header>
+
+    <div class="content">
+
+        <div class="container">
+            <h2>Are you sure you want to logout?</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+
+    </div>
+
+    <footer>
+        © 2024 Manufacturing Company. All rights reserved.
+    </footer>
+</body>
+<script>
+        function logout() {
+            sessionStorage.removeItem("loggedIn");
+            window.location.href = "login.html"; // Redirect to login page
+        }
+
+        // Check if the user is already logged out
+        window.onload = function() {
+            if (!sessionStorage.getItem("loggedIn")) {
+                window.location.href = "login.html"; // Redirect if not logged in
+            }
+        };
+</script>
+</html>
