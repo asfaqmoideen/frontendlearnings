@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Product Inevntory Manager</title>
+    
 </head>
-<link rel="stylesheet" href="css/style.css">
 <body>
     <header>
         <h1>Product Inevntory Manager</h1>
@@ -23,14 +23,15 @@
             <input type="number" id="id" required> <br>
             
             <button id="add"> Add </button>
-
+            <button type="submit" id="update"> Update </button>
+            <button type="submit" id="remove"> Remove </button>
             <div id="MessageSection"></div>
         </div>
     <br>
-    <hr>
+
     <br>
-    <hr>
-    <div id="updCon">
+
+    <!-- <div id="updCon">
         <h3>Update a Product</h3>
             <label for="uname">Product name:</label>
             <input type="text" id="uname"><br>
@@ -43,8 +44,7 @@
             
             <button type="submit" id="update"> Submit </button>
 
-    </div>
-    <hr>
+    </div> -->
     <div id="applyCon">
         <h3>Apply Discount</h3>
 
@@ -53,12 +53,12 @@
         <button type="submit" id="applyDiscount"> Apply Discount </button>
 
     </div>
-    <hr>
     <div id="resultCon">
         <h3>Products</h3>
         <ul id="resultList"></ul>
     </div>
-    <script src="js/productsController.js"></script>
-    </div>
+</div>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/productsController1.js"></script>
 </body>
 </html>

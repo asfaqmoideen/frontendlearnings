@@ -49,16 +49,6 @@ function netOrdersTotal(){
     return sum;
 }
 
-function cancelOrder(order){
-    orderToBeRemoved = Orders.find(o=>o.id==order.id);
-
-    if(orderToBeRemoved){
-        Orders.splice(order);
-        return true;
-    }
-
-    return false;
-}
 
 function findOrders(customer){
 
@@ -80,6 +70,7 @@ function addProduct(productToBeAdded){
 
 
 function compileOrder(productslist){
+    
     return {
         id: generateUniqueId(),
         name: getCustomerDetails().name,
@@ -130,6 +121,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
     
 })
 
+function tryCancellingOrder(){
+    const selectedItems = document.querySelectorAll('#orderList .selected');
+    selectedItems.forEach(item => {
+        const index = Array.from(item.parentNode.children).indexOf(item);
+        Orders.splice(index, 1); // Remove from array
+        item.remove(); // Remove from displayed list
+    });
+
+    updateOrdersAddedList();
+    upadteTotalAmount();
+}
 
 function tryAddingProducts(){
     addedProducts.push(getProductDetails());     // Adds products to gloabl variable
@@ -214,11 +216,17 @@ function updateOrdersAddedList(){
             const productOpt = document.createElement('li');
             productOpt.textContent = `${p.name} - ${p.price}, `;
             productlist.appendChild(productOpt);
-        })
+            listItem.onclick = function() {
+                this.classList.toggle('selected');
+               // document.getElementById('cname').value = this.textContent; // Populate input for updating
+            };
+        });
+
         listItem.textContent = `${order.id} - ${order.name}
        - ${order.contact} - [ ${productlist.textContent} ] - 
        ${order.totalAmount} - ${order.dateOfOrder.toLocaleDateString()}`;
-        orderslist.appendChild(listItem);
+       orderslist.appendChild(listItem);
+
     })
 }
 

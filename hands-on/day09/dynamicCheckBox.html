@@ -1,0 +1,14 @@
+<div id="cb"></div>
+<script type="text/javascript">
+    var cbh = document.getElementById('cb');
+    var val = '1';
+    var cap = 'Jan';
+    for(i=0; i<9; i++){
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cbh.appendChild(cb);
+    cb.name = val;
+    cb.value = cap;
+    cb.appendChild(document.createTextNode(cap));
+    }
+</script>

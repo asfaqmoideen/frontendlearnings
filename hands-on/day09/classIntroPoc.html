@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Intro</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    class TellMe
+    {   
+        constructor(maybe)
+        {
+            this.numbers=maybe;
+        }
+        getFirstNumber()
+        {
+            return this.numbers[0];
+        }
+        getNumberofOddNumbers()  
+        { 
+            let noOfOdd =0;
+            this.numbers.forEach(element => {
+                if(element%2!=0){
+                    noOfOdd++;
+                }
+            });
+            return noOfOdd;
+        }
+        
+    
+    }
+    let y=[2,3,5,8,9,11];
+    let z = new TellMe(y);
+    console.log(z.getFirstNumber());
+    console.log(z.getNumberofOddNumbers());
+
+</script>

@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 })
 
 function tryAddingproduct() {
-    if(!addProduct(compileProductObjectAdd())){
+    if(!addProduct(compileProductObject())){
         displayMessage("Invalid inputs, Id should be unique, name required");
         return;
     }
@@ -74,7 +74,7 @@ function tryAddingproduct() {
     displayProductsList();   
 }
 
-function compileProductObjectAdd(){
+function compileProductObject(){
     const productName = document.getElementById("name").value;
     const Pprice = document.getElementById("price").value;
     const Id = document.getElementById("id").value;

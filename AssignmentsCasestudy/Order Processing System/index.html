@@ -16,17 +16,17 @@
         <div id="addOrder">
             <h2>Add Order</h2>
             <label for="cname">Customer Name :</label>
-            <input type="text" id="cname"><br><br>
+            <input type="text" id="cname">
 
             <label for="contact">Address or Phone :</label>
-            <input type="text" id="contact"><br><br>    
+            <input type="text" id="contact"> 
 
             <label for="productDropDown">Select Products</label>
             <select id="productDropDown">
                 <option value="select" selected>--Select Product--</option>
 
             </select><br><br>
-            Total Amount Current Order: <span id="tamt">0</span><br>
+            Total Amount Current Order: <span id="tamt">0</span>
 
             <button type="submit" id="addProduct">Add Product</button>
             <button type="submit" id="placeOrder">Place Order</button>
@@ -34,13 +34,16 @@
             <br>
             
             <div id="messageDiv"></div>
-
+            
         </div>
         
         <div id="orderDetails">
             <h2>Orders List</h2>
             Total Amount of All Orders: <span id="tamt2">0</span>
             <ul id="orderList"></ul>
+            <div id="modifyOrder">
+            <button type="submit" id="cancelOrder">Cancel Order</button>
+             </div>
         </div>
 
     </div>

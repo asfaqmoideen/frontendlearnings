@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<script>
+
+    class Task
+    {
+        constructor(taskid,taskname,taskstatus)
+        {
+            this.taskid=taskid;
+            this.taskname=taskname;
+            this.taskstatus=taskstatus;
+
+        }
+   
+    }
+
+    class TaskLogic
+    {
+        constructor()
+        {
+            this.tasks=[];
+        }
+
+        addTask(newTask)
+        {   
+            if(this.tasks.find(p=> p.taskid == newTask.taskid)){
+                return "not added";
+            }
+            this.tasks.push(newTask);
+            return "added";
+            
+        }
+
+        getAllTasksBasedonStatus(statusgiven)
+        {
+            return this.tasks.filter(t=>{
+                if(t.taskstatus == statusgiven){
+                    return t;
+                }
+            });
+        }
+
+        updatetask(updatedtask) 
+        {
+            const taskToBeEdited = this.tasks.find(p=>p.taskid == updatedtask.taskid);
+            if(taskToBeEdited){
+                taskToBeEdited.taskname = updatedtask.taskname;
+                taskToBeEdited.taskstatus = updatedtask.taskstatus;
+                return "Updated"
+            }
+            return "id not found"
+        }
+
+        getAllTasks()
+        {
+            return this.tasks;
+        }
+
+
+
+    }
+
+
+    
+    let y = new Task(12,"abc","running"); 
+    let t1=new Task(23,"abc","stopped");
+    let t2=new Task(24,"def","running");
+    let t3=new Task(25,"ghi","walking");
+    let tl = new TaskLogic();
+    console.log(tl.addTask(y));
+    console.log(tl.addTask(t1));
+    console.log(tl.addTask(t1));
+    console.log(tl.addTask(t2));
+    console.log(tl.addTask(t3));
+    console.log(tl.getAllTasks());
+    console.log(tl.getAllTasksBasedonStatus("running"));
+    console.log(tl.updatetask(new Task(23, "xyz", "running")));
+    console.log(tl.getAllTasks());
+    console.log(tl.getAllTasksBasedonStatus("running"));
+</script>
+</head>
+<body>
+
+</body>
+</html>

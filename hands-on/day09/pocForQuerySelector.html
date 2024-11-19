@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .selected{
+            color: red;
+        }
+    </style>
+    <script>
+
+        function f1(){
+            const selectedItems = document.querySelectorAll('#medicationList .selected');
+            console.log(selectedItems.length, "This is the lenght");
+        }
+    </script>
+
+    <div id="medicationList">
+        <p >
+            Hii 
+        </p>
+        <p>
+            Hello
+        </p>
+
+        <button onclick="f1()" >Submit</button>
+    </div>
+    
+</body>
+
+</html>
