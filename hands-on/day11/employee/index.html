@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>
+            Employee Data Management System
+        </h1>
+    </header>
+    <div id="container">
+
+        <div id="addEmployee">
+            <label for="empNo">Employee Number</label>
+            <input type="number" id="empNo"> <br>
+
+            <label for="empName">Emoloyee Name</label>
+            <input type="text" id="empName"> <br>
+
+            <label for="deptId">Department ID</label>
+            <input type="number" id="deptId"> <br>
+
+            <label for="location">Location</label>
+            <input type="text" id="location"><br>
+
+            <button type="button" id="addOrUpd">Add</button>
+
+            <br><span id="message"></span>
+        </div>
+
+        <div id="employeeDetails">
+            <ul id="empList"></ul>
+        </div>
+
+    </div>
+    <footer>
+        © 2024 Employee Data Management System. All rights reserved.
+    </footer>
+</body>
+<script src="js/script.js"></script>
+</html>
