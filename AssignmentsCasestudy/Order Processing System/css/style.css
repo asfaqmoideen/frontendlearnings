@@ -1,20 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    
+}
+
 body {
-    font-family: Arial, sans-serif;
-    height: 100vh;
     background-color: #f0f0f0;
+    margin: 0%;
 }
+
+a{
+     text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 header {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: gray;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    height: 50px;
-    padding: 10px;
-    margin: 20px;
+    background-color:  #00a8ad;
+    color: #666666;
+    padding: 1rem 0;
 }
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+header nav ul li {
+    padding: 0.5rem 1rem;
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #666666;
+}
+
+
+header button { 
+    background-color:#666666; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 10px;
+}
+
+header button:hover { 
+    background-color:#1e2a35; 
+}
+
+
 #container {
-    background: rgb(126, 222, 233);
+    background: rgb(236, 240, 241);
     display: flex;
     justify-content: space-around;
     padding: 20px;
@@ -43,7 +96,7 @@ header {
 #messageDiv {
     color: red;
 }
-input, button, select {
+#container input, button, select {
     margin: 10px 0;
     padding: 10px;
     font-size: 16px;
@@ -51,14 +104,14 @@ input, button, select {
     border-radius: 5px;
     width: 200px;
 }
-ul {
+#container ul {
     list-style:none;
     padding: 0;
     width: auto;
     height: max-content;
 }
 
-li {
+#container li {
     padding: 5px 0;
     cursor: pointer;
     border: 3px solid #ccc;
@@ -68,4 +121,15 @@ li {
 
 .selected {
     background-color: #25a11a;
+}
+
+footer {
+    text-align: center; /* Center text */
+    padding: 10px; /* Padding for footer */
+    background-color: #00a8ad; /* Dark background */
+    color: white; /* White text */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }

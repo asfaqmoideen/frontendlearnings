@@ -1,6 +1,6 @@
 //========================================Declarations=====================================================
 const productsArray = [
-    {id :1, name:"Phone",price:2000 },
+    {id :1, name:"Phone",price:2000,},
     {id :2, name:"Charger", price:2000},
     {id :3, name:"Headphones", price:1000},
     {id :4, name:"Airpods",price:2000 },
@@ -17,7 +17,7 @@ const Orders = [
     id:0, 
     name:"Andrew",
     contact:"Coimbatore", 
-    listOfProducts:[{id :1, name:"Phone",price:2000 },{id :2, name:"Charger", price:200},], 
+    listOfProducts:[{id :1, name:"Phone",price:2000,},{id :2, name:"Charger", price:200},], 
     totalAmount: 2200, 
     dateOfOrder: new Date()
     }
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     updateProductsDropdown();
     updateOrdersAddedList();
     upadteTotalAmount();
-
+    
     const addProd = document.getElementById("addProduct");
     addProd.addEventListener('click', ()=>{
         tryAddingProducts();

@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    
+}
+
+body {
+    background-color: #f0f0f0;
+    margin: 0%;
+}
+
+a{
+     text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color:  #00a8ad;
+    color: #666666;
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+header nav ul li {
+    padding: 0.5rem 1rem;
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    color: #666666;
+}
+
+
+header button { 
+    background-color:#666666; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 10px;
+}
+
+header button:hover { 
+    background-color:#1e2a35; 
+}
+
+main {
+    padding: 2rem 0;
+}
+
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;       
+    padding: 0;
+    padding-top: 10%;
+    width: 100%;
+}
+
+
+#message {
+    color: red;
+}
+
+footer {
+    text-align: center; /* Center text */
+    padding: 10px; /* Padding for footer */
+    background-color: #00a8ad; /* Dark background */
+    color: white; /* White text */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.login-box {
+
+    background-color: white; /* White background for login box */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside login box */
+    width: 300px; /* Fixed width for login box */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.login-box h2 {
+    margin: 0 0 15px; /* Margin below heading */
+    font-size: 24px; /* Font size for heading */
+    text-align: center; /* Center heading text */
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 90%; /* Full width input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Margin below input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners for input fields */
+}
+
+.login-box button[type="submit"] {
+    background-color: #808080; /* Dark background for button */
+    color: white; /* White text */
+    padding: 10px; /* Padding inside button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor for button */
+    font-size: 16px; /* Font size for button */
+    width: 90%; /* Full width button */
+}
+
+.login-box input[type="submit"]:hover {
+    background-color: #808080; /* Darker background on hover */
+}

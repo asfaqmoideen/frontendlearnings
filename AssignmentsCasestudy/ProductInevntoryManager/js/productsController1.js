@@ -56,56 +56,66 @@ applyDiscount(Percentage){
 }
 }
 // --------------------------UI Funtions-------------------------------------
-let productLogic = new ProductController();
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    displayProductsList();
+    const productLogic = new ProductController();
+    const uiLogic = new UIController(productLogic);
 
-    let add = document.getElementById("add");
+    uiLogic.displayProductsList();
+
+    const add = document.getElementById("add");
     add.addEventListener("click", ()=>{
-        tryAddingproduct();
+        uiLogic.tryAddingproduct();
     })
 
-    let update = document.getElementById("update");
+    const update = document.getElementById("update");
     update.addEventListener("click", ()=>{
-        tryUpdatingProduct();
+        uiLogic.tryUpdatingProduct();
 
     })
-    let remove = document.getElementById("remove");
-    update.addEventListener("click", ()=>{
-        tryRemovingProduct();
+    const remove = document.getElementById("remove");
+    remove.addEventListener("click", ()=>{
+        uiLogic.tryRemovingProduct();
 
     })
-    let applyD = document.getElementById("applyDiscount");
+    const applyD = document.getElementById("applyDiscount");
     applyD.addEventListener("click", ()=>{
         const percent = document.getElementById("percent");
         productLogic.applyDiscount(percent.value);
-        displayProductsList();
+        uiLogic.displayProductsList();
         percent.value = " ";
     })
 
 })
 
-function tryRemovingProduct() {
+class UIController{
+
+    constructor(productlogic){
+        this.productLogic = productlogic;
+    }
+
+tryRemovingProduct() {
     const selectedItems = document.querySelectorAll('#resultList .selected');
     selectedItems.forEach(item => {
         const index = Array.from(item.parentNode.children).indexOf(item);
-        this.productsArray.splice(index, 1); // Remove from array
+        this.productLogic.productsArray.splice(index, 1); // Remove from array
         item.remove(); // Remove from displayed list
     });
+    this.resetInputs();
 }
 
-function tryAddingproduct() {
-    console.log(compileProductObject());
-    if(!productLogic.addProduct(compileProductObject())){
-        displayMessage("Invalid inputs, Id should be unique, name required");
+tryAddingproduct() {
+   // console.log(this.compileProductObject());
+    if(!this.productLogic.addProduct(this.compileProductObject())){
+        this.displayMessage("Invalid inputs, Id should be unique, name required");
         return;
     }
-    displayMessage("Product Added!");
-    displayProductsList();   
+    this.displayMessage("Product Added!");
+    this.displayProductsList();
+    this.resetInputs();   
 }
 
-function compileProductObject(){
+compileProductObject(){
     const Id = document.getElementById("id").value;
     const productName = document.getElementById("name").value;
     const Pprice = document.getElementById("price").value;
@@ -113,19 +123,19 @@ function compileProductObject(){
 }
 
 
-function tryUpdatingProduct() {
-    if(!productLogic.updateProduct(compileProductObject())){
-        displayMessage("Id Not Found!");
+tryUpdatingProduct() {
+    if(!this.productLogic.updateProduct(this.compileProductObject())){
+        this.displayMessage("Id Not Found!");
         return;
     };
-    displayMessage("Product Updtaed");
-    displayProductsList();
-    resetInputs();
+    this.displayMessage("Product Updtaed");
+    this.displayProductsList();
+    this.resetInputs();
 }
 
 
 
-function displayMessage(message){
+displayMessage(message){
     const div = document.getElementById("MessageSection");
     div.textContent = "";
     const spanItem = document.createElement('span');
@@ -133,10 +143,10 @@ function displayMessage(message){
     div.appendChild(spanItem);
 }
 
-function displayProductsList(){
+displayProductsList(){
     const list = document.getElementById("resultList");
     list.textContent = "";
-    productLogic.productsArray.forEach(element => {
+    this.productLogic.productsArray.forEach(element => {
         const listElement = document.createElement('li');
         listElement.textContent = `${element.id} - ${element.name} - ${element.price}`;
         listElement.onclick = function() {
@@ -150,8 +160,10 @@ function displayProductsList(){
     });
 }
 
-function resetInputs(){
+resetInputs(){
     document.getElementById('name').value ="";
     document.getElementById('price').value = "";
     document.getElementById('id').value = "";
+}
+
 }

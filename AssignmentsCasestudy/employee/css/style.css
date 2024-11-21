@@ -54,59 +54,44 @@ header nav ul li a:hover {
 }
 
 
-header button{ 
+header button { 
     background-color:#666666; 
     color: white; 
     padding: 10px; 
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 header button:hover { 
     background-color:#1e2a35; 
 }
 
-main {
-    padding: 2rem 0;
-}
-
 
 
 #container {
-    background: rgb(227, 235, 236);
     display: flex;
     justify-content: space-around;
-    align-items: safe;
     padding: 20px;
     width: 100;
 }
 
-#addCon {
+#addEmployee {
     background: whitesmoke;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 35%;
+    width: 40%;
     text-align: center;
+}
+#employeeDetails {
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 50%;
 }
 
-#applyCon {
-    background: whitesmoke;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 30%;
-}
-#resultCon {
-    background: whitesmoke;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 30%;
-}
-
-#messageDiv {
+#message {
     color: red;
 }
 #container input, button, select {
@@ -117,6 +102,7 @@ main {
     border-radius: 5px;
     width: 200px;
 }
+
 #container ul {
     list-style:none;
     padding: 0;
@@ -130,10 +116,6 @@ main {
     border: 3px solid #ccc;
     border-radius: 8px;
     margin: 10px;
-}
-
-.selected {
-    background-color: #25a11a;
 }
 
 footer {
