@@ -143,7 +143,7 @@ function tryAddingProducts(){
 function tryPlacingOrder(){
 
     if(addOrder(compileOrder(addedProducts))){
-        updateOrdersAddedList();
+        updateOrdersAddedList(addedProducts);
         addedProducts = [];
         updateProductsAddedList();
         upadteTotalAmount();

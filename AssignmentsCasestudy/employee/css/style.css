@@ -24,7 +24,7 @@ a{
 
 header {
     background-color:  #00a8ad;
-    color: #666666;
+    color: white;
     padding: 1rem 0;
 }
 
@@ -121,7 +121,7 @@ header button:hover {
 footer {
     text-align: center; /* Center text */
     padding: 10px; /* Padding for footer */
-    background-color: #00a8ad; /* Dark background */
+    background-color: #666666;  /* Dark background */
     color: white; /* White text */
     position: fixed;
     bottom: 0;
