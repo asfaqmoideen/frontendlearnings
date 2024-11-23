@@ -14,7 +14,7 @@ const productsArray = [
 
 const Orders = [
     {
-    id:0, 
+    id:1, 
     name:"Andrew",
     contact:"Coimbatore", 
     listOfProducts:[{id :1, name:"Phone",price:2000,},{id :2, name:"Charger", price:200},], 
@@ -79,7 +79,6 @@ function compileOrder(productslist){
         totalAmount: calculateTotalAmount(productslist),
         dateOfOrder: new Date()
     }
-
 }
 
 function calculateTotalAmount(){
@@ -90,6 +89,9 @@ function calculateTotalAmount(){
     return sum;
 }
 
+function orderSummary(name){
+    return Orders.filter(o=> o.name == name);
+}
 
 //========================================== DOM ========================================================
 
@@ -209,18 +211,16 @@ function updateProductsAddedList(){
 function updateOrdersAddedList(){
     const orderslist = document.getElementById('orderList');
     orderslist.textContent = "";
-    const productlist = document.createElement('ul');
     Orders.forEach(order =>{
         const listItem = document.createElement('li');
+        const productlist = document.createElement('ul');
         order.listOfProducts.forEach(p =>{
             const productOpt = document.createElement('li');
             productOpt.textContent = `${p.name} - ${p.price}, `;
             productlist.appendChild(productOpt);
-            listItem.onclick = function() {
-                this.classList.toggle('selected');
-               // document.getElementById('cname').value = this.textContent; // Populate input for updating
-            };
         });
+        console.log(`${order.id} with ${productlist.textContent}`);
+        listItem.onclick = function() {this.classList.toggle('selected');};
 
         listItem.textContent = `${order.id} - ${order.name}
        - ${order.contact} - [ ${productlist.textContent} ] - 
@@ -229,4 +229,5 @@ function updateOrdersAddedList(){
 
     })
 }
+
 

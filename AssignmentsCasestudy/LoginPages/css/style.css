@@ -73,12 +73,20 @@ main {
 #container {
     display: flex;
     align-items: center;
-    justify-content: center;       
+    justify-content: space-around;    
     padding: 0;
     padding-top: 10%;
     width: 100%;
+    flex: 1;
 }
 
+#container1, #container2, #container3{
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
 #container button{
     margin: 10px 0;
     background-color:#808080;
@@ -86,9 +94,15 @@ main {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 90%  
+    width: 100px;  
 }
-
+#container a{
+    color: purple
+}
+#container a:hover{
+    text-decoration: underline;
+    color: purple
+}
 #message {
     color: red;
 }
