@@ -13,14 +13,6 @@ const productsArray = [
 ];
 
 const Orders = [
-    {
-    id:1, 
-    name:"Andrew",
-    contact:"Coimbatore", 
-    listOfProducts:[{id :1, name:"Phone",price:2000,},{id :2, name:"Charger", price:200},], 
-    totalAmount: 2200, 
-    dateOfOrder: new Date()
-    }
 ];
 
 let orderId = 1;
@@ -40,9 +32,9 @@ function generateUniqueId(){
     return ++orderId;
 }
 
-function netOrdersTotal(){
+function netOrdersTotal(orders){
     let sum = 0;
-    for(let order of Orders){
+    for(let order of orders){
         sum = sum + order.totalAmount;
     }
 
@@ -120,7 +112,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         tryCancellingOrder();
     })
     
-    
+    const cnamebtn = document.getElementById('cname');
+    cnamebtn.addEventListener('change', ()=>{
+        tryGeneratingOrderSummary(cnamebtn.value);
+    })
 })
 
 function tryCancellingOrder(){
@@ -155,7 +150,21 @@ function tryPlacingOrder(){
     return false;
 }
 
+function tryGeneratingOrderSummary(cname){
+    const orderOfCustom = orderSummary(cname);
+    if(orderOfCustom.length>0){
+        console.log(orderOfCustom);
+    const addOrderDiv = document.getElementById('ordsumbtn');
+    const genSumBtn = document.createElement('button');
+    genSumBtn.textContent = "Get Summary"; 
+    addOrderDiv.appendChild(genSumBtn);
+      genSumBtn.addEventListener('click',()=>{
+        updateOrdersSummary(orderOfCustom);
 
+      })  
+    }
+
+}
 function getCustomerDetails(){
     return {
     name: document.getElementById('cname').value.trim(),
@@ -175,6 +184,8 @@ function getProductDetails(){
 function resetInputs(){
     document.getElementById('cname').value="";
     document.getElementById('contact').value="";
+    document.getElementById('ordsumbtn').textContent = '';
+
 }
 
 function displayMessage(message){
@@ -195,7 +206,7 @@ function updateProductsDropdown(){
 
 function upadteTotalAmount(){
     document.getElementById('tamt').textContent = calculateTotalAmount();
-    document.getElementById('tamt2').textContent = netOrdersTotal();
+ //   document.getElementById('tamt2').textContent = netOrdersTotal();
 }
 
 function updateProductsAddedList(){
@@ -209,8 +220,12 @@ function updateProductsAddedList(){
 }
 
 function updateOrdersAddedList(){
-    const orderslist = document.getElementById('orderList');
-    orderslist.textContent = "";
+    const ordersDiv = document.getElementById('orderList');
+    const heading = document.getElementById('ordHead') ;
+    const tamt = document.getElementById('tamt2');
+    heading.textContent = `List of all Orders `;
+    tamt.textContent = netOrdersTotal(Orders);
+    ordersDiv.textContent = "";
     Orders.forEach(order =>{
         const listItem = document.createElement('li');
         const productlist = document.createElement('ul');
@@ -219,14 +234,37 @@ function updateOrdersAddedList(){
             productOpt.textContent = `${p.name} - ${p.price}, `;
             productlist.appendChild(productOpt);
         });
-        console.log(`${order.id} with ${productlist.textContent}`);
+    
         listItem.onclick = function() {this.classList.toggle('selected');};
 
         listItem.textContent = `${order.id} - ${order.name}
        - ${order.contact} - [ ${productlist.textContent} ] - 
        ${order.totalAmount} - ${order.dateOfOrder.toLocaleDateString()}`;
-       orderslist.appendChild(listItem);
+       ordersDiv.appendChild(listItem);
+    })
+}
 
+function updateOrdersSummary(ordSum){
+    const ordersDiv = document.getElementById('orderList');
+    const heading = document.getElementById('ordHead') ;
+    const tamt = document.getElementById('tamt2');
+    heading.textContent = `Order Summary of ${ordSum[0].name} `;
+    tamt.textContent = netOrdersTotal(ordSum);
+    ordersDiv.textContent = " ";
+    ordSum.forEach(order =>{
+        const listItem = document.createElement('li');
+        const productlist = document.createElement('ul');
+        order.listOfProducts.forEach(p =>{
+            const productOpt = document.createElement('li');
+            productOpt.textContent = `${p.name} - ${p.price}, `;
+            productlist.appendChild(productOpt);
+        });
+        listItem.onclick = function() {this.classList.toggle('selected');};
+
+        listItem.textContent = `${order.id} - ${order.name}
+       - ${order.contact} - [ ${productlist.textContent} ] - 
+       ${order.totalAmount} - ${order.dateOfOrder.toLocaleDateString()}`;
+       ordersDiv.appendChild(listItem);
     })
 }
 

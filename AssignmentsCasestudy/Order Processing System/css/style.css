@@ -124,10 +124,10 @@ header button:hover {
 }
 
 footer {
-    text-align: center; /* Center text */
-    padding: 10px; /* Padding for footer */
-    background-color: #666666;  /* Dark background */
-    color: white; /* White text */
+    text-align: center; 
+    padding: 10px; 
+    background-color: #666666;  
+    color: white; 
     position: fixed;
     bottom: 0;
     left: 0;
