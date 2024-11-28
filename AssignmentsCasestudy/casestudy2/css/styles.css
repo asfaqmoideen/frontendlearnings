@@ -1,160 +1,151 @@
-* {
+*{
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    
 }
 
-body {
-    background-color: #f0f0f0;
-    margin: 0%;
+body{
+
+    height: 100vh;
 }
 
-a{
-     text-decoration: none;
-    color: inherit;
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+main{
+    flex: 1;
 }
 
 header {
-    background-color:  #00a8ad;
-    color: white;
-    padding: 1rem 0;
+    padding: 1em;
+    background-color: bisque;
 }
 
-header .container {
+header h1{
+    font-style:oblique;
+}   
+
+header .container{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
 }
 
-header nav ul {
+header nav ul{
     display: flex;
+    align-items: center;
     list-style: none;
     gap: 1rem;
 }
 
-header nav ul li {
-    padding: 0.5rem 1rem;
+a{
+    text-decoration: none;
+    color: black;
 }
 
-header nav ul li a {
-    color: white;
-    font-weight: bold;
+a:hover{
+    text-decoration: underline;
+    color: purple;
+    font-style: oblique;
 }
 
-header nav ul li a:hover {
-    color: #666666;
-}
-
-
-header button { 
-    background-color:#666666; 
-    color: white; 
-    padding: 10px; 
-    border-radius: 10px;
-}
-
-header button:hover { 
-    background-color:#1e2a35; 
-}
-
-main {
-    padding: 2rem 0;
-}
-
-
-#container {
+main .container {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    justify-content: space-around;    
-    padding: 0;
-    padding-top: 10%;
-    width: 100%;
-    flex: 1;
+    flex : 1;
 }
 
-#container1, #container2, #container3{
-    background: whitesmoke;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+.container-options{
+
+    margin-left: 60%;
+    padding: 0%;
+
 }
-#container button{
-    margin: 10px 0;
-    background-color:#808080;
-    padding: 10px;
-    font-size: 16px;
+.login-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    width: 400px;
+    height: 250px;
+    background:linear-gradient(90deg,bisque, #666666) ;
+ }
+
+ #wildcard{
+    font-size: x-small;
+    color: #666666;
+ }
+
+.container button, .container input{
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100px;  
-}
-#container a{
-    color: purple
-}
-#container a:hover{
-    text-decoration: underline;
-    color: purple
-}
-#message {
-    color: red;
+    width: max-content;
+    justify-content: center;
+    width: 10rem;
 }
 
-footer {
-    text-align: center;
+.container .login-box button{
+    width: 45%;
+}
+
+
+.login-box button:hover{
+    background-color: green;
+}
+
+
+footer .container{
+    text-align: center; 
     padding: 10px; 
     background-color: #666666; 
     color: white;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
 }
 
 
-.login-box {
+/* .container-details{
+        display: none;
+        padding: 20px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
 
-    background-color: white; 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    padding: 20px; 
-    width: 300px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+} */
+
+.container-importfile{
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+
 }
 
-.login-box h2 {
-    margin: 0 0 15px; 
-    font-size: 24px;
-    text-align: center;
-}
-
-.login-box input[type="text"],
-.login-box input[type="password"] {
-    width: 90%; 
-    padding: 10px; 
-    margin-bottom: 15px;
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-}
-
-.login-box button[type="submit"] {
-    background-color: #808080; 
-    color: white; 
-    padding: 10px;
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; 
-    font-size: 16px;
-    width: 90%; 
-}
-
-.login-box input[type="submit"]:hover {
-    background-color: #808080; 
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }

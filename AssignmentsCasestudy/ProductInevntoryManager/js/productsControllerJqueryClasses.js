@@ -124,7 +124,7 @@ tryUpdatingProduct() {
 tryApplyingDsicount(){
     console.log
     this.productLogic.applyDiscount($("#percent").val());
-    this.uiLogic.displayProductsList();
+    this.displayProductsList();
 }
 
 displayMessage(message){

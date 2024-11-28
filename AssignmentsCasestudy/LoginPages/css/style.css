@@ -12,7 +12,7 @@ body {
 }
 
 a{
-     text-decoration: none;
+    text-decoration: none;
     color: inherit;
 }
 
@@ -53,17 +53,6 @@ header nav ul li a:hover {
     color: #666666;
 }
 
-
-header button { 
-    background-color:#666666; 
-    color: white; 
-    padding: 10px; 
-    border-radius: 10px;
-}
-
-header button:hover { 
-    background-color:#1e2a35; 
-}
 
 main {
     padding: 2rem 0;

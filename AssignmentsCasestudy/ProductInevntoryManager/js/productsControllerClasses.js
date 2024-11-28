@@ -80,10 +80,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     })
     const applyD = document.getElementById("applyDiscount");
     applyD.addEventListener("click", ()=>{
-        const percent = document.getElementById("percent");
-        productLogic.applyDiscount(percent.value);
-        uiLogic.displayProductsList();
-        percent.value = " ";
+        uiLogic.tryApplyingDiscount();
     })
 
 })
@@ -102,17 +99,32 @@ tryRemovingProduct() {
         item.remove(); // Remove from displayed list
     });
     this.resetInputs();
+    this.displayMessage("Product Removed", "add");
 }
 
 tryAddingproduct() {
    // console.log(this.compileProductObject());
     if(!this.productLogic.addProduct(this.compileProductObject())){
-        this.displayMessage("Invalid inputs, Id should be unique, name required");
+        this.displayMessage("Invalid inputs, Id should be unique, name required", "add");
         return;
     }
-    this.displayMessage("Product Added!");
+    this.displayMessage("Product Added!", "add");
     this.displayProductsList();
     this.resetInputs();   
+}
+
+tryApplyingDiscount(){
+    const percent = document.getElementById("percent");
+    if(percent.value < 100 && percent.value > 0){
+    this.productLogic.applyDiscount(percent.value);
+    this.displayProductsList();
+
+    }
+    else {
+        this.displayMessage("Give Value between 0-100", "dis");
+        return;
+    }
+    percent.value = "";
 }
 
 compileProductObject(){
@@ -125,22 +137,20 @@ compileProductObject(){
 
 tryUpdatingProduct() {
     if(!this.productLogic.updateProduct(this.compileProductObject())){
-        this.displayMessage("Id Not Found!");
+        this.displayMessage("Id Not Found!", "add");
         return;
     };
-    this.displayMessage("Product Updtaed");
+    this.displayMessage("Product Updtaed", "add");
     this.displayProductsList();
     this.resetInputs();
 }
 
 
 
-displayMessage(message){
-    const div = document.getElementById("MessageSection");
-    div.textContent = "";
-    const spanItem = document.createElement('span');
+displayMessage(message, fromDiv){
+    const spanItem = document.getElementById(`message-${fromDiv}`);
     spanItem.textContent = message;
-    div.appendChild(spanItem);
+    setTimeout(function(){spanItem.textContent = ""}, 3000);
 }
 
 displayProductsList(){
@@ -167,3 +177,5 @@ resetInputs(){
 }
 
 }
+
+

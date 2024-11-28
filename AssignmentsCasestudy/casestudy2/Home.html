@@ -4,33 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <script src="js/script.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Employee Data Management System</h1>
-            <nav>
-                <ul>
-                    <li><a href="Home.html">Home</a></li>
-                    <li><a href="index.html">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div class="wrapper">
 
-    <ul>
-        <li>
-            <a href="Search.html">Search Employee</a>
-        </li>
-        <li>
-            <a href="ImportFile.html">Import CSV File</a>
-        </li>
-    </ul>
-    <footer>   
-        <div class="container">
-           <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
-        </div> 
-    </footer>
+        <header>
+            <div class="container">
+                <h1>Employee Data Management System</h1>
+                <nav>
+                    <ul>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="index.html">Logout</a></li>
+                        <li><button type="button" id="import-file-home">ImportFile</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="container-importfile" id="import-file">
+    
+                        <label for="file-choosen"> Please select a file to upload :</label>
+                        <input type="file" id="file-choosen"></input> <br>
+                        <button type="submit" > Upload Data </button>
+                        <button type="button" id="back-from-dialog">Back</button>
+    
+                </div>
+                <div id="welcome"><h3>Welcome, <span id="usernamedisp">Asfaq.</span> </h3></div>
+                <div class="overlay" id="overlay"></div>
+                <!-- <div class="container-options">
+                    <button type="button" id="search-in-home">Search Employee</button>
+                    <button type="button" id="import-file-home">Import CSV File</button>
+                </div> -->
+                <div class="container-details" id="emp-details" >
+                    <form action="searchResults.html">
+                        <h3>Search Options</h3>
+                        <label for="empId" > Employee Id :</label>
+                        <input type="text" id="empId" required> <br>
+                        <label for="firstName"> First Name :</label> 
+                        <input type="text" id="firstName" required> <span id="wildcard"> use * for wildcard search </span><br>
+                        <label for="lastname"> Last Name :</label>
+                        <input type="text" id="lastname" required> <span id="wildcard"> use * for wildcard search </span><br>
+                        <label for="dob"> Date of Birth :</label> 
+                        <input type="date" id="dob" required><br>
+                        <label for="doj"> Date of Joining :</label> 
+                        <input type="date" id="doj" required><br>
+                        <label for="grage">Grade</label>
+                        <select  id="grade">
+                            <option value="M1">M1</option>
+                            <option value="M2">M2</option>
+                            <option value="M3">M3</option>
+                        </select><br>
+                        <button type="submit" id="search-btn">Search </button>
+                        <!-- <button type="button" id="back-from-search">Back</button> -->
+                    </form> 
+                </div>
+    
+            </div>
+        </main>
+        <footer>   
+            <div class="container">
+               <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
+            </div> 
+        </footer>
+    </div>
 </body>
+
 <link rel="stylesheet" href="/AssignmentsCasestudy/casestudy2/css/styles.css">
 </html>

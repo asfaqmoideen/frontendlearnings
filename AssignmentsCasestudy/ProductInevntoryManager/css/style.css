@@ -78,6 +78,7 @@ main {
     align-items: safe;
     padding: 20px;
     width: 100;
+    font-size: 12px;
 }
 
 #addCon {
@@ -110,12 +111,12 @@ main {
     color: red;
 }
 #container input, button, select {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 200px;
+    width: max-content;
 }
 #container ul {
     list-style:none;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Product Inevntory Manager</title>
-    <script src="js/productsControllerJqueryClasses.js"></script>
+    <script src="js/productsControllerClasses.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -35,8 +35,8 @@
             
             <button id="add"> Add </button>
             <button type="submit" id="update"> Update </button>
-            <button type="submit" id="remove"> Remove </button>
-            <span id="Message"></span>
+            <button type="submit" id="remove"> Remove </button><br>
+            <span id="message-add"></span>
         </div>
     <br>
 
@@ -47,7 +47,8 @@
 
         <label for="percent">Discout Percentage:</label>
         <input type="number" id="percent"><br>
-        <button type="submit" id="applyDiscount"> Apply Discount </button>
+        <button type="submit" id="applyDiscount"> Apply Discount </button><br>   
+        <span id="message-dis"></span>
 
     </div>
     <div id="resultCon">
