@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Employee Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>Search Results</h3>
+    <button type="button" id="search-btn">Search</button>
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Date of Joining</th>
+                <th>Grade</th>
+                <th>View</th>
+                <th>Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+
+        const employees = [
+            {
+                id: 500943,
+                firstName: "Vijay",
+                lastName: "V",
+                dob: "11/11/1111",
+                doj: "22/22/2222",
+                grade: "M1",
+            },
+            {
+                id: 500945,
+                firstName: "Vinay",
+                lastName: "Sharma",
+                dob: "22/22/2222",
+                doj: "11/11/1111",
+                grade: "M3",
+            },
+            {
+                id: 500946,
+                firstName: "Jeeva",
+                lastName: "Sai",
+                dob: "11/11/1111",
+                doj: "22/22/2222",
+                grade: "M3",
+            },
+        ];
+
+
+        function populateEmployeeTable() {
+            const tableBody = document.querySelector("#employeeTable tbody");
+
+            employees.forEach((employee) => {
+                // Create a new row
+                const row = document.createElement("tr");
+
+                // Create and append individual table cells
+                const idCell = document.createElement("td");
+                idCell.textContent = employee.id;
+                row.appendChild(idCell);
+
+                const firstNameCell = document.createElement("td");
+                firstNameCell.textContent = employee.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement("td");
+                lastNameCell.textContent = employee.lastName;
+                row.appendChild(lastNameCell);
+
+                const dobCell = document.createElement("td");
+                dobCell.textContent = employee.dob;
+                row.appendChild(dobCell);
+
+                const dojCell = document.createElement("td");
+                dojCell.textContent = employee.doj;
+                row.appendChild(dojCell);
+
+                const gradeCell = document.createElement("td");
+                gradeCell.textContent = employee.grade;
+                row.appendChild(gradeCell);
+
+                const viewCell = document.createElement("td");
+                const viewLink = document.createElement("a");
+                viewLink.href = "ViewEmployee.html";
+                viewLink.textContent = "View";
+                viewCell.appendChild(viewLink);
+                row.appendChild(viewCell);
+
+                const modifyCell = document.createElement("td");
+                const modifyLink = document.createElement("a");
+                modifyLink.href = "ModifyEmployee.html";
+                modifyLink.textContent = "Modify";
+                modifyCell.appendChild(modifyLink);
+                row.appendChild(modifyCell);
+
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        const search = document.getElementById('search-btn');
+        search.addEventListener('click', ()=>{
+            populateEmployeeTable();
+        })
+    </script>
+</body>
+</html>

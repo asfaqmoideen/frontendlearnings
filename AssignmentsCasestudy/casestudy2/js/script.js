@@ -1,5 +1,39 @@
+const employees = [
+    {
+        id: 500943,
+        firstName: "Vijay",
+        lastName: "V",
+        dob: "11/11/1111",
+        doj: "22/22/2222",
+        grade: "M1",
+    },
+    {
+        id: 500945,
+        firstName: "Vinay",
+        lastName: "Sharma",
+        dob: "22/22/2222",
+        doj: "11/11/1111",
+        grade: "M3",
+    },
+    {
+        id: 500946,
+        firstName: "Jeeva",
+        lastName: "Sai",
+        dob: "11/11/1111",
+        doj: "22/22/2222",
+        grade: "M3",
+    },
+];
 
-
+const headings = [
+    "Employee ID",
+    "First Name",
+    "Last Name",
+    "Date of Birth",
+    "Date of Joining",
+    "Grade",
+    "View",
+];
 document.addEventListener('DOMContentLoaded',()=>{
     const overlay = document.getElementById('overlay');
 
@@ -21,7 +55,18 @@ document.addEventListener('DOMContentLoaded',()=>{
     const importbtn = document.getElementById('import-file-home');
     const closebtn = document.getElementById('back-from-dialog');
     const dialog2 = document.getElementById('import-file');
+    const search = document.getElementById('search-btn-emp');
+    const searchresults = document.getElementById('search-results');
+    const searchresultsback = document.getElementById('back-from-serachresults');
     
+    search.addEventListener('click', ()=>{
+        searchresults.style.display = 'block';
+        populateEmployeeTable();
+    });
+
+    searchresultsback.addEventListener('click', ()=>{
+        searchresults.style.display = 'none';
+    })
     closebtn.addEventListener('click', function() {
         dialog2.style.display = 'none';
         overlay.style.display = 'none';
@@ -33,3 +78,87 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 })
 
+function populateEmployeeTable() {
+    const table = document.getElementById("employee-table");
+    table.textContent ="";
+    // Create thead and tbody
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+    const headerRow = document.createElement("tr");
+    headings.forEach((heading) => {
+        const th = document.createElement("th");
+        th.textContent = heading;
+        headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    employees.forEach((employee) => {
+        // Create a new row
+        const row = document.createElement("tr");
+
+        // Create and append individual table cells
+        const idCell = document.createElement("td");
+        idCell.textContent = employee.id;
+        row.appendChild(idCell);
+
+        const firstNameCell = document.createElement("td");
+        firstNameCell.textContent = employee.firstName;
+        row.appendChild(firstNameCell);
+
+        const lastNameCell = document.createElement("td");
+        lastNameCell.textContent = employee.lastName;
+        row.appendChild(lastNameCell);
+
+        const dobCell = document.createElement("td");
+        dobCell.textContent = employee.dob;
+        row.appendChild(dobCell);
+
+        const dojCell = document.createElement("td");
+        dojCell.textContent = employee.doj;
+        row.appendChild(dojCell);
+
+        const gradeCell = document.createElement("td");
+        gradeCell.textContent = employee.grade;
+        row.appendChild(gradeCell); 
+
+        const modifyCell = document.createElement("td");
+        const modifyLink = document.createElement("button");
+        modifyLink.textContent = "Modify";
+        modifyCell.appendChild(modifyLink);
+        row.appendChild(modifyCell);
+        modifyLink.onclick = updatevalues(employee)
+        
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    
+}
+
+function updatevalues(employee){
+    const title = document.getElementById('emp-details-title');
+    title.textContent = "Modify Employee";  
+
+    const btn = document.getElementById('search-btn-emp');
+    btn.textContent = "Save";
+
+    const empid = document.getElementById('empId');
+    empid.value = employee.id;
+    empid.disabled = true;
+
+    const empfname = document.getElementById('firstName');
+    empfname.value = employee.firstName;
+
+    const emplname = document.getElementById('lastname');
+    emplname.value = employee.lastName;
+
+    const dob = document.getElementById('dob');
+    dob.value = employee.dob;
+
+    const doj = document.getElementById('doj');
+    doj.value = employee.doj;
+
+    const grade = document.getElementById('grade');
+    grade.value = employee.grade;
+}

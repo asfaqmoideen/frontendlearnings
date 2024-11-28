@@ -14,32 +14,23 @@
                 <h1>Employee Data Management System</h1>
                 <nav>
                     <ul>
+                        <div id="welcome"><h4>Welcome, <span id="usernamedisp">Asfaq.</span> </h4></div>
                         <li><a href="Home.html">Home</a></li>
                         <li><a href="index.html">Logout</a></li>
-                        <li><button type="button" id="import-file-home">ImportFile</button></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <main>
             <div class="container">
-                <div class="container-importfile" id="import-file">
-    
-                        <label for="file-choosen"> Please select a file to upload :</label>
-                        <input type="file" id="file-choosen"></input> <br>
-                        <button type="submit" > Upload Data </button>
-                        <button type="button" id="back-from-dialog">Back</button>
-    
-                </div>
-                <div id="welcome"><h3>Welcome, <span id="usernamedisp">Asfaq.</span> </h3></div>
                 <div class="overlay" id="overlay"></div>
                 <!-- <div class="container-options">
                     <button type="button" id="search-in-home">Search Employee</button>
                     <button type="button" id="import-file-home">Import CSV File</button>
                 </div> -->
                 <div class="container-details" id="emp-details" >
-                    <form action="searchResults.html">
-                        <h3>Search Options</h3>
+                    <!-- <form action="searchResults.html"> -->
+                        <h3 id="emp-details-title">Search Employee</h3>
                         <label for="empId" > Employee Id :</label>
                         <input type="text" id="empId" required> <br>
                         <label for="firstName"> First Name :</label> 
@@ -56,16 +47,33 @@
                             <option value="M2">M2</option>
                             <option value="M3">M3</option>
                         </select><br>
-                        <button type="submit" id="search-btn">Search </button>
+                        <button type="submit" id="search-btn-emp">Search </button>
                         <!-- <button type="button" id="back-from-search">Back</button> -->
-                    </form> 
+                    <!-- </form>  -->
                 </div>
-    
+                
+                <div id="search-results" class="container-searchresults">
+                    <h3> Search Results </h3>
+                    <table id="employee-table">
+                        </table>
+                    <button type="button" id="back-from-serachresults">Back</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-importfile" id="import-file">
+                    
+                    <label for="file-choosen"> Please select a file to upload :</label>
+                    <input type="file" id="file-choosen"></input> <br>
+                    <button type="submit" > Upload Data </button>
+                    <button type="button" id="back-from-dialog">Back</button>
+                    
+                </div>
+                <button type="button" id="import-file-home">ImportFile</button>
             </div>
         </main>
         <footer>   
             <div class="container">
-               <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
+                <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
             </div> 
         </footer>
     </div>

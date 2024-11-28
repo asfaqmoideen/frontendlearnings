@@ -21,7 +21,7 @@ main{
 
 header {
     padding: 1em;
-    background-color: bisque;
+    background : linear-gradient(135deg, bisque, grey);
 }
 
 header h1{
@@ -55,9 +55,10 @@ a:hover{
 
 main .container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2rem;
+    justify-content: space-evenly;
     flex : 1;
 }
 
@@ -136,7 +137,10 @@ footer .container{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+}
 
+.container-searchresults{
+    display: none;
 }
 
 .overlay {
@@ -148,4 +152,18 @@ footer .container{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
 }
