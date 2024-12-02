@@ -9,49 +9,54 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-        <h1>Employee Portal</h1>
-        <nav>
-            <ul>
-                <li> <a href="/AssignmentsCasestudy/ProductInevntoryManager/index.html">Product Manager</a></li>
-                <li> <a href="/AssignmentsCasestudy/Order Processing System/index.html">Order Management System</a></li>
-                <li> <a href="/AssignmentsCasestudy/employee/index.html">Employee Portal</a></li>
-                <li> <a href="/AssignmentsCasestudy/LoginPages/logout.html">Logout</a>
-            </ul>
-            </nav>
-        </div>
-    </header>
-    <div id="container">
+    <div class="wrapper">
 
-        <div id="addEmployee">
-            <label for="empNo">Employee Number</label>
-            <input type="number" id="empNo"> <br>
+        <header>
+            <div class="container">
+            <h1>Employee Portal</h1>
+            <nav>
+                <ul>
+                    <li> <a href="/AssignmentsCasestudy/ProductInevntoryManager/index.html">Product Manager</a></li>
+                    <li> <a href="/AssignmentsCasestudy/Order Processing System/index.html">Order Management System</a></li>
+                    <li> <a href="/AssignmentsCasestudy/employee/index.html">Employee Portal</a></li>
+                    <li> <a href="/AssignmentsCasestudy/LoginPages/logout.html">Logout</a>
+                </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div id="container">
 
-            <label for="empName">Emoloyee Name</label>
-            <input type="text" id="empName"> <br>
+                <div id="addEmployee">
+                    <label for="empNo">Employee Number</label>
+                    <input type="number" id="empNo"> <br>
 
-            <label for="deptId">Department ID</label>
-            <input type="number" id="deptId"> <br>
+                    <label for="empName">Emoloyee Name</label>
+                    <input type="text" id="empName"> <br>
 
-            <label for="location">Location</label>
-            <input type="text" id="location"><br>
+                    <label for="deptId">Department ID</label>
+                    <input type="number" id="deptId"> <br>
 
-            <button type="button" id="addOrUpd">Add</button>
+                    <label for="location">Location</label>
+                    <input type="text" id="location"><br>
 
-            <br><span id="message"></span>
-        </div>
+                    <button type="button" id="addOrUpd">Add</button>
 
-        <div id="employeeDetails">
-            <ul id="empList"></ul>
-        </div>
+                    <br><span id="message"></span>
+                </div>
 
+                <div id="employeeDetails">
+                    <ul id="empList"></ul>
+                </div>
+
+            </div>
+        </main>
+        <footer>   
+            <div class="container">
+            <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
+            </div> 
+        </footer>
     </div>
-    <footer>   
-        <div class="container">
-           <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
-        </div> 
-    </footer>
 </body>
 
 </html>

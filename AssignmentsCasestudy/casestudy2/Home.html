@@ -29,27 +29,42 @@
                     <button type="button" id="import-file-home">Import CSV File</button>
                 </div> -->
                 <div class="container-details" id="emp-details" >
-                    <!-- <form action="searchResults.html"> -->
                         <h3 id="emp-details-title">Search Employee</h3>
-                        <label for="empId" > Employee Id :</label>
-                        <input type="text" id="empId" required> <br>
-                        <label for="firstName"> First Name :</label> 
-                        <input type="text" id="firstName" required> <span id="wildcard"> use * for wildcard search </span><br>
-                        <label for="lastname"> Last Name :</label>
-                        <input type="text" id="lastname" required> <span id="wildcard"> use * for wildcard search </span><br>
-                        <label for="dob"> Date of Birth :</label> 
-                        <input type="date" id="dob" required><br>
-                        <label for="doj"> Date of Joining :</label> 
-                        <input type="date" id="doj" required><br>
-                        <label for="grage">Grade</label>
-                        <select  id="grade">
-                            <option value="M1">M1</option>
-                            <option value="M2">M2</option>
-                            <option value="M3">M3</option>
-                        </select><br>
-                        <button type="submit" id="search-btn-emp">Search </button>
-                        <!-- <button type="button" id="back-from-search">Back</button> -->
-                    <!-- </form>  -->
+                        <table>
+                            <tr> <td><label for="empId" > Employee Id :</label></td>
+                                <td><input type="text" id="empId" ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="firstName"> First Name :</label> </td>
+                                <td><input type="text" id="firstName"></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="lastname"> Last Name :</label></td>
+                                <td><input type="text" id="lastname"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="dob"> Date of Birth :</label> </td>
+                                <td><input type="date" id="dob"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="doj"> Date of Joining :</label> </td>
+                                <td><input type="date" id="doj" ></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="grage">Grade</label></td>
+                                <td><select  id="grade">
+                                    <option value="M1">M1</option>
+                                    <option value="M2">M2</option>
+                                    <option value="M3">M3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" id="search-btn-emp">Search </button></td>
+                                <td> <button type="reset">Reset</button></td>
+                            </tr>
+                        </table>
+                        <!-- <button type="button" id="back-from-se arch">Back</button> -->
                 </div>
                 
                 <div id="search-results" class="container-searchresults">
@@ -59,7 +74,7 @@
                     <button type="button" id="back-from-serachresults">Back</button>
                 </div>
             </div>
-            <div class="container">
+            <div class="container import">
                 <div class="container-importfile" id="import-file">
                     
                     <label for="file-choosen"> Please select a file to upload :</label>

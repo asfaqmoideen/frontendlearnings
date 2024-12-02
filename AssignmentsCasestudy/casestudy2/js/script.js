@@ -3,24 +3,24 @@ const employees = [
         id: 500943,
         firstName: "Vijay",
         lastName: "V",
-        dob: "11/11/1111",
-        doj: "22/22/2222",
+        dob: "2000-11-11",
+        doj: "2022-02-22",
         grade: "M1",
     },
     {
         id: 500945,
         firstName: "Vinay",
         lastName: "Sharma",
-        dob: "22/22/2222",
-        doj: "11/11/1111",
+        dob: "2000-02-2",
+        doj: "2024-11-11",
         grade: "M3",
     },
     {
         id: 500946,
         firstName: "Jeeva",
         lastName: "Sai",
-        dob: "11/11/1111",
-        doj: "22/22/2222",
+        dob: "2008-11-11",
+        doj: "2023-02-22",
         grade: "M3",
     },
 ];
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const search = document.getElementById('search-btn-emp');
     const searchresults = document.getElementById('search-results');
     const searchresultsback = document.getElementById('back-from-serachresults');
+    const loginbtn = document.getElementById('login');
     
     search.addEventListener('click', ()=>{
         searchresults.style.display = 'block';
@@ -66,6 +67,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     searchresultsback.addEventListener('click', ()=>{
         searchresults.style.display = 'none';
+        const title = document.getElementById('emp-details-title');
+        title.textContent = "Search Employee";  
+    
+        const btn = document.getElementById('search-btn-emp');
+        btn.textContent = "Search";
     })
     closebtn.addEventListener('click', function() {
         dialog2.style.display = 'none';
@@ -75,7 +81,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     importbtn.addEventListener('click', function() {
         dialog2.style.display = 'block';
         overlay.style.display = 'block';
+        
     });
+
+    loginbtn.addEventListener('click', ()=>{
+        const username = document.getElementById('login');
+        const namespan = document.getElementById('usernamedisp');
+        namespan.textContent = username.value;
+    })
+
 })
 
 function populateEmployeeTable() {
@@ -128,7 +142,9 @@ function populateEmployeeTable() {
         modifyLink.textContent = "Modify";
         modifyCell.appendChild(modifyLink);
         row.appendChild(modifyCell);
-        modifyLink.onclick = updatevalues(employee)
+        modifyLink.addEventListener('click', ()=>{
+            updateTable(employee);
+        })
         
         tbody.appendChild(row);
     });
@@ -136,7 +152,8 @@ function populateEmployeeTable() {
     
 }
 
-function updatevalues(employee){
+function updateTable(employee){
+    console.log(employee);
     const title = document.getElementById('emp-details-title');
     title.textContent = "Modify Employee";  
 
@@ -161,4 +178,15 @@ function updatevalues(employee){
 
     const grade = document.getElementById('grade');
     grade.value = employee.grade;
+}
+
+function updateWithEmpForm(employee){
+    const employeeform = document.getElementById('emp-details');
+
+    employeeform.empid = employee.id;
+    employeeform.firstName = employee.empfname;
+    employeeform.lastName= employee.emplname;
+    employeeform.dob = employee.dob;
+    employeeform.doj = employee.doj;
+    employeeform.grade = employee.grade;
 }

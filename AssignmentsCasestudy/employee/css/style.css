@@ -11,6 +11,14 @@ body {
     margin: 0%;
 }
 
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main{
+    flex: 1;
+}
 a{
      text-decoration: none;
     color: inherit;
@@ -70,8 +78,10 @@ header button:hover {
 #container {
     display: flex;
     justify-content: space-around;
+    align-items: safe;
     padding: 20px;
     width: 100;
+    font-size: 12px;
 }
 
 #addEmployee {
@@ -95,12 +105,12 @@ header button:hover {
     color: red;
 }
 #container input, button, select {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 200px;
+    width: max-content;
 }
 
 #container ul {

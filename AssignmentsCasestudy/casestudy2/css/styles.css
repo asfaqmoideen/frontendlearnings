@@ -21,7 +21,7 @@ main{
 
 header {
     padding: 1em;
-    background : linear-gradient(135deg, bisque, grey);
+    background : linear-gradient(135deg, #20a0b400, grey);
 }
 
 header h1{
@@ -58,16 +58,19 @@ main .container {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 2rem;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    flex : 1;
+}
+main .container-login{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+    padding: 2rem;
+    justify-content: space-around;
     flex : 1;
 }
 
-.container-options{
-
-    margin-left: 60%;
-    padding: 0%;
-
-}
 .login-box{
     display: flex;
     flex-direction: column;
@@ -85,7 +88,17 @@ main .container {
     color: #666666;
  }
 
-.container button, .container input{
+.container button, .container input, .container select{
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: max-content;
+    justify-content: center;
+    width: 10rem;
+}
+.container-login button, .container-login input{
     margin: 8px 0;
     padding: 8px;
     font-size: 14px;
@@ -137,10 +150,14 @@ footer .container{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    position: fixed;
+    bottom: 3rem;
 }
 
 .container-searchresults{
     display: none;
+    border-radius: 8px;
+    box-shadow: #666666;
 }
 
 .overlay {
@@ -154,16 +171,23 @@ footer .container{
     z-index: 999;
 }
 
-table {
+.container-login table{
+    border-collapse: collapse;
+}
+.container-login th, .container-login td{
+    border: none;
+    padding: 2px
+}
+.container-searchresults table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
 }
-th, td {
+.container-searchresults th, .container-searchresults td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
-th {
+.container-searchresults th {
     background-color: #f4f4f4;
 }

@@ -20,16 +20,26 @@
             </div>
         </header>
         <main>
-            <div class="container">
+            <div class="container-login">
                 <div class="login-box">
                     <h2>Please login to continue</h2>
                     <form action="Home.html" method="get">
-                        <label for="userId">Enter User Id </label>
-                        <input type="text" id="userId" required> <br>
-                        <label for ="password" > Enter Password</label>
-                        <input type= "password" id="password" required> <br>
-                        <button type="submit"> Submit </button>
-                        <button type="reset"> Reset 
+                        <table>
+                            <tr>
+                            <td><label for="userId">Enter User Id </label></td>
+                            <td><input type="text" id="userId" required></td></tr>
+                            <tr>
+                            <td><label for ="password" > Enter Password</label></td>
+                            <td><input type= "password" id="password" required></td>
+                            </tr>
+                            <tr>
+                                <td> <button type="submit" id="login"> Submit </button></td>\
+                                <td> <button type="reset"> Reset </td>
+                            </tr>
+                        </table>
+                        
+                       
+                        
                         </button>
                     </form>
                 </div>

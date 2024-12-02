@@ -95,18 +95,17 @@ tryRemovingProduct() {
     const selectedItems = document.querySelectorAll('#resultList .selected');
     selectedItems.forEach(item => {
         const index = Array.from(item.parentNode.children).indexOf(item);
-        this.productLogic.productsArray.splice(index, 1); // Remove from array
-        item.remove(); // Remove from displayed list
+        this.productLogic.productsArray.splice(index, 1);
+        item.remove(); 
     });
     this.resetInputs();
     this.displayMessage("Product Removed", "add");
 }
 
 tryAddingproduct() {
-   // console.log(this.compileProductObject());
     if(!this.productLogic.addProduct(this.compileProductObject())){
         this.displayMessage("Invalid inputs, Id should be unique, name required", "add");
-        return;
+        return; 
     }
     this.displayMessage("Product Added!", "add");
     this.displayProductsList();
@@ -128,10 +127,11 @@ tryApplyingDiscount(){
 }
 
 compileProductObject(){
-    const Id = document.getElementById("id").value;
-    const productName = document.getElementById("name").value;
-    const Pprice = document.getElementById("price").value;
-    return new Product(Id,productName,Pprice);
+    return new Product( 
+        document.getElementById("id").value,
+        document.getElementById("name").value,
+        document.getElementById("price").value
+    );
 }
 
 
@@ -153,7 +153,7 @@ displayMessage(message, fromDiv){
     setTimeout(function(){spanItem.textContent = ""}, 3000);
 }
 
-displayProductsList(){
+displayProductsList1(){
     const list = document.getElementById("resultList");
     list.textContent = "";
     this.productLogic.productsArray.forEach(element => {
@@ -170,12 +170,61 @@ displayProductsList(){
     });
 }
 
+
 resetInputs(){
     document.getElementById('name').value ="";
     document.getElementById('price').value = "";
     document.getElementById('id').value = "";
+    if(document.getElementById('id').disabled){
+     document.getElementById('id').disabled = false ;
+    }
+        
 }
 
+
+displayProductsList() {
+    const table = document.querySelector('#disp-table tbody');
+    table.textContent = ""; 
+    
+    this.productLogic.productsArray.forEach(product => {
+        const row = document.createElement('tr');
+        
+        const idCell = document.createElement('td');
+        idCell.textContent = product.id;
+        row.appendChild(idCell);
+        
+        const nameCell = document.createElement('td');
+        nameCell.textContent = product.name; 
+        row.appendChild(nameCell);
+        
+        const priceCell = document.createElement('td');
+        priceCell.textContent = product.price;
+        row.appendChild(priceCell);
+
+        const modify = document.createElement('button');
+        modify.textContent = "Modify";
+        modify.addEventListener('click', ()=>{
+            if(modify.textContent == "Modify"){
+            this.setValues(product)
+            modify.textContent = "Revert";
+            }
+            else if(modify.textContent == "Revert"){
+                this.resetInputs();
+                modify.textContent = "Modify";
+            }
+        })
+        row.appendChild(modify);
+        
+        table.appendChild(row); 
+    });
+}
+
+setValues(element){
+    document.getElementById('name').value = element.name;
+    document.getElementById('price').value = element.price;
+    document.getElementById('id').value = element.id;
+    document.getElementById('id').disabled = true;
+}
 }
 
 

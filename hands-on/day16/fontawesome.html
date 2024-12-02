@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button i {
+            color: #555;
+            transition: color 0.3s ease;
+        }
+
+        button:hover i {
+            color: #007bff;
+        }
+
+        .edit-btn i {
+            color: #28a745; /* Green */
+        }
+
+        .delete-btn i {
+            color: #dc3545; /* Red */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Product 1</td>
+                <td>
+                    <button class="edit-btn" title="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button class="delete-btn" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
