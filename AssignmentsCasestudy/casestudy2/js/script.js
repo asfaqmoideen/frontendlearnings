@@ -181,7 +181,7 @@ function updateTable(employee){
 }
 
 function updateWithEmpForm(employee){
-    const employeeform = document.getElementById('emp-details');
+    const employeeform = document.querySelectorAll('emp-details');
 
     employeeform.empid = employee.id;
     employeeform.firstName = employee.empfname;
