@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="/src/js/home-script.js"></script>
+    <script src="/src/js/employeeController.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <header>
+            <div class="container">
+                <h1>Employee Data Management System</h1>
+                <nav>
+                    <ul>
+                        <div id="welcome"><h4>Welcome, <span id="usernamedisp">.</span> </h4></div>
+                        <span id="menu-btn">Menu</span>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="overlay" id="overlay"></div>
+                <div class="container-details" id="emp-details" >
+                        <h3 id="emp-details-title">Search Employee</h3>
+                        <table>
+                            <tr> <td><label for="empId" > Employee Id :</label></td>
+                                <td><input type="text" id="empId" ></td>
+                            </tr>
+                            <tr>
+                                <td><label for="firstName"> First Name :</label> </td>
+                                <td><input type="text" id="firstName"></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="lastname"> Last Name :</label></td>
+                                <td><input type="text" id="lastname"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="dob"> Date of Birth :</label> </td>
+                                <td><input type="date" id="dob"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="doj"> Date of Joining :</label> </td>
+                                <td><input type="date" id="doj" ></td>
+                            </tr>
+                            <tr>
+                                <td> <label for="grage">Grade</label></td>
+                                <td><select  id="grade">
+                                    <option value="M1">M1</option>
+                                    <option value="M2">M2</option>
+                                    <option value="M3">M3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><button type="submit" id="search-btn-emp" class="btn-grad">Search</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id="search-results" class="container-searchresults">
+                        <h3> Search Results </h3>
+                        <table id="employee-table">
+                            <thead>
+                                <tr>
+                                <td>Employee ID</td>
+                                <td>First Name</td>
+                                <td>Last Name</td>
+                                <td>Date of Birth</td>
+                                <td>Date of Joining</td>
+                                <td>Grade</td>
+                                <td>View</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <button type="button" id="back-from-serachresults">Back</button>
+                </div>
+                
+                <div class="container-importfile" id="import-file">
+                    <label for="file-choosen">Select file</label>
+                    <input type="file" id="file-choosen"></input> <br>
+                    <button type="submit" > Upload Data </button>
+                    <button type="button" id="back-from-dialog">Back</button>   
+                </div>
+            </div>
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Menu</h3>
+                    <span class="close-btn" id="close-btn">&times;</span>
+                </div>
+                <ul class="sidebar-links">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a id="logout-btn">logout</a></li>
+                    <li><a id="import-file-home">ImportFile</a></li>
+                </ul>
+            </aside>
+        </main>
+        <footer>   
+            <div class="container">
+                <p>© 2024 Annalect India (Omnicom Media Group). All rights reserved.</p> 
+            </div> 
+        </footer>
+        <link rel="stylesheet" href="/src/css/index-style.css">
+    </div>
+</body>
+</html>

@@ -34,9 +34,11 @@ header .container{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
 }
 
+header h3{
+    justify-content: flex-end;
+}
 
 header nav ul{
     display: flex;
@@ -50,9 +52,7 @@ form {
     flex-direction: column;
     align-items: center;
     margin-bottom: 15px;
-}
-.form-group{
-    padding: 0.5rem;
+    padding: 2rem;
 }
 
 label {
@@ -78,34 +78,30 @@ a:hover{
     font-style: oblique;
 }
 
-main .container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 2rem;
-    justify-content: space-around;
-    border-radius: 8px;
-    background: whitesmoke;
-}
 
 main .container-login{
     display: flex;
     flex-direction:row;
     flex-wrap: wrap;
     margin-top: 5rem;
-    padding: 2rem;
     justify-content: space-around;
-    flex : 1;
 }
 
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+ }
 .login-box{
-    padding: 1rem;
     border-radius: 1rem;
     box-shadow: #666666;
-    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    background-image: linear-gradient(15deg, #609cbe83 0%, #80d0c7 100%);
  }
 
- .login-box input{
+.login-box input{
     border-radius: 10px;
     margin: .5rem;
  }
@@ -116,9 +112,10 @@ main .container-login{
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 10rem;
+    margin-top: .5rem;
  }
  .login-box button:hover{
-    background-color: rgb(44, 170, 42);
+    background-color: rgba(44, 170, 42, 0.479);
  }
 
 

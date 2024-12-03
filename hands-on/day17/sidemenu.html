@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="toggle-menu">☰</button>
+<div class="side-menu" id="sideMenu">
+  <h2>Menu</h2>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</div>
+<div class="main-content">
+  <h1>Welcome to My Page</h1>
+  <p>This is the main content area.</p>
+</div>
+<script>
+    document.querySelector('.toggle-menu').addEventListener('click', () => {
+  document.getElementById('sideMenu').classList.toggle('hidden');
+});
+
+</script>
+<style>
+    /* Add Transition for Collapsible Menu */
+.side-menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+.side-menu.hidden {
+  transform: translateX(-100%);
+}
+
+/* Toggle Button */
+.toggle-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #2c3e50;
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+</style>
+</body>
+</html>
