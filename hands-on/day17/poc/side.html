@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li class="active" id="home">Home</li>
+        <li id="products">Products</li>
+        <li id="discounts">Discounts</li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <div id="home-content" class="content active">
+        <h2>Welcome to the Product Management System</h2>
+        <p>This is the home section.</p>
+      </div>
+      <div id="products-content" class="content">
+        <h2>Products</h2>
+        <p>Here is the list of products.</p>
+      </div>
+      <div id="discounts-content" class="content">
+        <h2>Discounts</h2>
+        <p>Apply discounts to products here.</p>
+      </div>
+    </main>
+  </div>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background-color: #495057;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const sidebarItems = document.querySelectorAll(".sidebar ul li");
+  const contentSections = document.querySelectorAll(".content");
+
+  // Function to switch active content
+  function switchContent(id) {
+    contentSections.forEach((section) => {
+      section.classList.remove("active");
+      if (section.id === `${id}-content`) {
+        section.classList.add("active");
+      }
+    });
+
+    sidebarItems.forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+  }
+
+  // Add click events to sidebar items
+  sidebarItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      switchContent(item.id);
+    });
+  });
+
+  // Default content: "Home"
+  switchContent("home");
+});
+
+  </script>
+</body>
+</html>

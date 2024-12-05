@@ -3,9 +3,8 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
 body{
-    height: 100vh;
+    overflow:hidden;
 }
 
 .wrapper{
@@ -19,8 +18,9 @@ main{
 }
 
 header {
+    margin: 0;
     padding: 1em;
-    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    background-image: linear-gradient(to right, black, #434343);
     color: aliceblue;
 }
 
@@ -46,6 +46,7 @@ a{
     text-decoration: none;
     color: black;
 }
+
 
 a:hover{
     text-decoration: underline;
@@ -90,29 +91,35 @@ main .container-details{
     align-items: center;
     padding: 20px;
     border-radius: 20px;
+    border: 1px solid black;
  }
 
+ #login-form h3{
+    padding: 6px 0;
+ }
+ .form-group{
+    padding: 8px 0;
+ }
  #wildcard{
     font-size: x-small;
     color: #666666;
  }
 
-.container button, .container input, .container select{
+.container input, .container select{
     margin: 8px 0;
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
-    background-color:linear-gradient(to top, #0ba360 0%, #3cba92 100%);;
     border-radius: 5px;
     width: max-content;
     justify-content: center;
     width: 10rem;
 }
 
-.btn-grad {background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%)}
+.btn-grad {    background-image: linear-gradient(to right, black, #434343);}
 .btn-grad {
    margin: 10px;
-   padding: 15px 45px;
+   padding: 10px 50px;
    text-align: center;
    background-size: 200% auto;
    color: white;            
@@ -120,7 +127,13 @@ main .container-details{
    display: block;
  }
 
-
+.tile-searchresults{
+    display: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
 .container-login button, .container-login input{
     margin: 8px 0;
     padding: 8px;
@@ -145,7 +158,7 @@ main .container-details{
 footer .container{
     text-align: center; 
     padding: 10px; 
-    background-image: linear-gradient(to right, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%);
+    background-image: linear-gradient(to right, black, #434343);
     color: white;
     position: relative;
     bottom: 0;
@@ -193,8 +206,8 @@ footer .container{
     right: -250px;
     width: 250px;
     height: 100%;
-    background-image: linear-gradient(to right, #0ba360 0%, #3cba92 100%);;
-    color: black;
+    background-image: linear-gradient(to right, black, #434343);
+    color: aliceblue;
     transition: left 0.6s ease-in-out;
 }
  
@@ -223,7 +236,7 @@ footer .container{
  
 .sidebar-links a {
     display: block;
-    color: black;
+    color: aliceblue;
     text-decoration: none;
     padding: 10px 15px;
     font-size: 16px;
@@ -237,7 +250,6 @@ footer .container{
   
   
   #search-results {
-    display: none;
     height: 420px;
     overflow-y: auto; 
     padding: 10px;
@@ -247,23 +259,24 @@ footer .container{
   }
   
   #search-results h3 {
-    margin: 0 0 10px; /* Add spacing below the heading */
+    margin: 0 0 10px; 
   }
   
   #employee-table {
-    width: 100%; /* Ensure the table spans full width */
-    border-collapse: collapse; /* Remove extra space between table cells */
+    width: 100%; 
+    border-collapse: collapse; 
   }
   
-  #employee-table th, #employee-table td {
+  #employee-table thead, #employee-table td {
     padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
   }
   
-  #employee-table th {
-    background-color: #f2f2f2;
+  #employee-table thead{
+    background-color:#434343;
     font-weight: bold;
+    color: white;
   }
 
   

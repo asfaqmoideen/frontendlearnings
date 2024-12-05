@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     if (!sessionStorage.getItem("loggedIn")) {
-        window.location.href = "/index.html"; // Redirect if not logged in
+        window.location.href = "/index.html";
     }
     const welcomeuser = document.getElementById("usernamedisp");
-    console.log(sessionStorage.getItem('username'));
     welcomeuser.textContent = sessionStorage.getItem('username');
 
     const menuBtn = document.getElementById('menu-btn');
@@ -18,4 +17,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         sidebar.style.right = '-250px';
     });
      
+    const logoutbtn = document.getElementById('logout-btn');
+    logoutbtn.addEventListener('click', ()=>{
+        const logout = new Logout();
+        logout.trylogout();
+    })
 })
+
+class Logout{
+    trylogout(){
+        sessionStorage.removeItem('loggedIn');
+        document.location = "/index.html";
+}
+}

@@ -24,45 +24,52 @@
         <main>
             <div class="container">
                 <div class="overlay" id="overlay"></div>
-                <div class="container-details" id="emp-details" >
-                        <h3 id="emp-details-title">Search Employee</h3>
-                        <table>
-                            <tr> <td><label for="empId" > Employee Id :</label></td>
-                                <td><input type="text" id="empId" ></td>
-                            </tr>
-                            <tr>
-                                <td><label for="firstName"> First Name :</label> </td>
-                                <td><input type="text" id="firstName"></td>
-                            </tr>
-                            <tr>
-                                <td> <label for="lastname"> Last Name :</label></td>
-                                <td><input type="text" id="lastname"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="dob"> Date of Birth :</label> </td>
-                                <td><input type="date" id="dob"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="doj"> Date of Joining :</label> </td>
-                                <td><input type="date" id="doj" ></td>
-                            </tr>
-                            <tr>
-                                <td> <label for="grage">Grade</label></td>
-                                <td><select  id="grade">
-                                    <option value="M1">M1</option>
-                                    <option value="M2">M2</option>
-                                    <option value="M3">M3</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><button type="submit" id="search-btn-emp" class="btn-grad">Search</button></td>
-                            </tr>
-                        </table>
+                <form id="search-form">
+                    <div class="container-details" id="emp-details" >
+                            <h3 id="emp-details-title">Search Employee</h3>
+                            <table>
+                                <tr> <td><label for="empId" > Employee Id :</label></td>
+                                    <td><input type="text" id="empId" ></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="firstName"> First Name :</label> </td>
+                                    <td><input type="text" id="firstName"></td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="lastname"> Last Name :</label></td>
+                                    <td><input type="text" id="lastname"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="dob"> Date of Birth :</label> </td>
+                                    <td><input type="date" id="dob"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="doj"> Date of Joining :</label> </td>
+                                    <td><input type="date" id="doj" ></td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="grade">Grade</label></td>
+                                    <td><select  id="grade">
+                                        <option value="">--Select--</option>
+                                        <option value="M1">M1</option>
+                                        <option value="M2">M2</option>
+                                        <option value="M3">M3</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><button type="submit" id="search-btn-emp" class="btn-grad">Search</button></td>
+                                </tr>
+                            </table>
+                            <div id="messageDiv"></div>
+                </form>
                     </div>
                     
                     <div id="search-results" class="container-searchresults">
-                        <h3> Search Results </h3>
+                        <div class="tile-searchresults">
+                            <h3 id="search-results-title"> All Employees</h3>
+                            <button type="button" class="btn-grad" id="back-from-serachresults" style="display: none;">Back</button>
+                        </div>
                         <table id="employee-table">
                             <thead>
                                 <tr>
@@ -72,18 +79,18 @@
                                 <td>Date of Birth</td>
                                 <td>Date of Joining</td>
                                 <td>Grade</td>
-                                <td>View</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <button type="button" id="back-from-serachresults">Back</button>
+
                 </div>
                 
                 <div class="container-importfile" id="import-file">
                     <label for="file-choosen">Select file</label>
                     <input type="file" id="file-choosen"></input> <br>
-                    <button type="submit" > Upload Data </button>
+                    <button type="submit" class="btn-grad"> Upload Data </button>
                     <button type="button" id="back-from-dialog">Back</button>   
                 </div>
             </div>
@@ -93,8 +100,6 @@
                     <span class="close-btn" id="close-btn">&times;</span>
                 </div>
                 <ul class="sidebar-links">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
                     <li><a id="logout-btn">logout</a></li>
                     <li><a id="import-file-home">ImportFile</a></li>
                 </ul>

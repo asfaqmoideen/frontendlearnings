@@ -109,10 +109,8 @@ function populateEmployeeTable() {
     table.appendChild(thead);
 
     employees.forEach((employee) => {
-        // Create a new row
         const row = document.createElement("tr");
 
-        // Create and append individual table cells
         const idCell = document.createElement("td");
         idCell.textContent = employee.id;
         row.appendChild(idCell);

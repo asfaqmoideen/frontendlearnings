@@ -17,14 +17,13 @@ class Login{
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-
     const loginform = document.getElementById('login-form');
-
     loginform.addEventListener('submit', (event)=>{
         event.preventDefault();
 
         const login = new Login(loginform.userId.value, loginform.password.value);
         login.trylogin();
     })
+    
 
 })

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIMS - Home</title>
+    <script src="/src/js/productsControllerClasses.js"></script>
+    <script src="/src/js/pageController"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div class="container">
+         <h1>Annalect Engineering Ltd.</h1>
+         <h3>Product Inventory Management System</h3>
+            <nav>
+            <ul>                 
+              <li> <a href="OMS.html">OMS</a></li>
+              <li> <a href="EMS.html">EMS</a></li>
+              <li><a id="logout-btn">logout</a></li>
+            </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+          <ul>
+            <li class="active" id="products">Products</li>
+            <li id="addpro">Add Products</li>
+            <li id="discounts">Discounts</li>
+          </ul>
+        </aside>
+        <main class="main-content">
+            <div id="products-content" class="content active">
+              <h2>Products</h2>
+              <div id="message-edit"></div>
+              <div id="product-grid" class="grid"></div>
+            </div>
+          <div id="addpro-content" class="content">
+            <div class="modal-content">
+              <div class="product">
+              <h2>Add Product</h2>
+              <form id="add-form">
+                <div class="formgroup">
+                  <label for="pid">Id:</label>
+                  <input type="number" id="pid" name="id" required>
+                </div>
+                <div class="formgroup">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="formgroup">
+                  <label for="price">Price:</label>
+                  <input type="number" id="price" name="price" required>
+                </div>
+                <div class="formgroup">
+                  <label for="quantity">Quantity:</label>
+                  <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div class="formgroup">
+                  <button type="submit">Add</button>
+                </div>
+                <div id="message-add"></div>
+              </form>
+            </div>
+            </div>
+          </div>
+          <div id="discounts-content" class="content">
+            <h2>Discounts</h2>
+            <div class="sum-input">
+              <label for="percent">Enter Dicount Percentage</label>
+              <input type="number" id="percent"></input>
+              <button type="button" id="applyDiscount">Apply Discount</button>
+              <div id="message-dis"></div>
+            </div>
+            <div id="productstab" >
+              <h3>Products</h3>
+              <table id="disp-table">
+                  <thead>
+                      <tr>
+                          <td>Id</td>
+                          <td>Name</td>
+                          <td>Price</td>
+                          <td>Discounted Price</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+              </table>
+              <ul id="productList"></ul>
+          </div>
+          </div>
+        </div>
+        </main>
+      <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="product">
+            <h2>Edit Product</h2>
+            <form id="edit-form">
+              <div class="formgroup">
+              <label for="eid">Id:</label>
+              <input type="number" id="eid" name="eid" required></div>
+              <div class="formgroup">
+              <label for="ename">Name:</label>
+              <input type="text" id="ename" name="name" required>
+              </div>
+              <div class="formgroup">
+                <label for="eprice">Price:</label>
+                <input type="number" id="eprice" name="price" required>
+              </div>
+              <div class="formgroup">
+                <label for="equantity">Quantity:</label>
+                <input type="number" id="equantity" name="quantity" required>
+              </div>
+              <div class="btnwrap">
+                <button type="submit">Save</button>
+                <button type="button" id="cancel-button">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>   
+        <div class="container">
+           <p>© 2024 Annalect Engineering Ltd. (Omnicom Global Solutions). All rights reserved.</p> 
+        </div> 
+    </footer>
+</div>
+</body>
+<link rel="stylesheet" href="/src/css/main-style.css">
+<link rel="stylesheet" href="/src/css/pims.css">
+</html>

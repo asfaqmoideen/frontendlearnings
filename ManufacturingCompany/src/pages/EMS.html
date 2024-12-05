@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIMS - Home</title>
+    <script src="/src/js/employeeController.js"></script>
+    <script src="/src/js/pageController"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div class="container">
+         <h1>Annalect Engineering Ltd.</h1>
+         <h3>Employee Management System</h3>
+            <nav>
+            <ul>
+                <li> <a href="PIMS.html">PIMS</a></li>                    
+                <li> <a href="OMS.html">OMS</a></li>
+                <li><a id="logout-btn">logout</a></li>
+            </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+          <ul>
+            <li class="active" id="employee">Employees</li>
+            <li id="addempl">Add/Modify Employee</li>
+          </ul>
+        </aside>
+        <main class="main-content">
+            <div id="employee-content" class="content active">
+                <h2 id="empHead">List of All Employees</h2>
+                <table id="disp-table">
+                    <thead>
+                        <tr>
+                            <td>Employee Id</td>
+                            <td>Name</td>
+                            <td>Department ID</td>
+                            <td>Location</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+          <div id="addempl-content" class="content">
+            <div class="modalcontent">
+            <div id="addempldiv">
+                <div class="product">
+                  <h2>Add an Order</h2>
+                  <form id="add-emp">
+                    <div class="formgroup">
+                        <label for="empNo">ID:</label>
+                        <input type="number" id="empNo">
+                    </div>
+                    <div class="formgroup">
+                        <label for="empName">Name:</label>
+                        <input type="text" id="empName">
+                    </div>
+                    <div class="formgroup">
+                        <label for="deptId">Dept ID:</label>
+                        <input type="text" id="deptId"> 
+                    </div>
+                    <div class="formgroup">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location"> 
+                    </div>
+                    <div class="btnwrap">
+                        <button type="button" id="addOrUpd">Add</button>
+                    </div>
+                    <div id="message"></div>
+                  </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </main>
+    <footer>   
+        <div class="container">
+           <p>© 2024 Annalect Engineering Ltd. (Omnicom Global Solutions). All rights reserved.</p> 
+        </div> 
+    </footer>
+</div>
+</body>
+<link rel="stylesheet" href="/src/css/main-style.css">
+<link rel="stylesheet" href="/src/css/pims.css">
+</html>
