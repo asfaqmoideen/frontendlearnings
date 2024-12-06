@@ -26,4 +26,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         login.trylogin();
     })
 
+    const logoutbtn = document.getElementById('logout-btn');
+    logoutbtn.addEventListener('click', ()=>{
+        const logout = new Logout();
+        logout.trylogout();
+    });
+
 })
+class Logout{
+    trylogout(){
+        sessionStorage.removeItem('loggedIn');
+        document.location = "/index.html";
+}
+}

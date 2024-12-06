@@ -1,21 +1,23 @@
 //========================================Declarations=====================================================
-class Product{
+
+// import { ProductController } from '/src/js/productsControllerClasses.js';
+
+class ProductController{
     constructor(){
-        this.productsArray = [
-            {id :1, name:"Phone",price:2000,},
-            {id :2, name:"Charger", price:2000},
-            {id :3, name:"Headphones", price:1000},
-            {id :4, name:"Airpods",price:2000 },
-            {id :5, name:"Neckband", price:900},
-            {id :6, name:"Coolers", price:100},
-            {id :7, name:"Laptop",price:2000 },
-            {id :8, name:"Watch", price:2000},
-            {id: 9, name:"Pen", price:10},
-            {id: 10,name:"Notebook", price:100}
-        ];
+            this.productsArray = [
+                { id: 1, name: "Phone", price: 2000, quantity: 5 },
+                { id: 2, name: "Charger", price: 200, quantity: 100 },
+                { id: 3, name: "Headphones", price: 100, quantity: 100 },
+                { id: 4, name: "Laptop", price: 50000, quantity: 10 },
+                { id: 5, name: "Keyboard", price: 800, quantity: 50 },
+                { id: 6, name: "Mouse", price: 500, quantity: 75 },
+                { id: 7, name: "Smartwatch", price: 3000, quantity: 20 },
+                { id: 8, name: "Tablet", price: 15000, quantity: 8 },
+                { id: 9, name: "Power Bank", price: 1200, quantity: 60 },
+                { id: 10, name: "Bluetooth Speaker", price: 2500, quantity: 25 }
+            ];
     }
 }
-
 class Order {
     constructor(id, name,contact, listOfproducts, totalAmount, dateOfOrder){
         this.id = id;
@@ -113,16 +115,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
         uicon.tryAddingProducts();
     })
     
-    const placeOrder = document.getElementById("placeOrder");
-    placeOrder.addEventListener('click', ()=>{
-        uicon.tryPlacingOrder();
+    const addform = document.getElementById("add-form");
+    addform.addEventListener('submit', (event)=>{
+        event.preventDefault();
+        uicon.tryPlacingOrder(addform);
     })
 
 
     const getsum = document.getElementById('cname-sum');
     getsum.addEventListener('change', ()=>{
         const summary = orderscon.orderSummary(getsum.value)
-        uicon.updateSummaryList(summary);
+        uicon.updateOrdersAddedList(summary,true);
     })
 })
 
@@ -130,15 +133,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 class UIController{
     constructor(orderscon){
         this.orderscon = orderscon;
-        this.products = new Product();
+        this.products = new ProductController();
     }
 
 
-compileOrder(){ 
+compileOrder(addform){ 
         return {
             id: this.orderscon.generateUniqueId(),
-            name: this.getCustomerDetails().name,
-            contact: this.getCustomerDetails().contact,
+            name: addform.cname.value,
+            contact: addform.contact.value,
             listOfProducts : this.orderscon.addedProducts,
             totalAmount: this.orderscon.calculateTotalAmount(),
         }
@@ -153,10 +156,10 @@ tryAddingProducts(){
     document.getElementById('productDropDown').value=" " ;
 }
 
-tryPlacingOrder(){
+tryPlacingOrder(addform){
 
-    if(this.orderscon.addOrder(this.compileOrder())){
-        this.updateOrdersAddedList(this.orderscon.orders);
+    if(this.orderscon.addOrder(this.compileOrder(addform))){
+        this.updateOrdersAddedList(this.orderscon.orders, false);
         this.orderscon.addedProducts = [];
         this.updateProductsAddedList();
         this.upadteTotalAmount();
@@ -168,13 +171,6 @@ tryPlacingOrder(){
     this.resetInputs();
 }
 
-
-getCustomerDetails(){
-    return {
-    name: document.getElementById('cname').value.trim(),
-    contact: document.getElementById('contact').value.trim()
-    };
-}
 
 getProductDetails(){
     const productV = document.getElementById('productDropDown').value
@@ -213,16 +209,6 @@ upadteTotalAmount(){
 }
 
 
-updateProductsAddedList1(){
-    const productslist = document.getElementById('productList');
-    productslist.textContent = "";
-    this.orderscon.addedProducts.forEach(product =>{
-        const listItem = document.createElement('li');
-        listItem.textContent = `${product.name} - ${product.price}`;
-        productslist.appendChild(listItem);
-    })
-}
-
 updateProductsAddedList() {
     const table = document.querySelector('#disp-table-pro tbody');
     table.textContent = ""; 
@@ -255,64 +241,17 @@ updateProductsAddedList() {
     });
 }
 
-updateOrdersAddedList(orders) {
-
+updateOrdersAddedList(orders, isSummary) {
     const tamt = document.getElementById('tamt2');
     tamt.textContent = this.orderscon.netOrdersTotal(orders);
-
-    let table = document.querySelector('#disp-table tbody')
+    let table = isSummary ? document.querySelector('#disp-table2 tbody') : document.querySelector('#disp-table tbody')
     table.textContent = " "; 
-
-    this.orderscon.orders.forEach(order => {
-        const row = document.createElement('tr');
-        
-        const idCell = document.createElement('td');
-        idCell.textContent = order.id;
-        row.appendChild(idCell);
-        
-        const nameCell = document.createElement('td');
-        nameCell.textContent = order.name; 
-        row.appendChild(nameCell);
-
-        const contactCell = document.createElement('td');
-        contactCell.textContent = order.contact; 
-        row.appendChild(contactCell);
-        
-        const productlist = document.createElement('ul');
-        order.listOfProducts.forEach(p =>{
-            const productOpt = document.createElement('li');
-            productOpt.textContent = `${p.name} - ${p.price}, `;
-            productlist.appendChild(productOpt);
-        });
-
-        
-        const productsCell = document.createElement('td');
-        productsCell.textContent = `[ ${productlist.textContent} ]`
-        row.appendChild(productsCell);
-        
-        const amtCell = document.createElement('td');
-        amtCell.textContent = order.totalAmount;
-        row.appendChild(amtCell);
-
-        const rembtn = document.createElement('button');
-        rembtn.textContent = `Cancel Order`;
-        rembtn.className = 'createdbutton'
-        rembtn.addEventListener('click', ()=>{
-            this.orderscon.cancelOrder(order);
-            this.updateOrdersAddedList(this.orderscon.orders);
-        });
-        row.appendChild(rembtn);
-        table.appendChild(row); 
-    });
-}
-
-updateSummaryList(orders) {
-    const totalAmount = document.getElementById('tamt3');
-    totalAmount.textContent = `Total Amount of All Orders:${this.orderscon.netOrdersTotal(orders)}`;
-    const tamt = document.getElementById('tamt2');
-
-    let table = document.querySelector('#disp-table2 tbody')
-    table.textContent = " "; 
+    if(orders.length == 0 ){
+        table.textContent = "No Summary Found";
+    }
+    if(isSummary){
+        this.setSummaryValues(orders);
+    }
 
     orders.forEach(order => {
         const row = document.createElement('tr');
@@ -350,7 +289,7 @@ updateSummaryList(orders) {
         rembtn.className = 'createdbutton'
         rembtn.addEventListener('click', ()=>{
             this.orderscon.cancelOrder(order);
-            this.updateOrdersAddedList(this.orderscon.orders);
+            this.updateOrdersAddedList(this.orderscon.orders, true);
         });
         row.appendChild(rembtn);
         table.appendChild(row); 
@@ -359,9 +298,8 @@ updateSummaryList(orders) {
 
 
 setSummaryValues(orders) {
-
     const totalAmount = document.getElementById('tamt3');
     totalAmount.textContent = `Total Amount of All Orders:${this.orderscon.netOrdersTotal(orders)}`;
-
+    document.getElementById('ordHead2').textContent = `Order Summary of ${orders[0].name}`
 }
 }

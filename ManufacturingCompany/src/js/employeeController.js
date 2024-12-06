@@ -44,43 +44,52 @@ class EmployeeController{
 document.addEventListener('DOMContentLoaded', ()=>{
     const empLogic = new EmployeeController();
     const uiLogic = new UIController(empLogic);
+
     const empId = document.getElementById("empNo");
     const button = document.getElementById("addOrUpd");
+    const empTitle = document.getElementById("emp-title");
+    const empform = document.getElementById('add-emp');
 
     uiLogic.displayEmployeeList();
 
     empId.addEventListener('change', ()=>{
         if(empLogic.findExistingEmployee(empId.value)){
             button.textContent = "Update";
-            uiLogic.updateInputValues(empId.value);
+            empTitle.textContent = "Update Employee";
+            uiLogic.updateInputValues(empId.value, empform);
         }
         if(!empLogic.findExistingEmployee(empId.value)){
             button.textContent = "Add";
+            empTitle.textContent = "Add an Employee";
         }
     })
 
-    button.addEventListener('click', ()=>{
+    empform.addEventListener('submit', (event)=>{
+        event.preventDefault();
+
         if(button.textContent == "Update"){
-         if(uiLogic.tryUpdatingEmployee()){
+            if(uiLogic.tryUpdatingEmployee(empform)){
             uiLogic.displayEmployeeList();
-            uiLogic.resetInputs();
+            empform.reset();
             uiLogic.displayMessage("Updated !");
-        }
-        else{
-        uiLogic.displayMessage("Not Updated !");
-         }
+            button.textContent = "Add";
+            empTitle.textContent = "Add an Employee";
+            }
+            else{
+            uiLogic.displayMessage("Not Updated !");
+            }
         }
 
         else if(button.textContent == "Add"){
-        if(uiLogic.tryAddingEmployee()){
+            if(uiLogic.tryAddingEmployee(empform)){
             uiLogic.displayEmployeeList();
-            uiLogic.resetInputs();
+            empform.reset();
             uiLogic.displayMessage(" Employee Added !");
+            }
+            else{
+            uiLogic.displayMessage("Invalid Inputs, Not Added !");
+            }
         }
-        else{
-        uiLogic.displayMessage("Invalid Inputs, Not Added !");
-        }
-    }
     })
 })
 
@@ -97,47 +106,23 @@ class UIController{
         document.getElementById("location").value = employee.location;
     }
 
-    tryUpdatingEmployee(){
-        const employee = this.getEmployeeDetails();
-
+    tryUpdatingEmployee(empform){
+        const employee = this.getEmployeeDetails(empform);
         return this.empLogic.updateEmployee(employee);
     }
 
-    tryAddingEmployee(){
-        const employee = this.getEmployeeDetails();
+    tryAddingEmployee(empform){
+        const employee = this.getEmployeeDetails(empform);
         return this.empLogic.addEmployee(employee);
     }
 
-    getEmployeeDetails(){
-        return new Employee(
-            document.getElementById("empNo").value,
-            document.getElementById("empName").value,
-            document.getElementById("deptId").value,
-            document.getElementById("location").value
-            );
+    getEmployeeDetails(empform){
+        return new Employee(empform.empNo.value, 
+            empform.empName.value, empform.deptId.value, empform.location.value);
     }
-
-    resetInputs(){
-        document.getElementById('empNo').value= "";
-        document.getElementById('empName').value="";
-        document.getElementById('deptId').value="";
-        document.getElementById('location').value="";
-    }
-
     displayMessage(message){
         document.getElementById('message').textContent = message;
         setTimeout(f=>{document.getElementById('message').textContent = "";}, 3000);
-    }
-    displayEmployeeList1(){
-
-        const empList = document.getElementById('empList');
-        empList.textContent =" ";
-
-        this.empLogic.employees.forEach(element => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${element.id} - ${element.name} - ${element.depId} -${element.location}`
-            empList.appendChild(listItem);
-        });
     }
 
     displayEmployeeList() {
@@ -161,7 +146,6 @@ class UIController{
             const locCell = document.createElement('td');
             locCell.textContent = employee.location;
             row.appendChild(locCell);
-            
             
             table.appendChild(row); 
         });

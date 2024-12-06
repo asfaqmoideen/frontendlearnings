@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIMS - Home</title>
     <script src="/src/js/productsControllerClasses.js"></script>
-    <script src="/src/js/pageController"></script>
+    <script src="/src/js/pageController.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -69,7 +69,7 @@
             <h2>Discounts</h2>
             <div class="sum-input">
               <label for="percent">Enter Dicount Percentage</label>
-              <input type="number" id="percent"></input>
+              <input type="number" min="1" max="100" id="percent"></input>
               <button type="button" id="applyDiscount">Apply Discount</button>
               <div id="message-dis"></div>
             </div>

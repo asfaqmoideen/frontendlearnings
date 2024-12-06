@@ -8,8 +8,10 @@ class Product{
     }
 }
 
+
 class ProductController
 {   
+
     constructor(){
         this.productsArray = [
             { id: 1, name: "Phone", price: 2000, quantity: 5 },
@@ -26,8 +28,8 @@ class ProductController
         
     }
     
-    
-addProduct(productToBeAdded){
+
+    addProduct(productToBeAdded){
         if(productToBeAdded.name && productToBeAdded.id){
             const existingproduct = this.productsArray.find(p=> p.id==productToBeAdded.id);
             if(!existingproduct){
@@ -53,9 +55,6 @@ updateProduct(product){
     return false;
 }
 
-viewProducts(){
-    return this.productsArray;
-}
 
 removeProduct(product){
     const productToBeRemoved = this.productsArray.findIndex(p=> p.id==product.id);
@@ -70,13 +69,16 @@ applyDiscount(Percentage){
     return dicountedArray;
 }
 }
+
+// export {Product, ProductController} ;
+
 // --------------------------UI Funtions-------------------------------------
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const productLogic = new ProductController();
     const uiLogic = new GridUI(productLogic);
     uiLogic.renderProducts();
-
+    console.log(productLogic.productsArray);
     const addp = document.getElementById('add-form');
     addp.addEventListener('submit',(event)=>{
         event.preventDefault();
@@ -98,14 +100,18 @@ class GridUI{
     
     tryAddingProduct(addform){
 
-        this.productLogic.addProduct(new Product(addform.pid.value,addform.name.value,addform.price.value, addform.quantity.value))
-        this.renderProducts();
-        addform.reset();
-        this.displayMessage("Product Added !", "add");
+        if(this.productLogic.addProduct(new Product(addform.pid.value,
+            addform.name.value,addform.price.value, addform.quantity.value))){
+                this.renderProducts();
+                addform.reset();
+                this.displayMessage(`Product Added !`, "add");
+                return;
+            }
+        this.displayMessage("Product not Added !, Id should be unique", "add");
 
     }
 
-    displayProductsList(products) {
+    displayProductsTable(products) {
         const table = document.querySelector('#disp-table tbody');
         table.textContent = ""; 
         products.forEach(product => {
@@ -135,6 +141,7 @@ class GridUI{
         spanItem.textContent = message;
         setTimeout(function(){spanItem.textContent = ""}, 3000);
     }
+
     renderProducts() {
         const grid = document.getElementById("product-grid");
         grid.textContent = "";
@@ -162,6 +169,7 @@ class GridUI{
                 this.renderProducts();
             })
             actiondiv.appendChild(editbtn);
+            
             const rembtn = document.createElement('button');
             rembtn.textContent = `🗑️`;
             rembtn.addEventListener('click', ()=> {
@@ -180,11 +188,8 @@ class GridUI{
         const eform = document.getElementById("edit-form");
         const emodal = document.getElementById("edit-modal");
         const ecancelButton = document.getElementById("cancel-button");
-        eform.eid.value = product.id;
-        eform.eid.disabled = true;
-        eform.name.value = product.name;
-        eform.price.value = product.price;
-        eform.quantity.value = product.quantity;
+        this.setEditFormDetails(eform, product);
+
         emodal.classList.remove("hidden");
         eform.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -197,10 +202,19 @@ class GridUI{
             emodal.classList.add("hidden");
           });
     }
+
+    setEditFormDetails(eform, product) {
+        eform.eid.value = product.id;
+        eform.eid.disabled = true;
+        eform.name.value = product.name;
+        eform.price.value = product.price;
+        eform.quantity.value = product.quantity;
+    }
+
     tryApplyingDiscount(){
         const percent = document.getElementById("percent");
         if(percent.value < 100 && percent.value > 0){
-        this.displayProductsList(this.productLogic.applyDiscount(percent.value));
+        this.displayProductsTable(this.productLogic.applyDiscount(percent.value));
         this.displayMessage("Discount Applied","dis");
         }
         percent.value = "";

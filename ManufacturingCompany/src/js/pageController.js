@@ -1,15 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "/index.html";
+  }
+  const logoutbtn = document.getElementById('logout-btn');
+  logoutbtn.addEventListener('click', ()=>{
+      const logout = new Logout();
+      logout.trylogout();
+  });
+
+  
     const sidebarItems = document.querySelectorAll(".sidebar ul li");
     const contentSections = document.querySelectorAll(".content");
   
-    if (!sessionStorage.getItem("loggedIn")) {
-      window.location.href = "/index.html";
-  }
-    const logoutbtn = document.getElementById('logout-btn');
-    logoutbtn.addEventListener('click', ()=>{
-        const logout = new Logout();
-        logout.trylogout();
-    })
+    
+        sidebarItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            switchContent(item.id);
+          });
+        });
 
     function switchContent(id) {
       contentSections.forEach((section) => {
@@ -25,12 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
       document.getElementById(id).classList.add("active");
     }
-
-    sidebarItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        switchContent(item.id);
-      });
-    });
   });
   
 
