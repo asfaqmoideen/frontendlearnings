@@ -32,7 +32,10 @@
         </aside>
         <main class="main-content">
             <div id="orders-content" class="content active">
+              <div class="ordheadgrp">
                 <h2 id="ordHead">List of All Orders</h2>
+                <div id="tamt2"></div>
+              </div>
                 <table id="disp-table">
                     <thead>
                         <tr>
@@ -46,8 +49,6 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <div id="orderSummary"></div>
-                Total Amount of All Orders: <span id="tamt2">0</span>
             </div>
           <div id="addord-content" class="content">
             <div class="modalcontent">
@@ -99,9 +100,12 @@
         </div>
         <div id="summary-content" class="content">
             <h2 id="ordHead2">Get Order Summary</h2>
-            <div class="sum-input">
-                <label for="cname-sum">Enter Customer Name</label>
-                <input type="text" id="cname-sum"></input>
+            <div class="ordheadgrp">
+              <div class="sum-input">
+                  <label for="cname-sum">Enter Customer Name</label>
+                  <input type="text" id="cname-sum"></input>
+              </div>
+              <div id="tamt3"></div>
             </div>
             <table id="disp-table2">
                 <thead>
@@ -116,7 +120,6 @@
                 </thead>
                 <tbody></tbody>
             </table>
-             <div id="tamt3"></div>
         </div>
           </div>
         </main>

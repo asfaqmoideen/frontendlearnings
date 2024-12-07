@@ -1,23 +1,25 @@
 //========================================Declarations=====================================================
 
-// import { ProductController } from '/src/js/productsControllerClasses.js';
+class ProductController
+{   
 
-class ProductController{
     constructor(){
-            this.productsArray = [
-                { id: 1, name: "Phone", price: 2000, quantity: 5 },
-                { id: 2, name: "Charger", price: 200, quantity: 100 },
-                { id: 3, name: "Headphones", price: 100, quantity: 100 },
-                { id: 4, name: "Laptop", price: 50000, quantity: 10 },
-                { id: 5, name: "Keyboard", price: 800, quantity: 50 },
-                { id: 6, name: "Mouse", price: 500, quantity: 75 },
-                { id: 7, name: "Smartwatch", price: 3000, quantity: 20 },
-                { id: 8, name: "Tablet", price: 15000, quantity: 8 },
-                { id: 9, name: "Power Bank", price: 1200, quantity: 60 },
-                { id: 10, name: "Bluetooth Speaker", price: 2500, quantity: 25 }
-            ];
+         this.productsArray = [
+            { id: 1, name: "Phone", price: 2000, quantity: 5 },
+            { id: 2, name: "Charger", price: 200, quantity: 100 },
+            { id: 3, name: "Headphones", price: 100, quantity: 100 },
+            { id: 4, name: "Laptop", price: 50000, quantity: 10 },
+            { id: 5, name: "Keyboard", price: 800, quantity: 50 },
+            { id: 6, name: "Mouse", price: 500, quantity: 75 },
+            { id: 7, name: "Smartwatch", price: 3000, quantity: 20 },
+            { id: 8, name: "Tablet", price: 15000, quantity: 8 },
+            { id: 9, name: "Power Bank", price: 1200, quantity: 60 },
+            { id: 10, name: "Bluetooth Speaker", price: 2500, quantity: 25 }
+        ];
+        
     }
 }
+
 class Order {
     constructor(id, name,contact, listOfproducts, totalAmount, dateOfOrder){
         this.id = id;
@@ -163,12 +165,12 @@ tryPlacingOrder(addform){
         this.orderscon.addedProducts = [];
         this.updateProductsAddedList();
         this.upadteTotalAmount();
-        this.resetInputs();
+        addform.reset();
         this.displayMessage("Order Added !");
         return;
     }
     this.displayMessage("Invalid Inputs");
-    this.resetInputs();
+    addform.reset();
 }
 
 
@@ -181,11 +183,7 @@ getProductDetails(){
 //==================================== Updating UI Functions ==================================================
 
 
-resetInputs(){
-    document.getElementById('cname').value="";
-    document.getElementById('contact').value="";
 
-}
 
 displayMessage(message){
     const messageDiv = document.getElementById('messageDiv');
@@ -224,7 +222,7 @@ updateProductsAddedList() {
         row.appendChild(nameCell);
         
         const priceCell = document.createElement('td');
-        priceCell.textContent = product.price;
+        priceCell.textContent = `₹ ${product.price}`;
         row.appendChild(priceCell);
 
         const modifycell = document.createElement('td');
@@ -242,15 +240,13 @@ updateProductsAddedList() {
 }
 
 updateOrdersAddedList(orders, isSummary) {
+    let table = isSummary ? document.querySelector('#disp-table2 tbody') : document.querySelector('#disp-table tbody');
     const tamt = document.getElementById('tamt2');
-    tamt.textContent = this.orderscon.netOrdersTotal(orders);
-    let table = isSummary ? document.querySelector('#disp-table2 tbody') : document.querySelector('#disp-table tbody')
+    tamt.textContent = `Total Amount : ₹${this.orderscon.netOrdersTotal(orders)}`;
     table.textContent = " "; 
-    if(orders.length == 0 ){
-        table.textContent = "No Summary Found";
-    }
     if(isSummary){
-        this.setSummaryValues(orders);
+        const totalAmount = document.getElementById('tamt3');
+        totalAmount.textContent = `Total Amount : ₹${this.orderscon.netOrdersTotal(orders)}`;
     }
 
     orders.forEach(order => {
@@ -271,17 +267,17 @@ updateOrdersAddedList(orders, isSummary) {
         const productlist = document.createElement('ul');
         order.listOfProducts.forEach(p =>{
             const productOpt = document.createElement('li');
-            productOpt.textContent = `${p.name} - ${p.price}, `;
+            productOpt.textContent = `${p.name}, `;
             productlist.appendChild(productOpt);
         });
 
         
         const productsCell = document.createElement('td');
-        productsCell.textContent = `[ ${productlist.textContent} ]`
+        productsCell.textContent = `${productlist.textContent}`
         row.appendChild(productsCell);
         
         const amtCell = document.createElement('td');
-        amtCell.textContent = order.totalAmount;
+        amtCell.textContent = `₹ ${order.totalAmount}`;
         row.appendChild(amtCell);
 
         const rembtn = document.createElement('button');
@@ -290,16 +286,11 @@ updateOrdersAddedList(orders, isSummary) {
         rembtn.addEventListener('click', ()=>{
             this.orderscon.cancelOrder(order);
             this.updateOrdersAddedList(this.orderscon.orders, true);
+            this.updateOrdersAddedList(this.orderscon.orders, false);
         });
         row.appendChild(rembtn);
         table.appendChild(row); 
     });
 }
 
-
-setSummaryValues(orders) {
-    const totalAmount = document.getElementById('tamt3');
-    totalAmount.textContent = `Total Amount of All Orders:${this.orderscon.netOrdersTotal(orders)}`;
-    document.getElementById('ordHead2').textContent = `Order Summary of ${orders[0].name}`
-}
 }

@@ -13,7 +13,7 @@ class ProductController
 {   
 
     constructor(){
-        this.productsArray = [
+         this.productsArray = [
             { id: 1, name: "Phone", price: 2000, quantity: 5 },
             { id: 2, name: "Charger", price: 200, quantity: 100 },
             { id: 3, name: "Headphones", price: 100, quantity: 100 },
@@ -28,7 +28,6 @@ class ProductController
         
     }
     
-
     addProduct(productToBeAdded){
         if(productToBeAdded.name && productToBeAdded.id){
             const existingproduct = this.productsArray.find(p=> p.id==productToBeAdded.id);
@@ -70,7 +69,6 @@ applyDiscount(Percentage){
 }
 }
 
-// export {Product, ProductController} ;
 
 // --------------------------UI Funtions-------------------------------------
 
@@ -126,11 +124,11 @@ class GridUI{
             row.appendChild(nameCell);
             
             const priceCell = document.createElement('td');
-            priceCell.textContent = product.price;
+            priceCell.textContent = `₹${product.price}`;
             row.appendChild(priceCell);
     
             const discounted = document.createElement('td');
-            discounted.textContent = product.discounprice;
+            discounted.textContent = `₹${product.discounprice}`;
             row.appendChild(discounted);
             
             table.appendChild(row); 
@@ -153,7 +151,7 @@ class GridUI{
             tile.appendChild(title);
 
             const pricep = document.createElement('p');
-            pricep.textContent = `Price: $${product.price}`;
+            pricep.textContent = `Price: ₹${product.price}`;
             tile.appendChild(pricep);
 
             const quanp = document.createElement('p');
@@ -169,7 +167,7 @@ class GridUI{
                 this.renderProducts();
             })
             actiondiv.appendChild(editbtn);
-            
+
             const rembtn = document.createElement('button');
             rembtn.textContent = `🗑️`;
             rembtn.addEventListener('click', ()=> {

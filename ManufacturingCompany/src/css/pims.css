@@ -234,3 +234,11 @@ table thead{
   background-color: #ffff;
   color: #000000;
 }
+
+.ordheadgrp{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+}
