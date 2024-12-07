@@ -48,6 +48,7 @@ updateProduct(product){
     if(productToBeEdited){
         productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
         productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price;
+        productToBeEdited.quantity = product.quantity.length == 0 ? productToBeEdited.quantity: product.quantity;
         return true;
     }
     }
@@ -134,6 +135,7 @@ class GridUI{
             table.appendChild(row); 
         });
     }
+
     displayMessage(message, fromDiv){
         const spanItem = document.getElementById(`message-${fromDiv}`);
         spanItem.textContent = message;
@@ -173,6 +175,7 @@ class GridUI{
             rembtn.addEventListener('click', ()=> {
                 this.productLogic.removeProduct(product);
                 this.renderProducts();
+                this.displayMessage("Product Removed!","edit");
             })
             actiondiv.appendChild(rembtn);
 
@@ -191,7 +194,7 @@ class GridUI{
         emodal.classList.remove("hidden");
         eform.addEventListener("submit", (event) => {
             event.preventDefault();
-            this.productLogic.updateProduct(new Product(eform.eid.value,eform.name.value,eform.price.value))
+            this.productLogic.updateProduct(new Product(eform.eid.value,eform.ename.value,eform.eprice.value, eform.equantity.value))
             this.renderProducts();
               emodal.classList.add("hidden");
               this.displayMessage("Product Edited!","edit");
@@ -204,9 +207,9 @@ class GridUI{
     setEditFormDetails(eform, product) {
         eform.eid.value = product.id;
         eform.eid.disabled = true;
-        eform.name.value = product.name;
-        eform.price.value = product.price;
-        eform.quantity.value = product.quantity;
+        eform.ename.value = product.name;
+        eform.eprice.value = product.price;
+        eform.equantity.value = product.quantity;
     }
 
     tryApplyingDiscount(){
