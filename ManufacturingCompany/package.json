@@ -8,6 +8,8 @@
     "build" : "vite build",
     "prod" : "vite preview"
   },
+  
+    "type": "module",
   "author": "Asfaq Moideen",
   "license": "ISC",
   "description": "",

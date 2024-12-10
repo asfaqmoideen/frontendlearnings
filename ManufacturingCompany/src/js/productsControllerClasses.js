@@ -1,4 +1,4 @@
-
+import { productsArray } from "./constants";
 class Product{
     constructor(productId, productName, productPrice, productQuantity){
         this.id = productId;
@@ -12,27 +12,11 @@ class Product{
 class ProductController
 {   
 
-    constructor(){
-         this.productsArray = [
-            { id: 1, name: "Phone", price: 2000, quantity: 5 },
-            { id: 2, name: "Charger", price: 200, quantity: 100 },
-            { id: 3, name: "Headphones", price: 100, quantity: 100 },
-            { id: 4, name: "Laptop", price: 50000, quantity: 10 },
-            { id: 5, name: "Keyboard", price: 800, quantity: 50 },
-            { id: 6, name: "Mouse", price: 500, quantity: 75 },
-            { id: 7, name: "Smartwatch", price: 3000, quantity: 20 },
-            { id: 8, name: "Tablet", price: 15000, quantity: 8 },
-            { id: 9, name: "Power Bank", price: 1200, quantity: 60 },
-            { id: 10, name: "Bluetooth Speaker", price: 2500, quantity: 25 }
-        ];
-        
-    }
-    
     addProduct(productToBeAdded){
         if(productToBeAdded.name && productToBeAdded.id){
-            const existingproduct = this.productsArray.find(p=> p.id==productToBeAdded.id);
+            const existingproduct = productsArray.find(p=> p.id==productToBeAdded.id);
             if(!existingproduct){
-                this.productsArray.push(productToBeAdded);
+                productsArray.push(productToBeAdded);
                 return true;
             }
             return false;
@@ -44,7 +28,7 @@ class ProductController
 updateProduct(product){
     console.log(product);
     if(product.name || product.price){
-    const productToBeEdited = this.productsArray.find(p=> p.id==product.id);
+    const productToBeEdited = productsArray.find(p=> p.id==product.id);
     if(productToBeEdited){
         productToBeEdited.name = product.name.length === 0 ? productToBeEdited.name : product.name;
         productToBeEdited.price = product.price.length == 0 ? productToBeEdited.price: product.price;
@@ -57,11 +41,11 @@ updateProduct(product){
 
 
 removeProduct(product){
-    const productToBeRemoved = this.productsArray.findIndex(p=> p.id==product.id);
-    this.productsArray.splice(productToBeRemoved, 1);
+    const productToBeRemoved = productsArray.findIndex(p=> p.id==product.id);
+    productsArray.splice(productToBeRemoved, 1);
 }
 applyDiscount(Percentage){
-    const dicountedArray = this.productsArray.map(product => {
+    const dicountedArray = productsArray.map(product => {
             product.discounprice = product.price - (product.price*Percentage)/100;
             return product;
         });
@@ -74,10 +58,9 @@ applyDiscount(Percentage){
 // --------------------------UI Funtions-------------------------------------
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    const productLogic = new ProductController();
-    const uiLogic = new GridUI(productLogic);
+    const uiLogic = new GridUI();
     uiLogic.renderProducts();
-    console.log(productLogic.productsArray);
+
     const addp = document.getElementById('add-form');
     addp.addEventListener('submit',(event)=>{
         event.preventDefault();
@@ -93,8 +76,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 class GridUI{
-    constructor(productLogic){
-        this.productLogic=productLogic
+    constructor(){
+        this.productLogic=new ProductController();
     }
     
     tryAddingProduct(addform){
@@ -145,7 +128,7 @@ class GridUI{
     renderProducts() {
         const grid = document.getElementById("product-grid");
         grid.textContent = "";
-        this.productLogic.productsArray.forEach((product) => {
+        productsArray.forEach((product) => {
             const tile = document.createElement("div");
             tile.className = "tile";
             const title = document.createElement('h3');
@@ -173,9 +156,14 @@ class GridUI{
             const rembtn = document.createElement('button');
             rembtn.textContent = `🗑️`;
             rembtn.addEventListener('click', ()=> {
-                this.productLogic.removeProduct(product);
-                this.renderProducts();
-                this.displayMessage("Product Removed!","edit");
+                this.getUserConfirmation(`to delete ${product.name}`)
+                .then((result=>{
+                    if(result){
+                        this.productLogic.removeProduct(product);
+                        this.renderProducts();
+                        this.displayMessage("Product Removed!","edit");
+                    }
+                }));
             })
             actiondiv.appendChild(rembtn);
 
@@ -219,6 +207,27 @@ class GridUI{
         this.displayMessage("Discount Applied","dis");
         }
         percent.value = "";
+    }
+
+    getUserConfirmation(context) {
+        const confirm = document.getElementById('confirmation');
+        const overlay = document.getElementById('overlay');
+        confirm.style.display = 'block';
+        overlay.style.display = 'block';
+        document.getElementById('confirm-title').textContent = `Are you sure ${context}?`;
+    
+        return new Promise((resolve) => {
+            document.getElementById('yesbtn').onclick = () => {
+                confirm.style.display = 'none';
+                overlay.style.display = 'none'
+                resolve(true);
+            };
+            document.getElementById('nobtn').onclick = () => {
+                confirm.style.display = 'none';
+                overlay.style.display = 'none'
+                resolve(false);
+            };
+        });
     }
 }
 

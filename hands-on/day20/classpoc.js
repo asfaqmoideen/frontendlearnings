@@ -10,30 +10,31 @@ let num = 1;
  function genarateid(){
     return ++num;
  }
+ 
+ 
+ class TicketController{
+     constructor(){
+         this.ticketArray = [];
+        }
+        addTicket(tickect){
+            
+            this.ticketArray.push(tickect);
+        }
+        
+        showAllTickets(){
+            return this.ticketArray;
+        }
+        
+        removeTicket(tickect){
+            const tickInd = this.ticketArray.findIndex(t=> t.id === tickect.id);
+            
+            this.ticketArray.splice(tickInd, 1);
+        }
+    }
+    
 const pushpa2 = new Ticket("Pushpa2", 1800);
-
+    
 const viduthalai = new Ticket("Viduthalai2", 2000);
-
-
-class TicketController{
-    constructor(){
-        this.ticketArray = [];
-    }
-    addTicket(tickect){
-        
-        this.ticketArray.push(tickect);
-    }
-    
-    showAllTickets(){
-        return this.ticketArray;
-    }
-    
-    removeTicket(tickect){
-        const tickInd = this.ticketArray.findIndex(t=> t.id === tickect.id);
-        
-        this.ticketArray.splice(tickInd, 1);
-    }
-}
 
 const tickCont = new TicketController();
 tickCont.addTicket(pushpa2);

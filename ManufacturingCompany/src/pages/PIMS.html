@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIMS - Home</title>
-    <script src="/src/js/productsControllerClasses.js"></script>
+    <script type="module" src="/src/js/productsControllerClasses.js"></script>
+    <script type="module" src="/src/js/constants.js"></script>
     <script src="/src/js/pageController.js"></script>
 </head>
 <body>
@@ -23,6 +24,13 @@
         </div>
     </header>
     <div class="container">
+      <div class="overlay" id="overlay"></div>
+      <div class="container-confirmation" id="confirmation">
+        <h3 id="confirm-title"></h3>
+        <div class="btn-wrap">  
+        <button type="button" id="yesbtn" class="btn-grad" >Yes</button>
+        <button type="button" id= "nobtn" class="btn-grad" >No</button></div>    
+    </div>
         <aside class="sidebar">
           <ul>
             <li class="active" id="products">Products</li>
@@ -38,8 +46,7 @@
             </div>
               <div id="product-grid" class="grid"></div>
             </div>
-          <div id="addpro-content" class="content">
-            <div class="modal-content">
+          <div id="addpro-content" class="content"> 
               <div class="product">
               <h2>Add Product</h2>
               <form id="add-form">
@@ -64,7 +71,6 @@
                 </div>
                 <div id="message-add"></div>
               </form>
-            </div>
             </div>
           </div>
           <div id="discounts-content" class="content">

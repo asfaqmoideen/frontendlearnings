@@ -150,4 +150,5 @@ class UIController{
             table.appendChild(row); 
         });
     }
+
 }

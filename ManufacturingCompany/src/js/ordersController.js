@@ -1,34 +1,5 @@
 //========================================Declarations=====================================================
-
-class ProductController
-{   
-
-    constructor(){
-         this.productsArray = [
-            { id: 1, name: "Phone", price: 2000, quantity: 5 },
-            { id: 2, name: "Charger", price: 200, quantity: 100 },
-            { id: 3, name: "Headphones", price: 100, quantity: 100 },
-            { id: 4, name: "Laptop", price: 50000, quantity: 10 },
-            { id: 5, name: "Keyboard", price: 800, quantity: 50 },
-            { id: 6, name: "Mouse", price: 500, quantity: 75 },
-            { id: 7, name: "Smartwatch", price: 3000, quantity: 20 },
-            { id: 8, name: "Tablet", price: 15000, quantity: 8 },
-            { id: 9, name: "Power Bank", price: 1200, quantity: 60 },
-            { id: 10, name: "Bluetooth Speaker", price: 2500, quantity: 25 }
-        ];
-        
-    }
-}
-
-class Order {
-    constructor(id, name,contact, listOfproducts, totalAmount, dateOfOrder){
-        this.id = id;
-        this.name = name;
-        this.contact = contact;
-        this.listOfproducts = listOfproducts;
-        this.totalAmount = totalAmount;
-    }
-}
+import { productsArray } from "./constants";
 
 class OrdersController{
 
@@ -135,7 +106,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 class UIController{
     constructor(orderscon){
         this.orderscon = orderscon;
-        this.products = new ProductController();
     }
 
 
@@ -176,7 +146,7 @@ tryPlacingOrder(addform){
 
 getProductDetails(){
     const productV = document.getElementById('productDropDown').value
-    return this.products.productsArray.find(p=>p.name==productV);
+    return productsArray.find(p=>p.name==productV);
 }
 
 
@@ -194,7 +164,7 @@ displayMessage(message){
 
 updateProductsDropdown(){
     const productDd = document.getElementById('productDropDown');
-    this.products.productsArray.forEach(product =>{
+    productsArray.forEach(product =>{
         const listItem = document.createElement('option');
         listItem.textContent = product.name;
         listItem.value = product.name;
@@ -230,6 +200,7 @@ updateProductsAddedList() {
         modify.textContent = "Remove";
         modify.className = "createdbutton"
         modify.addEventListener('click', ()=>{
+
         this.orderscon.removeProduct(product);
         this.updateProductsAddedList();})
         modifycell.appendChild(modify);
@@ -284,12 +255,39 @@ updateOrdersAddedList(orders, isSummary) {
         rembtn.textContent = `Cancel Order`;
         rembtn.className = 'createdbutton'
         rembtn.addEventListener('click', ()=>{
-            this.orderscon.cancelOrder(order);
-            this.updateOrdersAddedList(this.orderscon.orders, true);
-            this.updateOrdersAddedList(this.orderscon.orders, false);
+            this.getUserConfirmation(`to cancel ${order.name}'s Order`)
+                .then((result=>{
+                    if(result){
+                    this.orderscon.cancelOrder(order);
+                    this.updateOrdersAddedList(this.orderscon.orders, true);
+                    this.updateOrdersAddedList(this.orderscon.orders, false);
+                    }
+                }));
         });
         row.appendChild(rembtn);
         table.appendChild(row); 
+    });
+}
+
+getUserConfirmation(context) {
+    const confirm = document.getElementById('confirmation');
+    const overlay = document.getElementById('overlay');
+    confirm.style.display = 'block';
+    overlay.style.display = 'block';
+    document.getElementById('confirm-title').textContent = `Are you sure ${context}?`;
+
+    return new Promise((resolve) => {
+        document.getElementById('yesbtn').onclick = () => {
+            confirm.style.display = 'none';
+            overlay.style.display = 'none'
+            resolve(true);
+        };
+        document.getElementById('nobtn').onclick = () => {
+            confirm.style.display = 'none';
+            overlay.style.display = 'none'
+            
+            resolve(false);
+        };
     });
 }
 

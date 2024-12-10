@@ -48,7 +48,7 @@ class EmployeeController{
             return (
                 (!searchfields.id || employee.id.toString() === searchfields.id) &&
                 (!searchfields.fname || employee.firstName.toLowerCase().includes(searchfields.fname.toLowerCase())) &&
-                (!searchfields.lname || employee.lastName.toLowerCase().includes(searchfields.lastName.toLowerCase())) &&
+                (!searchfields.lname || employee.lastName.toLowerCase().includes(searchfields.lname.toLowerCase())) &&
                 (!searchfields.dob || searchfields.dob === employee.dob) &&
                 (!searchfields.doj || searchfields.doj === employee.doj) &&
                 (!searchfields.grade || searchfields.grade === employee.grade)
@@ -58,6 +58,26 @@ class EmployeeController{
         return results;
 
     }
+    
+    searchAny(searchfield) {
+        if (!searchfield) {
+            return false;
+        }
+
+        const result = this.employees.filter(employee => {
+            const searchLower = searchfield.toLowerCase();
+            return (
+                employee.id.toString().includes(searchfield) ||
+                employee.firstName.toLowerCase().includes(searchLower) ||
+                employee.lastName.toLowerCase().includes(searchLower) ||
+                employee.dob.toLowerCase().includes(searchLower) ||
+                employee.doj.toLowerCase().includes(searchLower) ||
+                employee.grade.toLowerCase().includes(searchLower)
+            );
+        });
+        console.log(result);
+        return result;
+    }    
     }
 
 
@@ -66,13 +86,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     const empcont = new EmployeeController();
     const uicon = new UIController(empcont);
     uicon.populateEmployeeTable(empcont.employees);
-    
+
+    const simform = document.getElementById('navsearch')
     const search = document.getElementById('search-btn-emp');
     const serchform = document.getElementById('search-form');
     const searchtitle = document.getElementById('search-results-title');
+
     const backfromsearch = document.getElementById('back-from-serachresults');
     serchform.addEventListener('submit', (event)=>{
         event.preventDefault();
+        compsearch.style.display = 'none';
+        overlay.style.display = 'none';
         if(search.textContent == "Search"){
             const results = empcont.searchEmployee({
                 id:serchform.empId.value,
@@ -113,6 +137,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         btn.textContent = "Search";
         searchtitle.textContent = "All Employees";
         backfromsearch.style.display = "none";
+        simform.value = "";
     });
     
     const closebtn = document.getElementById('back-from-dialog');
@@ -129,6 +154,27 @@ document.addEventListener('DOMContentLoaded',()=>{
         overlay.style.display = 'block';
         
     });
+
+    const compsearch = document.getElementById('emp-details');
+    document.getElementById('complex-search').addEventListener('click', ()=>{
+        compsearch.style.display = 'block';
+        overlay.style.display = 'block';
+        if(document.getElementById('empId').disabled){
+        document.getElementById('empId').disabled = false ; 
+        }
+    });
+
+    document.getElementById('close-search').addEventListener('click', ()=>{
+        compsearch.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+
+    simform.addEventListener('change', ()=>{
+        uicon.populateEmployeeTable(empcont.searchAny(simform.value));
+        searchtitle.textContent = "Search Results";
+        backfromsearch.style.display = 'block'
+    });
+
 })
 
 class UIController{
@@ -185,10 +231,12 @@ class UIController{
             const modifyCell = document.createElement("td");
             const modifyLink = document.createElement("button");
             modifyLink.textContent = "✏️";
+            modifyLink.className = 'iconbtn';
             modifyCell.appendChild(modifyLink);
             row.appendChild(modifyCell);
             modifyLink.addEventListener('click', ()=>{
                 this.updateWithEmpForm(employee);
+                document.getElementById('emp-details').style.display = 'block';
             })
             
             table.appendChild(row);
@@ -210,10 +258,12 @@ class UIController{
         btn.textContent = "Save";
 
         document.getElementById('empId').value = employee.id || '';
+        document.getElementById('empId').disabled = true;
         document.getElementById('firstName').value = employee.firstName || '';
         document.getElementById('lastname').value = employee.lastName || '';
         document.getElementById('dob').value = employee.dob || '';
         document.getElementById('doj').value = employee.doj || '';
         document.getElementById('grade').value = employee.grade || '';
+
     }
 }

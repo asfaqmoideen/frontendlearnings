@@ -1,6 +1,6 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
   
@@ -41,14 +41,6 @@ main #container{
     font-size: 16px;
   }
   
-  .actions button.edit {
-    color: #007bff;
-  }
-  
-  .actions button.delete {
-    color: #dc3545;
-  }
-  
 
   .modal {
     position: fixed;
@@ -75,25 +67,6 @@ main #container{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .modal-content form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .modal-content form label {
-    margin-bottom: 5px;
-  }
-  
-  .modal-content form input {
-    margin-bottom: 15px;
-    padding: 8px;
-    font-size: 16px;
-  }
 
 .container {
     display: flex;

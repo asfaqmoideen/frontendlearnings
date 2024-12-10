@@ -1,7 +1,7 @@
 *{
     margin: 0;
-    box-sizing: border-box;
     font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 body{
     overflow:hidden;
@@ -32,7 +32,6 @@ header .container{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
 }
 
 header nav ul{
@@ -47,13 +46,6 @@ a{
     color: black;
 }
 
-
-a:hover{
-    text-decoration: underline;
-    color: purple;
-    font-style: oblique;
-}
-
 main .container {
     display: flex;
     flex-direction: row;
@@ -62,7 +54,7 @@ main .container {
     justify-content: space-around;
     border-radius: 8px;
     background: whitesmoke;
-    box-shadow: #666666;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-color: aqua;
 }
 
@@ -84,6 +76,7 @@ main .container-details{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: max-content;
 }
+
 #login-form{
     display: flex;
     flex-direction: column;
@@ -99,10 +92,6 @@ main .container-details{
  }
  .form-group{
     padding: 8px 0;
- }
- #wildcard{
-    font-size: x-small;
-    color: #666666;
  }
 
 .container input, .container select{
@@ -124,8 +113,9 @@ main .container-details{
    background-size: 200% auto;
    color: white;            
    border-radius: 10px;
-   display: block;
+   cursor: pointer;
  }
+
 
 .tile-searchresults{
     display: none;
@@ -160,14 +150,13 @@ footer .container{
     padding: 10px; 
     background-image: linear-gradient(to right, black, #434343);
     color: white;
-    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
 }
 
 
-.container-importfile{
+.container-importfile, .container-details, .container-confirmation{
     display: none;
     padding: 20px;
     background-color: #fff;
@@ -175,7 +164,6 @@ footer .container{
     border-radius: 8px;
     z-index: 1000;
     position: fixed;
-    bottom: 13rem;
 }
 
 
@@ -205,9 +193,8 @@ footer .container{
     right: -250px;
     width: 250px;
     height: 100%;
-    background-image: linear-gradient(to right, black, #434343);
+    background-image: linear-gradient(to right, rgb(77, 69, 69), #434343);
     color: aliceblue;
-    transition: left 0.6s ease-in-out;
 }
  
 .sidebar-header {
@@ -239,7 +226,6 @@ footer .container{
     text-decoration: none;
     padding: 10px 15px;
     font-size: 16px;
-    transition: background 0.3s ease;
 }
  
 .sidebar-links a:hover {
@@ -255,6 +241,7 @@ footer .container{
     border: 1px solid #ccc;
     border-radius: 6px;
     background-color: #f9f9f9;
+    width: 90vw;
   }
   
   #search-results h3 {
@@ -278,4 +265,42 @@ footer .container{
     color: white;
   }
 
+  .formgroup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .btn-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .iconbtn{
+    background: none;
+    border: none;
+    font-size: 20px;
+  }
+
+  .headgroup{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+  }
+
+  .menuimg{
+    height: 30px;
+    width: 30px;
+  }
+
+  header nav{
+    display: flex;
+    align-items: center;
+  }
   

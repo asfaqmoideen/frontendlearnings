@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMS - Home</title>
-    <script src="/src/js/ordersController.js"></script>
+    <script  type="module" src="/src/js/ordersController.js"></script>
+    <script type="module" src="/src/js/constants.js"></script>
     <script src="/src/js/pageController"></script>
 </head>
 <body>
@@ -23,6 +24,13 @@
         </div>
     </header>
     <div class="container">
+      <div class="overlay" id="overlay"></div>
+      <div class="container-confirmation" id="confirmation">
+        <h3 id="confirm-title"></h3>
+        <div class="btn-wrap">  
+        <button type="button" id="yesbtn" class="btn-grad" >Yes</button>
+        <button type="button" id= "nobtn" class="btn-grad" >No</button></div>    
+    </div>
         <aside class="sidebar">
           <ul>
             <li class="active" id="orders">Orders</li>
@@ -51,7 +59,7 @@
                 </table>
             </div>
           <div id="addord-content" class="content">
-            <div class="modalcontent">
+
             <div id="addorderdiv">
                 <div class="product">
                   <h2>Add an Order</h2>
@@ -96,7 +104,6 @@
                     <ul id="productList"></ul>
                 </div>
             </div>
-            </div>
         </div>
         <div id="summary-content" class="content">
             <h2 id="ordHead2">Get Order Summary</h2>
@@ -123,35 +130,6 @@
         </div>
           </div>
         </main>
-      <div id="edit-modal" class="modal hidden">
-        <div class="modal-content">
-          <div class="product">
-            <h2>Edit Product</h2>
-            <form id="edit-form">
-              <div class="formgroup">
-              <label for="eid">Id:</label>
-              <input type="number" id="eid" name="eid" required></div>
-              <div class="formgroup">
-              <label for="ename">Name:</label>
-              <input type="text" id="ename" name="name" required>
-              </div>
-              <div class="formgroup">
-                <label for="eprice">Price:</label>
-                <input type="number" id="eprice" name="price" required>
-              </div>
-              <div class="formgroup">
-                <label for="equantity">Quantity:</label>
-                <input type="number" id="equantity" name="quantity" required>
-              </div>
-              <div class="btnwrap">
-                <button type="submit">Save</button>
-                <button type="button" id="cancel-button">Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </main>
     <footer>   
         <div class="container">
            <p>© 2024 Annalect Engineering Ltd. (Omnicom Global Solutions). All rights reserved.</p> 
