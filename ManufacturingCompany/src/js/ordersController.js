@@ -1,13 +1,20 @@
 //========================================Declarations=====================================================
 import { productsArray } from "./constants";
 
+class Order{
+    constructor(id, name,contact, list, totalAmount){
+        this.id = id;
+        this.name = name;
+        this.contact = contact;
+        this.listOfProducts = list;
+        this.totalAmount = totalAmount;
+    }
+}
+
 class OrdersController{
 
     constructor(){
-        this.orders = [{
-            id:1, name:"asfaq", contact:"9283",listOfProducts:[{id :1, name:"Phone",price:2000,},
-                {id :2, name:"Charger", price:2000},], totalAmount:4000
-        }];
+        this.orders = [];
         this.orderId = 1;
         this.addedProducts = [];
     }
@@ -17,7 +24,7 @@ class OrdersController{
 //=====================================LogicFunctions======================================================
 addOrder(order){
 
-    if(order.name){
+    if(order.name && order.listOfProducts.length>0){
         this.orders.push(order);
         return true;
     }
@@ -29,12 +36,7 @@ generateUniqueId(){
 }
 
 netOrdersTotal(orders){
-    let sum = 0;
-    for(let order of orders){
-        sum = sum + order.totalAmount;
-    }
-
-    return sum;
+    return orders.reduce((sum, o)=> sum + o.totalAmount, 0)
 }
 
 
@@ -49,13 +51,17 @@ findOrders(customer){
     return foundOrders;
 }
 
+updateNewQuantity(){
+    productsArray.map(product =>{
+        const productOrdered = this.addedProducts.find(p=>p.id == product.id);
+        if(productOrdered){
+        product.quantity = product.quantity - productOrdered.orderedQuantity;
+        }
+    })
+}
 
 calculateTotalAmount(){
-    let sum = 0;
-    for(let product of this.addedProducts){
-        sum = sum + product.price;
-    }
-    return sum;
+    return this.addedProducts.reduce((sum, product)=>sum+product.subTotal, 0);
 }
 
 orderSummary(name){
@@ -64,8 +70,7 @@ orderSummary(name){
 
 removeProduct(product){
     const productInd = this.addedProducts.findIndex(p=>p.id == product.id);
-
-        this.addedProducts.splice(productInd, 1);
+    this.addedProducts.splice(productInd, 1);
 }
 
 cancelOrder(order){
@@ -83,6 +88,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     uicon.updateOrdersAddedList(orderscon.orders, false);
     uicon.upadteTotalAmount();
     
+    document.getElementById('productDropDown').addEventListener('change', ()=>{
+        uicon.setMaxQuantity();
+    })
+
     const addProd = document.getElementById("addProduct");
     addProd.addEventListener('click', ()=>{
         uicon.tryAddingProducts();
@@ -110,13 +119,13 @@ class UIController{
 
 
 compileOrder(addform){ 
-        return {
-            id: this.orderscon.generateUniqueId(),
-            name: addform.cname.value,
-            contact: addform.contact.value,
-            listOfProducts : this.orderscon.addedProducts,
-            totalAmount: this.orderscon.calculateTotalAmount(),
-        }
+        return new Order(
+            this.orderscon.generateUniqueId(),
+            addform.cname.value,
+            addform.contact.value,
+            this.orderscon.addedProducts,
+            this.orderscon.calculateTotalAmount(),
+        )
     }
 
 
@@ -126,13 +135,16 @@ tryAddingProducts(){
     this.updateProductsAddedList();                   
     this.upadteTotalAmount();               
     document.getElementById('productDropDown').value=" " ;
+    this.updateProductsDropdown();
 }
 
 tryPlacingOrder(addform){
 
     if(this.orderscon.addOrder(this.compileOrder(addform))){
+        this.orderscon.updateNewQuantity();
         this.updateOrdersAddedList(this.orderscon.orders, false);
         this.orderscon.addedProducts = [];
+        this.updateProductsDropdown();
         this.updateProductsAddedList();
         this.upadteTotalAmount();
         addform.reset();
@@ -145,10 +157,20 @@ tryPlacingOrder(addform){
 
 
 getProductDetails(){
-    const productV = document.getElementById('productDropDown').value
-    return productsArray.find(p=>p.name==productV);
+    const productV = document.getElementById('productDropDown').value;
+    const product = productsArray.find(p=>p.name==productV);
+    product.orderedQuantity = document.getElementById('quantity').value;
+    product.subTotal = product.orderedQuantity*product.price;
+    return product;
 }
 
+setMaxQuantity(){
+    const productV = document.getElementById('productDropDown').value;
+    const quantity = document.getElementById('quantity');
+    const product = productsArray.find(p=>p.name==productV);
+    const availableQuan = product.quantity;
+    quantity.max = availableQuan;
+}
 
 //==================================== Updating UI Functions ==================================================
 
@@ -164,11 +186,16 @@ displayMessage(message){
 
 updateProductsDropdown(){
     const productDd = document.getElementById('productDropDown');
+    productDd.textContent = ""; 
     productsArray.forEach(product =>{
-        const listItem = document.createElement('option');
-        listItem.textContent = product.name;
-        listItem.value = product.name;
-        productDd.appendChild(listItem);
+        if(!this.orderscon.addedProducts.find(p=>p.id == product.id)){
+            if(product.quantity>0){
+                const listItem = document.createElement('option');
+                listItem.textContent = product.name;
+                listItem.value = product.name;
+                productDd.appendChild(listItem);
+            }
+        }
     })
 }
 
@@ -183,27 +210,25 @@ updateProductsAddedList() {
     this.orderscon.addedProducts.forEach(product => {
         const row = document.createElement('tr');
         
-        const idCell = document.createElement('td');
-        idCell.textContent = product.id;
-        row.appendChild(idCell);
-        
-        const nameCell = document.createElement('td');
-        nameCell.textContent = product.name; 
-        row.appendChild(nameCell);
-        
-        const priceCell = document.createElement('td');
-        priceCell.textContent = `₹ ${product.price}`;
-        row.appendChild(priceCell);
+        for(let key in product){
+            const cell = document.createElement('td');
+            if(key == 'quantity'){continue;}
+            if(key == 'price' || key =='subTotal'){
+                cell.textContent = `₹${product[key]}`
+            }
+            else{
+                cell.textContent = product[key];
+            }
+            row.appendChild(cell);
+        }
 
         const modifycell = document.createElement('td');
-        const modify = document.createElement('button');
-        modify.textContent = "Remove";
-        modify.className = "createdbutton"
-        modify.addEventListener('click', ()=>{
-
-        this.orderscon.removeProduct(product);
-        this.updateProductsAddedList();})
-        modifycell.appendChild(modify);
+        const delBtn = this.createButton(`🗑️`)
+        delBtn.addEventListener('click', ()=>{
+            this.orderscon.removeProduct(product);
+            this.updateProductsAddedList();
+        })
+        modifycell.appendChild(delBtn);
         row.appendChild(modifycell);
         
         table.appendChild(row); 
@@ -212,48 +237,28 @@ updateProductsAddedList() {
 
 updateOrdersAddedList(orders, isSummary) {
     let table = isSummary ? document.querySelector('#disp-table2 tbody') : document.querySelector('#disp-table tbody');
-    const tamt = document.getElementById('tamt2');
+    const tamt = isSummary ? document.getElementById('tamt3') : document.getElementById('tamt2');
     tamt.textContent = `Total Amount : ₹${this.orderscon.netOrdersTotal(orders)}`;
     table.textContent = " "; 
-    if(isSummary){
-        const totalAmount = document.getElementById('tamt3');
-        totalAmount.textContent = `Total Amount : ₹${this.orderscon.netOrdersTotal(orders)}`;
-    }
+
 
     orders.forEach(order => {
         const row = document.createElement('tr');
-        
-        const idCell = document.createElement('td');
-        idCell.textContent = order.id;
-        row.appendChild(idCell);
-        
-        const nameCell = document.createElement('td');
-        nameCell.textContent = order.name; 
-        row.appendChild(nameCell);
 
-        const contactCell = document.createElement('td');
-        contactCell.textContent = order.contact; 
-        row.appendChild(contactCell);
-        
-        const productlist = document.createElement('ul');
-        order.listOfProducts.forEach(p =>{
-            const productOpt = document.createElement('li');
-            productOpt.textContent = `${p.name}, `;
-            productlist.appendChild(productOpt);
-        });
+            for(let key in order){
+                if(order.hasOwnProperty(key)){
+                    const cell = document.createElement('td');
+                    if(Array.isArray(order[key])){
+                       cell.textContent = order[key].map(p=>`${p.name}(${p.orderedQuantity})`).join(", ");
+                    }
+                    else{
+                    cell.textContent = order[key];
+                    }
+                    row.appendChild(cell);
+                }
+            }
 
-        
-        const productsCell = document.createElement('td');
-        productsCell.textContent = `${productlist.textContent}`
-        row.appendChild(productsCell);
-        
-        const amtCell = document.createElement('td');
-        amtCell.textContent = `₹ ${order.totalAmount}`;
-        row.appendChild(amtCell);
-
-        const rembtn = document.createElement('button');
-        rembtn.textContent = `Cancel Order`;
-        rembtn.className = 'createdbutton'
+        const rembtn = this.createButton(`🗑️`);
         rembtn.addEventListener('click', ()=>{
             this.getUserConfirmation(`to cancel ${order.name}'s Order`)
                 .then((result=>{
@@ -270,25 +275,38 @@ updateOrdersAddedList(orders, isSummary) {
 }
 
 getUserConfirmation(context) {
-    const confirm = document.getElementById('confirmation');
-    const overlay = document.getElementById('overlay');
-    confirm.style.display = 'block';
-    overlay.style.display = 'block';
+    this.showConfirmationBlock(true);
     document.getElementById('confirm-title').textContent = `Are you sure ${context}?`;
 
     return new Promise((resolve) => {
         document.getElementById('yesbtn').onclick = () => {
-            confirm.style.display = 'none';
-            overlay.style.display = 'none'
+            this.showConfirmationBlock(false);
             resolve(true);
         };
         document.getElementById('nobtn').onclick = () => {
-            confirm.style.display = 'none';
-            overlay.style.display = 'none'
-            
+            this.showConfirmationBlock(false);
             resolve(false);
         };
     });
+}
+
+showConfirmationBlock(state){
+    const confirm = document.getElementById('confirmation');
+    const overlay = document.getElementById('overlay');
+    if(state){
+    confirm.style.display = 'block';
+    overlay.style.display = 'block';
+    return
+    }
+    confirm.style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+createButton(textContent){
+    const btn = document.createElement('button');
+    btn.classList.add('createdbutton');
+    btn.textContent = textContent;
+    return btn;
 }
 
 }

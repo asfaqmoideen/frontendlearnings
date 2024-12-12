@@ -78,6 +78,10 @@
                             <option value="select" selected>Select Product</option>
                         </select>
                     </div>
+                    <div class="formgroup">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" min="1" value="1" name="quantity" id="quantity">
+                    </div>
                     <div class="btnwrap">
                         <button type="button" id="addProduct">Add to Cart</button>
                         <button type="submit" id="placeOrder">Place Order</button>
@@ -94,6 +98,8 @@
                                 <td>Id</td>
                                 <td>Name</td>
                                 <td>Price</td>
+                                <td>Quantity</td>
+                                <td>Sub Total</td>
                                 <td>Action</td>
                             </tr>
                         </thead>

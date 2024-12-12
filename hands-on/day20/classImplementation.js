@@ -57,3 +57,10 @@ console.log(buscon.cancelTicket(3));
 console.log(buscon.cancelTicket(10));
 
 console.log(buscon.bustickets);
+console.log("-----------------------------------------------------------");
+const buscon2 = new BusTicketController();
+buscon2.bookTicket(new BusTicket(30, "bindu", 500, "cbe", "hyd"));
+buscon.cancelTicket(30);
+buscon2.cancelTicket(30);
+console.log(buscon2.bustickets);
+

@@ -8,7 +8,7 @@ class Login{
     trylogin() {
         if (this.userid === "asfaq@ae.com" && this.password === "esfaq") {
             sessionStorage.setItem("loggedIn", "true");
-            document.location = "/src/pages/home.html"; // Redirect to add.html page
+            document.location = "/src/pages/home.html";
         } else {
             document.getElementById("error").textContent = "Invalid username or password.";
         }
