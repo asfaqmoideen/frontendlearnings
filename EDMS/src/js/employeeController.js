@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         overlay.style.display = 'none';
     });
 
-    simform.addEventListener('change', ()=>{
+    simform.addEventListener('keyup', ()=>{
         uicon.populateEmployeeTable(empcont.searchAny(simform.value));
         searchtitle.textContent = "Search Results";
         backfromsearch.style.display = 'block'

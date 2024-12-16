@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
     const getsum = document.getElementById('cname-sum');
-    getsum.addEventListener('change', ()=>{
+    getsum.addEventListener('keyup', ()=>{
         const summary = orderscon.orderSummary(getsum.value)
         uicon.updateOrdersAddedList(summary,true);
     })

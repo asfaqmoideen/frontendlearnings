@@ -123,6 +123,7 @@ main .container-details{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: .5rem;
 }
 .container-login button, .container-login input{
     margin: 8px 0;
