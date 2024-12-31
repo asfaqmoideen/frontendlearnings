@@ -40,16 +40,6 @@ netOrdersTotal(orders){
 }
 
 
-findOrders(customer){
-
-    let foundOrders = [];
-    for(let order in this.orders){
-        if(order.name == customer){
-            foundOrders.push(order);
-        }
-    }
-    return foundOrders;
-}
 
 updateNewQuantity(){
     productsArray.map(product =>{
@@ -65,7 +55,7 @@ calculateTotalAmount(){
 }
 
 orderSummary(name){
-    return this.orders.filter(o=> o.name == name);
+    return this.orders.filter(o => o.name.toLowerCase().includes(name.toLowerCase()));
 }
 
 removeProduct(product){

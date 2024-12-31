@@ -9,10 +9,16 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    justify-content: center;
 }
 
 main{
     flex: 1;
+}
+
+.container-login{
+    width: 400px;
+    margin: auto;
 }
 
 header {
@@ -67,9 +73,6 @@ a:hover{
 
 main .container-login{
     display: flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    margin-top: 5rem;
     justify-content: space-around;
 }
 

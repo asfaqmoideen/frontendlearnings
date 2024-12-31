@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const search = document.getElementById('search-btn-emp');
     const serchform = document.getElementById('search-form');
     const searchtitle = document.getElementById('search-results-title');
-
     const backfromsearch = document.getElementById('back-from-serachresults');
+    
     serchform.addEventListener('submit', (event)=>{
         event.preventDefault();
         compsearch.style.display = 'none';
