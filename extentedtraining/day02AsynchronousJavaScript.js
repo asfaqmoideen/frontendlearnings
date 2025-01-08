@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("otherbtn").addEventListener("click",()=>{
         tryListeningMusic();
+    });
+
+    document.getElementById("parallelbtn").addEventListener('click', ()=> {
+        tryDoingParalleley();
     })
 })
 
@@ -39,9 +43,9 @@ async function tryEatingCake(){
     orderCake()
         .then(cake => {
             eatCake(cake);
-            return washYourPlates();
+            return washYourPlates(); // Another promise     
         })
-        .then(plate => {
+        .then(plate => {   // Chaining
             displayOutput(plate + "Washed !");
         })
         .catch(e => {
@@ -101,5 +105,16 @@ function listenToMusic(){
         else{
             reject(new Error("Internet not connected"));
         }
+    })
+}
+
+function tryDoingParalleley(){
+    allTasks = [orderCake(), listenToMusic()];
+
+    Promise.all(allTasks).then(tasks => {
+        const [result1, result2] = tasks;
+
+        displayOutput(result1);
+        displayOutputTwo(result2);
     })
 }
