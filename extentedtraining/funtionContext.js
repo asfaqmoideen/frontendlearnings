@@ -10,14 +10,17 @@ const name1 = {
 const name2 = {
     firstName : "balaji",
     lastName: "bharath",
+    disp : function(city){
+        console.log(`${this.firstName} ${this.lastName} form ${city}`);
+    }
 }
 
 const displayDetails =  function(city){
     console.log(`${this.firstName} ${this.lastName} form ${city}`);
 }
 
-displayDetails.call(name1, "CBE");
-displayDetails.call(name2, "MAS")
+name2.disp.call(name1,"CBE" );
+name2.disp.call(name2,"MAS" );
 
 
 
