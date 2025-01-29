@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterater_Generater</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    let ID = 1;
+    function* generateUserID(department){
+        departmentCode = department[0].toUpperCase() + department[1].toUpperCase();
+        while(true){
+            let id = departmentCode + ID++
+            yield id;
+        }
+    }
+
+    const iter ={
+        counter : -1,
+        next(){
+            return {
+                value : ++this.counter,
+                done : this.counter>=11
+            }
+        },
+        [Symbol.iterator](){
+            return this;
+        }
+    }
+
+    console.log(iter.next().value);
+    console.log(iter.next().value);
+    console.log(iter.next().value);
+
+   let next;
+   do{
+    next = iter.next();
+    console.log(next)
+   }while(!next.done);
+
+    console.log(generateUserID('Technology').next().value);
+    console.log(generateUserID('MediaServices').next().value);
+
+//    let arr = [1,2,3,4,5,5];
+//    let x = {} 
+//    arr.forEach(e =>{
+//     console.log(e)
+//     x.e = "";
+//    });
+//    console.log(x);
+</script>
+</html>

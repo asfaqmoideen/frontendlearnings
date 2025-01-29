@@ -22,7 +22,7 @@ class Person{
 
     static displayDetails(){
         const status = this.isLoggedIn ? "online" : "offline";
-        console.log(`Hi this is ${this.email}, I'm ${Person.isLoggedIn} today`);    
+        console.log(`Hi this is ${this.name}, I'm ${Person.isLoggedIn} today`);    
     }
 }
 
@@ -44,7 +44,7 @@ class Employee extends Person{
     }
 
     getEmployeeDetails(){
-        super.setPassWord("123IO");
+        setPassWord("123IO");
         return `Hi ${this.name} from ${this.comapany}, You can reach me at ${this.email}`
     }
 }

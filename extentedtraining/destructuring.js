@@ -1,6 +1,6 @@
 const biriyaniTypes  = ['Hyderabad', "Ambur", "Thalapakkati", 'Bengal', 'Malabar'];
 console.log(biriyaniTypes);
-
+    
 
 // swap 
 [biriyaniTypes[0] , biriyaniTypes[4] ] = [biriyaniTypes[4], biriyaniTypes[0]]; 
@@ -18,11 +18,11 @@ const bike = {
     mileage : 50,
 }
 
-const {manufac, capacity, mileage,color} = bike;
-console.log(manufac);
-console.log(capacity);
-console.log(mileage);
-console.log(color);
+// const {manufac, capacity, mileage,color} = bike;
+// console.log(manufac);
+// console.log(capacity);
+// console.log(mileage);
+// console.log(color);
 
 function displayBikeDetails ({manufac, capacity, mileage,color = "blue"}){
     console.log(manufac);
@@ -32,3 +32,13 @@ function displayBikeDetails ({manufac, capacity, mileage,color = "blue"}){
 }
 
 displayBikeDetails(bike);
+const user = {
+  id: 339,
+  name: 'Fred',
+  age: 42,
+  education: {
+    degree: 'Masters'
+  }
+};
+const {education: {degree}} = user;
+console.log(degree); 

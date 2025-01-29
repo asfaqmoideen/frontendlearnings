@@ -77,7 +77,7 @@ Day 1: Destructuring
 
   - Destructuring function arguments
 
-Day 2: Spread and Rest Operators	
+Day 2: Spread and Rest Operators
 
 - Spread Operator
 

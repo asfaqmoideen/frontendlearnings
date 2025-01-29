@@ -40,7 +40,7 @@ class EmployeeController{
         }
     }
 
-    searchEmployee(searchfields){
+    searchEmployee(){
         if (!searchfields.id && !searchfields.fname && !searchfields.lname && !searchfields.dob && !searchfields.doj && !searchfields.grade) {
             return false;
         }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="search">Search User</label>
+    <input type="text" id="search">
+
+    <p>Debounce Results: <span id="results-d"></span></p>
+    <p>Throttle Results: <span id="results-t"></span></p>
+</body>
+<script>
+    
+    
+    const searchuser = (query)=>{
+        console.log(query);
+        fetch(`https://dummyjson.com/users/search?q=${query}`)
+        .then(res => res.json())
+        .then(users =>{
+            if(users.users.length > 0){
+                console.log(users.users);
+                document.getElementById("results-d").textContent = users.users[0].firstName;
+            }
+        });
+    }
+
+    function debounce(func, wait=500) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(()=>{
+                func(...args);
+            }, wait);
+        }
+    }
+    
+    const searchUserWithDebounce = debounce(searchuser, 1000);
+    
+    const searchUser2 = (query)=>{
+        console.log(query);
+        fetch(`https://dummyjson.com/users/search?q=${query}`)
+        .then(res => res.json())
+        .then(users =>{
+            if(users.users.length > 0){
+                console.log(users.users);
+                document.getElementById("results-t").textContent = users.users[0].firstName;
+            }
+        });
+    }
+
+    function throttle(func, wait=500){
+        let shouldWait = false;
+
+        return (...args)=>{
+            if(shouldWait){
+                return;
+            }
+            func(...args)
+            shouldWait = true;
+            setTimeout(()=>{shouldWait = false}, wait)
+        }
+    }
+    
+    function betterThrottle(func, delay = 500){
+        let shouldWait = false;
+        let waitingArguements 
+
+        const timeoutFunc =()=>{
+            if(waitingArguements ==null){
+                shouldWait = false;
+            }
+            else{
+                func(waitingArguements);
+                waitingArguements = null;
+                setTimeout(timeoutFunc, delay)
+            }
+        }
+
+        return (...args) =>{
+            if(shouldWait) {
+                waitingArguements = args;
+                return;
+            }
+            func(...args);
+            shouldWait = true;
+            setTimeout(timeoutFunc, delay)
+        }
+    }
+
+    const searchWithThrottle = betterThrottle(searchUser2, 1000);
+
+    document.getElementById("search").addEventListener("keyup",(e)=>{
+        searchUserWithDebounce(e.target.value);
+        searchWithThrottle(e.target.value);
+    })
+
+
+</script>
+</html>
+
