@@ -174,6 +174,28 @@ console.log(numbersSet); //Set(5) {1, 2, 3, 4, 5}
 // Iterators
 // 1. Creating Custom Iterable Objects:
 //    - Create a custom iterable object that generates the first `n` Fibonacci numbers.
+function createIterable(n) {
+    let count = 0;
+    let a = 0;
+    let b = 1;
+    return {
+        [Symbol.iterator]() {
+        return {
+          next() {
+            if (count < n) {
+              const fibNumber = a;
+              [a, b] = [b, a + b]; 
+              count++;
+              return { value: fibNumber, done: false };
+            } else {
+              return { value: undefined, done: true };  
+            }
+          }
+        };
+    }
+}
+}
+const fiboiter = createIterable(10);
 
 
 // Generators
@@ -199,10 +221,34 @@ console.log(fibo.next().value);
 
 //    - Write a generator function `asyncGenerator` that yields promises and use `for await...of` to consume the generator.
 
-async function* asyncGenerator(){
+async function* asyncGenerator() {
+    const values = [1, 2, 3, 4, 5]; 
+    for (let value of values) {
+      yield new Promise(resolve => setTimeout(() => resolve(value * 2), 1000));
+    }
+  }
 
-}
+  (async () => {
+    for await (let result of asyncGenerator()) {
+      console.log(result);  
+    }
+  })();
 // Async Generators
 // 3. Streaming Data Processing:
 //    - Write an async generator function `fetchData` that fetches data from an API in chunks and yields each chunk. Use `for await...of` to process the data chunks.
-// These coding practice questions will help reinforce the advanced ES6+ features and ensure a deeper understanding of each topic.
+
+async function* fetchFromAPIinChunks(){
+    let n = 10;
+    let count = 1;
+    while(count < n){
+        yield fetch(`https://dummyjson.com/users/${count}`)
+        count++;
+    }
+}
+
+(async ()=>{
+    for await(let user of fetchFromAPIinChunks()){
+        let x = await user.json();
+        console.log(x.username);
+    }
+})();
