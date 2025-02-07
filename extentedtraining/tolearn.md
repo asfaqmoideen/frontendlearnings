@@ -113,7 +113,130 @@ Day 5: Iterators and Generators
 
   - Streaming data processing
 
-## Practice
+
+### **Week 3: TypeScript Deep Dive**
+
+**Day 1: Type System Basics**
+
+- Union and Intersection Types
+
+  - Advanced type composition
+- Type Aliases vs Interfaces
+
+  - Differences and best practices
+- Enums
+
+  - Practical applications and alternatives
+
+**Day 2: Generics**
+
+- Basic Generics
+
+  - Functions and classes
+- Constraints
+
+  - Restricting types in generics
+- Utility Types
+
+  - `Partial`, `Pick`, `Omit`, `Readonly`
+
+**Day 3: Advanced Type Features**
+
+- Mapped Types
+
+  - Transforming types dynamically
+- Template Literal Types
+
+  - Advanced string manipulation
+- Discriminated Unions
+
+  - Handling complex type logic
+
+**Day 4: Recursive and Conditional Types**
+
+- Recursive Types
+
+  - Handling deeply nested structures
+- Conditional Types
+
+  - Building dynamic and reusable types
+
+**Day 5: Advanced Configurations**
+
+- tsconfig.json
+
+  - Key options and their effects
+- Type Declarations
+
+  - Creating `.d.ts` files
+- Ambient Declarations
+
+  - Working with external libraries
+
+### **Week 4: Advanced JavaScript for Web Applications**
+
+**Day 1: Advanced Web Components**
+
+- Custom Elements
+
+  - Lifecycle callbacks (`connectedCallback`, `disconnectedCallback`)
+- Slots
+
+  - Creating dynamic and reusable templates
+- Shadow DOM
+
+  - Styling isolation and benefits
+
+**Day 2: Advanced Maps and Sets**
+
+- Practical Use Cases
+
+  - Managing application state, caching
+- Iterating Maps and Sets
+
+  - Using `forEach()` and spread operators
+- Combining Maps/Sets
+
+  - Performing unions, intersections, and differences
+
+**Day 3: Event Handling and Custom Events**
+
+- Event Delegation
+
+  - Optimising event listeners
+- Custom Events
+
+  - Creating and dispatching events
+- Event Bubbling and Capturing
+
+  - Managing propagation effectively
+
+**Day 4: Modules and Tooling**
+
+- Import/Export
+
+  - Default and named exports
+- Dynamic Imports
+
+  - Code-splitting and lazy loading
+- Module Bundlers
+
+  - Webpack, Rollup
+
+**Day 5: JavaScript Design Patterns**
+
+- Module Pattern
+- Revealing Module Pattern
+- Singleton Pattern
+- Observer Pattern
+- Factory Pattern
+- Prototype Pattern
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+### Practice
 
 **Week 1: Advanced JavaScript Fundamentals**
 
