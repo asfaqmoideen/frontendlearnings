@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components</title>
+</head>
+<style>
+    p{
+        color: green;
+    }
+</style>
+<body>
+    <header>
+        <h1>Web Components</h1>
+    </header>
+    <main>
+        <simple-navbar></simple-navbar>
+        <p>Hi this is from HTML</p>
+    </main>
+</body>
+
+<script>
+    class SimpleNavbar extends HTMLElement{
+        constructor(){
+            super();
+            this.attachShadow({mode:"open"});
+        }
+
+        connectedCallback(){
+            this.shadowRoot.innerHTML =`
+
+        <style>
+    
+        ul{
+            list-style:none;
+        }
+        li{
+            color: blue;
+        }
+        </style>
+
+        <h2>This is a Custom Component</h2>
+        <ul>
+        <li>First items</li>
+        <li>Second items</li>
+        </ul>`
+        }
+
+    }
+
+    window.customElements.define("simple-navbar", SimpleNavbar);
+</script>
+</html>
