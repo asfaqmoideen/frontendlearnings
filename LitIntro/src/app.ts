@@ -24,8 +24,8 @@ export class MyRoot extends LitElement {
     return html`
       <custom-header></custom-header>
       <custom-container></custom-container>
-      <custom-footer></custom-footer>
-    `
+      `
+      // <custom-footer></custom-footer>
   }
 
 

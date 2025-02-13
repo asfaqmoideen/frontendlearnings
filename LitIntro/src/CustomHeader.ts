@@ -7,19 +7,16 @@ export class CustomHeader extends LitElement{
 
     render(){
         return html `
-        <header>
         <h2>Company Title</h2>  
         <ul>
         <li>First items</li>
         <li>Second items</li>
         </ul>
-        </header>
         `;
     }
 
     static styles = css`
-        :host{ all : initial; }
-        header {
+        :host{ all : initial; 
             padding-inline : .8rem;
             display : flex;
             justify-content : space-between;
