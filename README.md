@@ -25,8 +25,8 @@ This repo focuses on modern web development with:
 
 - **HTML5**
 - **CSS3** – Flexbox, Grid, Responsive Design
-- **JavaScript (ES6+)**
-- **TypeScript**
+- **JavaScript (ES6+)** - Adavced Concepts
+- **TypeScript** - For building type safe webcomponents using LIT
 - **Lit** – A lightweight framework for Web Components
 - **Git & GitHub** for version control
 - **VS Code** as my development environment
@@ -42,7 +42,6 @@ Each case study includes:
 - 💻 **Code Implementation**
 - ✅ **Working Output**
 
-> Go to `02-case-studies/responsive-blog-layout/README.md` to see a detailed example.
 
 ---
 
