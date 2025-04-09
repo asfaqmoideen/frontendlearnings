@@ -8,11 +8,11 @@ class DivideByZeroError extends Error {
 }
 
 
-throw new DivideByZeroError("divident should not be zero");
 
 
 try {
     function divide(){
+        throw new DivideByZeroError("divident should not be zero");
 
     }
 }catch(error)

@@ -34,5 +34,5 @@ const MixedClass = combineClasses(A, B, C);
 
 const instance = new MixedClass();
 instance.methodA(); 
-instance.methodB(); 
+instance.methodB();
 instance.methodC(); 

@@ -23,7 +23,7 @@ Day 2: Asynchronous JavaScript
 - Promises
 
   - Advanced chaining, error handling, and `Promise.allSettled()`
-- Async/Await
+- Async/Await		
 
   - Best practices, parallel vs sequential execution
 - Event Loop
@@ -112,7 +112,6 @@ Day 5: Iterators and Generators
 - Async Generators
 
   - Streaming data processing
-
 
 ### **Week 3: TypeScript Deep Dive**
 
@@ -232,9 +231,7 @@ Day 5: Iterators and Generators
 - Factory Pattern
 - Prototype Pattern
 
-
-
------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 ### Practice
 

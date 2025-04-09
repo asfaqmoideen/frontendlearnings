@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Autocomplete</title>
+    <style>
+        /* Input styling */
+        #browser {
+            width: 200px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Custom dropdown styling */
+        .dropdown {
+            position: absolute;
+            width: 220px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dropdown items */
+        .dropdown div {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .dropdown div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <label for="browser">Choose your browser from the list:</label>
+    <input type="text" id="browser" placeholder="Type a browser name..." autocomplete="off">
+    <div id="dropdown" class="dropdown"></div>
+
+    <script>
+        const browsers = ["Edge", "Firefox", "Chrome", "Opera", "Safari"];
+        const input = document.getElementById("browser");
+        const dropdown = document.getElementById("dropdown");
+
+        input.addEventListener("input", () => {
+            const query = input.value.toLowerCase();
+            dropdown.innerHTML = "";
+
+            if (!query) {
+                dropdown.style.display = "none";
+                return;
+            }
+
+            const filtered = browsers.filter(browser => browser.toLowerCase().includes(query));
+
+            filtered.forEach(browser => {
+                const div = document.createElement("div");
+                div.textContent = browser;
+                div.onclick = () => {
+                    input.value = browser;
+                    dropdown.style.display = "none";
+                };
+                dropdown.appendChild(div);
+            });
+
+            dropdown.style.display = filtered.length ? "block" : "none";
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!input.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
